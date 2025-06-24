@@ -5,7 +5,7 @@ import Postcenter from '../../Component/Postcenter/Postcenter'
 
 function PostPage() {
   return (
-        <div className='justify-center flex  w-full h-full'>
+        <div className='justify-center flex  w-full h-[100vh]'>
     <SideNavigation/>
      <Postcenter/>
      <SuggectionCard/>

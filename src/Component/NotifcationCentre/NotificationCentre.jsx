@@ -1,5 +1,4 @@
 import React from 'react';
-import FeaturedComponent from '../FeaturedComponent/FeaturedComponent';
 import menu from '../../assets/Icons_Images/icons8-menu-vertical-32.png';
 import settings from '../../assets/Icons_Images/icons8-settings-50.png';
 import Pencil from '../../assets/Icons_Images/icons8-pencil-32.png'
@@ -10,7 +9,7 @@ function NotificationCentre() {
 
 
     <section className='flex relative border-l-[1px] border-r-[1px]  border-gray-400' >
-        <div  className='w-[632px] relative h-full overflow-y-auto'>
+        <div  className='w-[632px]'>
             <div className='flex justify-between items-center p-3  border-b-[1px] border-gray-300 h-[56px]  sticky w-full  z-10 bg-white top-0 '>
               <div className='flex items-center gap-3'>
                 <Link to='/Dashboard'>

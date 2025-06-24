@@ -1,5 +1,4 @@
 import React from 'react';
-import FeaturedComponent from '../FeaturedComponent/FeaturedComponent';
 import Poll from '../../assets/Icons_Images/icons8-poll-horizontal-48.png'
 import UploadImage from '../../assets/Icons_Images/icons8-image-24.png'
 import Text from '../../assets/Icons_Images/icons8-font-size-16.png'

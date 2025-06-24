@@ -7,6 +7,7 @@ import AddCard from '../../assets/Icons_Images/icons8-card-24.png'
 import Account from '../../assets/Icons_Images/icons8-profile-50.png'
 import More from '../../assets/Icons_Images/icons8-menu-vertical-32.png'
 import plus from '../../assets/Icons_Images/icons8-plus-24.png'
+import Collection from '../../assets/Icons_Images/icons8-bookmark-24.png'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
@@ -74,19 +75,19 @@ function SideNavigation() {
             <Link  to='/my/notification' className='flex items-center gap-5'><img src={Notification} alt='Notification' className='w-[33px] h-[33px] object-contain'/>
             <span>Notifications</span>
             </Link>
-            <Link className='flex items-center gap-5'><img src={Message} alt='Message' className='w-[33px] h-[33px] object-contain'/>
+            <Link  to="/my/chats" className='flex items-center gap-5'><img src={Message} alt='Message' className='w-[33px] h-[33px] object-contain'/>
             <span>Message</span>
             </Link>
-            <Link className='flex items-center gap-5'><img src={Message} alt='Message' className='w-[33px] h-[33px] object-contain'/>
+            <Link to='/my/collection/user-lists/subscribers/active'  className='flex items-center gap-5'><img src={Collection} alt='Message' className='w-[33px] h-[33px] object-contain'/>
             <span>Collection</span>
             </Link>
-            <Link  className='flex items-center gap-5'><img src={Subscriptions} alt='Subscriptions' className='w-[33px] h-[33px] object-contain'/>
+            <Link  to='/my/collections/user-lists/subscriptions' className='flex items-center gap-5'><img src={Subscriptions} alt='Subscriptions' className='w-[33px] h-[33px] object-contain'/>
             <span>Subscriptions</span>
             </Link>
-            <Link  to='/my/payments/addcard'  className='flex items-center gap-5'><img src={AddCard} alt='AddCard' className='w-[33px] h-[33px] object-contain'/>
+            <Link  to='/my/payments/add_card'  className='flex items-center gap-5'><img src={AddCard} alt='AddCard' className='w-[33px] h-[33px] object-contain'/>
             <span>Add card</span>
             </Link>
-            <Link  className='flex items-center gap-5'><img src={Account} alt='Account' className='w-[33px] h-[33px] object-contain'/>
+            <Link   to='/_idu507114711' className='flex items-center gap-5'><img src={Account} alt='Account' className='w-[33px] h-[33px] object-contain'/>
             <span>My profile</span>
             </Link>
             <Link onClick={handleclick} className='flex items-center gap-5 '><img src={More} alt='More' className='w-[33px] h-[33px] object-contain rotate-90'/>

@@ -4,9 +4,7 @@ import Poll from '../../assets/Icons_Images/icons8-poll-horizontal-48.png'
 import UploadImage from '../../assets/Icons_Images/icons8-image-24.png'
 import Text from '../../assets/Icons_Images/icons8-font-size-16.png'
 import Quiz from '../../assets/Icons_Images/icons8-ask-question-16.png'
-import Left from '../Tetsing/left'
 import Pencil from '../../assets/Icons_Images/icons8-pencil-32.png'
-import Card from '../../Component/Suggestioncard/card'
 import { Link } from 'react-router-dom'
 
 

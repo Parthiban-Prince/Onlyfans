@@ -1,0 +1,10 @@
+#Logo-Content-Background{
+    background-image: url('../../assets/images/OnlyFans_Logo_Icon_White.png');
+    background-repeat: no-repeat;
+    background-size: auto 90%;
+    background-position-x:-10%; 
+    background-position-y:550%;
+    background-position: fixed;
+    background-blend-mode: soft-light white 1;
+    overflow: hidden;
+}

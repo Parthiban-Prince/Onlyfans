@@ -10,9 +10,9 @@ import Card from '../../Component/Suggestioncard/card'
 import { Link } from 'react-router-dom'
 
 
-function CenterContent() {
+function CenterContent() { 
   return (
-    <section className='flex relative border-[1px] border-gray-400' >
+    <section className='flex relative border-[1px] border-gray-400 h-full' >
         <div  className='w-[632px] relative'>
             <div className='flex justify-between items-center p-3  border-b-[1px] border-gray-300 h-[56px]  sticky w-full  z-10 bg-white top-0 '>
                 <h1 className='text-xl font-bold'>Home</h1>
@@ -38,9 +38,6 @@ function CenterContent() {
                 <h3  className='border px-5 text-center rounded-full h-[25px]' ><img src={Pencil} className= " w-[25px] h-[25px] rounded-full"/></h3>
             </div>
             <div className=' border-b-[1px] border-gray-300'>
-                <Left/>
-                <Left/>
-                <Left/>
             </div>
         </div>
     </section>

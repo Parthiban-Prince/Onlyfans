@@ -40,13 +40,13 @@ function SideNavigation() {
             
             <div>
                                 <Link  className='flex items-center gap-5'><img src={Account} alt='Account' className='w-[33px] h-[33px] object-contain'/><span>My profile</span></Link>
-                  <Link className='flex items-center gap-5'><img src={Message} alt='Message' className='w-[33px] h-[33px] object-contain'/><span>Collection</span></Link>
-                                    <Link className='flex items-center gap-5'><img src={Message} alt='Message' className='w-[33px] h-[33px] object-contain'/><span>Settings</span></Link>
+                                <Link className='flex items-center gap-5'><img src={Message} alt='Message' className='w-[33px] h-[33px] object-contain'/><span>Collection</span></Link>
+                                <Link className='flex items-center gap-5'><img src={Message} alt='Message' className='w-[33px] h-[33px] object-contain'/><span>Settings</span></Link>
             </div>
-                                    <div>
+            <div>
                                         
-                                    <Link  className='flex items-center gap-5'><img src={AddCard} alt='AddCard' className='w-[33px] h-[33px] object-contain'/><span>Your card<span>to subsrcribe</span></span></Link>
-                                    <Link  className='flex items-center gap-5'><img src={Subscriptions} alt='Subscriptions' className='w-[33px] h-[33px] object-contain'/><span>Become a creator</span></Link>
+                                <Link  className='flex items-center gap-5'><img src={AddCard} alt='AddCard' className='w-[33px] h-[33px] object-contain'/><span>Your card<span>to subsrcribe</span></span></Link>
+                                <Link  className='flex items-center gap-5'><img src={Subscriptions} alt='Subscriptions' className='w-[33px] h-[33px] object-contain'/><span>Become a creator</span></Link>
 
                                     </div>
 
@@ -65,16 +65,37 @@ function SideNavigation() {
           </div>)
       }
         <nav className='sticky top-5 left-0 flex flex-col gap-5 px-[16px] overflow-y-hidden' id='blackout' >
-            <button className='border rounded-full w-fit h-fit object-container overflow-hidden'><img src='https://res.cloudinary.com/dri7edc3h/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1750312122/kayadu/jz20kkexqy0yp6emxlpi.jpg' alt='Profile' className='w-[36px] h-[36px] object-cover'/></button>
-            <Link to='/dashboard' className='flex items-center gap-5'><img src={Home} alt='Profile' className='w-[33px] h-[33px] object-contain'/><span>Home</span></Link>
-            <Link  to='/my/notification' className='flex items-center gap-5'><img src={Notification} alt='Notification' className='w-[33px] h-[33px] object-contain'/><span>Notifications</span></Link>
-            <Link className='flex items-center gap-5'><img src={Message} alt='Message' className='w-[33px] h-[33px] object-contain'/><span>Message</span></Link>
-            <Link className='flex items-center gap-5'><img src={Message} alt='Message' className='w-[33px] h-[33px] object-contain'/><span>Collection</span></Link>
-            <Link  className='flex items-center gap-5'><img src={Subscriptions} alt='Subscriptions' className='w-[33px] h-[33px] object-contain'/><span>Subscriptions</span></Link>
-            <Link  to='/my/payments/add_card'  className='flex items-center gap-5'><img src={AddCard} alt='AddCard' className='w-[33px] h-[33px] object-contain'/><span>Add card</span></Link>
-            <Link  className='flex items-center gap-5'><img src={Account} alt='Account' className='w-[33px] h-[33px] object-contain'/><span>My profile</span></Link>
-            <Link onClick={handleclick} className='flex items-center gap-5 '><img src={More} alt='More' className='w-[33px] h-[33px] object-contain rotate-90'/><span>More</span></Link>
-            <Link  to="/posts/create"  className='flex items-center gap-5 bg-[#00aff0] rounded-full  justify-evenly h-[50px] px-10 text-white box-content  focus:bg-gray-400 transition scroll-smooth'><img src={plus} alt='Profile' className='w-[33px] h-[33px]' /><button className='text-center '>NEW POST</button></Link>
+            <button className='border rounded-full w-fit h-fit object-container overflow-hidden'>
+              <img src='https://res.cloudinary.com/dri7edc3h/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1750312122/kayadu/jz20kkexqy0yp6emxlpi.jpg' alt='Profile' className='w-[36px] h-[36px] object-cover'/>
+            </button>
+            <Link to='/dashboard' className='flex items-center gap-5'><img src={Home} alt='Profile' className='w-[33px] h-[33px] object-contain'/>
+            <span>Home</span>
+            </Link>
+            <Link  to='/my/notification' className='flex items-center gap-5'><img src={Notification} alt='Notification' className='w-[33px] h-[33px] object-contain'/>
+            <span>Notifications</span>
+            </Link>
+            <Link className='flex items-center gap-5'><img src={Message} alt='Message' className='w-[33px] h-[33px] object-contain'/>
+            <span>Message</span>
+            </Link>
+            <Link className='flex items-center gap-5'><img src={Message} alt='Message' className='w-[33px] h-[33px] object-contain'/>
+            <span>Collection</span>
+            </Link>
+            <Link  className='flex items-center gap-5'><img src={Subscriptions} alt='Subscriptions' className='w-[33px] h-[33px] object-contain'/>
+            <span>Subscriptions</span>
+            </Link>
+            <Link  to='/my/payments/addcard'  className='flex items-center gap-5'><img src={AddCard} alt='AddCard' className='w-[33px] h-[33px] object-contain'/>
+            <span>Add card</span>
+            </Link>
+            <Link  className='flex items-center gap-5'><img src={Account} alt='Account' className='w-[33px] h-[33px] object-contain'/>
+            <span>My profile</span>
+            </Link>
+            <Link onClick={handleclick} className='flex items-center gap-5 '><img src={More} alt='More' className='w-[33px] h-[33px] object-contain rotate-90'/>
+            <span>More</span>
+            </Link>
+            <Link  to="/posts/create"  className='flex items-center gap-5 bg-[#00aff0] rounded-full  justify-evenly h-[50px] px-10 text-white box-content  focus:bg-gray-400 transition scroll-smooth'>
+            <img src={plus} alt='Profile' className='w-[33px] h-[33px]' />
+            <button className='text-center '>NEW POST</button>
+            </Link>
         </nav>
     </section>
   )

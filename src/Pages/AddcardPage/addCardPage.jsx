@@ -1,22 +1,21 @@
 import React from 'react';
-import LeftSidebar from '../../Component/Tetsing/left';
-import RightSidebar from '../../Component/Tetsing/right'
-import CenterContent from '../../Component/CenterContent/CenterContent';
 import SideNavigation from '../../Component/SideNavigation/SideNavigation';
-import SuggectionCard from '../../Component/Suggestioncard/Suggestioncard';
+import AddcardCenter from '../../Component/AddCardCenter/AddcardCenter'
+import AddcardRight from '../../Component/AddcardRight/AddcardRight';
 
 
 
 
 
-export default  function addCardPage() {
+
+export default  function AddcardPage() {
 
 
   return (
-    <div className='justify-center flex  w-full h-full'>
+    <div className='justify-center flex h-[100vh]'>
       <SideNavigation/>
-     <CenterContent/>
-     <SuggectionCard/>
+      <AddcardCenter/>
+      <AddcardRight/>
     </div>
 
   );

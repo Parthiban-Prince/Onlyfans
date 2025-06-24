@@ -13,7 +13,7 @@ export default  function HomePage() {
 
 
   return (
-    <div className='justify-center flex  w-full h-full'>
+    <div className='justify-center flex  w-full h-[100vh]'>
       <SideNavigation/>
      <CenterContent/>
      <SuggectionCard/>

@@ -1,7 +1,7 @@
 import React from 'react'
 import Paymentbag from '../../assets/Icons_Images/icons8-shopping-bag-50.png'
 
-function RightTest() {
+function AddcardRight() {
   return (
     <section className=' ml-4 py-5 my-5 relative z-10' >
       <div className='flex flex-col gap-5'>
@@ -35,4 +35,4 @@ function RightTest() {
   )
 }
 
-export default RightTest
+export default AddcardRight

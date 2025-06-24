@@ -5,7 +5,7 @@ import NotificationCentre from '../../Component/NotifcationCentre/NotificationCe
 
 function NotificationPage() {
   return (
-        <div className='justify-center flex  w-full h-full'>
+        <div className='justify-center flex  w-full h-[100vh]'>
     <SideNavigation/>
      <NotificationCentre/>
      <SuggectionCard/>

@@ -14,21 +14,7 @@ function User(){
 
    async function createUser() {
 
-
-    try{
-        const response = await api.post("/auth/signup",{
-            email,
-            name,password
-        })
-        if(response.status === 201){
             navigate("/dashboard")
-        }
-        else{
-            console.log("error");
-        }
-    }catch{
-        console.log(console.log("error"));
-    }
         
     }
 

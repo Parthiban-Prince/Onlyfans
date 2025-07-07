@@ -1,6 +1,38 @@
 import React from 'react'
+import { useEffect,useState } from 'react';
 
 export default function Accountsettings() {
+
+
+  
+    const [user,setUser]=useState(null)
+  
+      useEffect(() => {
+  
+        const token = localStorage.getItem("token")
+    
+        const fetchProfileData = async () => {
+          try {
+            const response = await fetch('http://localhost:3000/api/my/Profile', {
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              }
+            });
+    
+            const result = await response.json();
+            if (result.data) {
+              setUser(result.data);
+            }
+          } catch (error) {
+            console.error("Error fetching profile:", error.message);
+          }
+        };
+    
+        fetchProfileData();
+      }, []);
+
+
   return (
     <div className=" bg-white shadow-sm min-h-screen text-sm w-[600px]">
       
@@ -16,11 +48,11 @@ export default function Accountsettings() {
         </div>
         <div className="px-4 py-3 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
           <p className="text-sm font-medium text-gray-900">Username</p>
-          <p className="text-sm text-gray-500">@u445384134</p>
+          <p className="text-sm text-gray-500">@{user?.username}</p>
         </div>
         <div className="px-4 py-3 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
           <p className="text-sm font-medium text-gray-900">Email</p>
-          <p className="text-sm text-gray-500">parthibanws06@gmail.com</p>
+          <p className="text-sm text-gray-500">{user?.email}</p>
         </div>
         <div className="px-4 py-3 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
           <p className="text-sm font-medium text-gray-900">Phone number</p>
@@ -38,7 +70,7 @@ export default function Accountsettings() {
         </div>
         <div className="px-4 py-3 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
           <p className="text-sm font-medium text-gray-900">Google account</p>
-          <p className="text-sm text-gray-500">parthibanws06@gmail.com</p>
+          <p className="text-sm text-gray-500">{user?.email}</p>
         </div>
       </div>
 

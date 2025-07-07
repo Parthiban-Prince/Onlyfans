@@ -69,8 +69,8 @@ function Profilecenter() {
       {/* Profile Info + Buttons */}
       <div className="flex justify-between border-b border-gray-200 py-4 px-5 text-sm">
         <div className="flex flex-col gap-1">
-          <h1 className="font-semibold">Profile</h1>
-          <p className="text-gray-600">@{user?.username}</p>
+          <h1 className="font-semibold">{user?.name || "unknown"}</h1>
+          <p className="text-gray-600">@{user?.username|| "unknown"}</p>
           <select className="border border-gray-300 px-2 py-1 text-sm rounded-md">
             <option>Available</option>
             <option>Invisible</option>

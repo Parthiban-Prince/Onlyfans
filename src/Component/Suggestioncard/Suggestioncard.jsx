@@ -13,10 +13,8 @@ function Suggestioncard() {
                           <h1 className='text-xl font-bold'>Suggestions for you</h1>
                           <p className='text-gray-500'>See all</p>
                           </div>
-                                <Card/>
-                                <Card/>
-                                <Card/>
-                                <Card/>
+                            <Card/>
+
                   </div>
 
     </section>

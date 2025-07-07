@@ -1,8 +1,8 @@
 import React from 'react';
 import SideNavigation from '../../Component/SideNavigation/SideNavigation';
-import Settingscenter from '../../Component/Settingscenter/settingscenter';
 import Displaysettings from '../../Component/DisplaySettingsRight/DisplaySettingsRight';
 import BottomTab from '../../Component/BottomTab/Bottom';
+import Settingscenter from '../../Component/Settingscenter/settingscenter';
 
 export default function DisplaysettingsPage() {
   return (
@@ -15,7 +15,7 @@ export default function DisplaysettingsPage() {
 
       {/* Center Settings - always visible */}
    
-        <Settingscenter />
+        <Settingscenter/>
 
       {/* Right Display Settings - visible on 426px+ */}
       <div className="hidden s:block">

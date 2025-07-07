@@ -3,19 +3,103 @@
 
 
 
+@theme{
+    --breakpoint-xs:375px;
+    --breakpoint-s:501px;
+    --breakpoint-sm:768px;
+    --breakpoint-md:1024px;
+    --breakpoint-lg:1440px;
+    --breakpoint--2lg:2560px;
+    --color-backWhite:#FFFFFF;
+    --color-grayline:#68717A;
+    --color-darkblue:#1DA1F2;
+    --color-google:#4285F4;
+    --color-white:#FEFEFE;
+    --color-blue:#00AFF0;
+    --color-black:#000000;
+    --color-non:#000000;
+    --color-light:#242529;
+    --color-lightgray:#8A96A3;
+    --color-shadowcolor:#232629
+
+
+}
+
 
 *{
     box-sizing: border-box;
-}
-
-body{
-    transition: all 100s smooth ease;
-    font-family: "Roboto", sans-serif;
-      font-optical-sizing: auto;
-       font-weight: 400;
-        
+      font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
   font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
+
 }
 
+
+button{
+    cursor: pointer;
+
+}
+
+
+
+/* ===========================
+   RESPONSIVE BREAKPOINTS (No Resets)
+=========================== */
+
+/* ===========================
+   ONLY UTILITY CLASSES (NO RESET, NO TAILWIND CONFLICT)
+=========================== */
+.no-radius {
+  border-radius: 0 !important;
+}
+
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.scroll-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.input-no-style {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.transition-soft {
+  transition: all 0.3s ease-in-out;
+}
+
+.z-top {
+  z-index: 9999;
+}
+
+/* Responsive Text Size Helpers */
+@media (max-width: 425px) {
+  .text-xs-custom { font-size: 12px; }
+  .hide-on-xs { display: none !important; }
+}
+
+@media (min-width: 426px) and (max-width: 767px) {
+  .text-sm-custom { font-size: 14px; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .text-md-custom { font-size: 16px; }
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .text-lg-custom { font-size: 18px; }
+}
+
+@media (min-width: 1440px) {
+  .text-xl-custom { font-size: 20px; }
+}

@@ -1,74 +1,109 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useState,useEffect } from 'react';
 
-function Settingscenter() {
+export default function Settingscenter() {
+
+
+  
+    const [user,setUser] = useState(null)
+  
+  
+  
+      useEffect(() => {
+        const usertoken = localStorage.getItem("token")
+    
+        const fetchProfileData = async () => {
+          try {
+            const response = await fetch('http://localhost:3000/api/my/Profile', {
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${usertoken}`
+              }
+            });
+    
+            const result = await response.json();
+            if (result.data) {
+              setUser(result.data);
+            }
+          } catch (error) {
+            console.error("Error fetching profile:", error.message);
+          }
+        };
+    
+        fetchProfileData();
+      }, []);
+
+
+
   return (
-    <section className='flex relative border-[1px] border-gray-300 shadow-md'>
-      <div className='w-[395px] relative h-full overflow-y-auto '>
+    <section className="flex relative border border-gray-300 w-full max-w-md bg-white">
+      <div className="w-full h-full overflow-y-auto">
+        
         {/* Header */}
-        <div className='flex justify-between items-center p-3 border-b border-gray-300 h-[56px] sticky w-full z-10 bg-white top-0'>
-          <div className='flex items-center gap-3'>
-            <Link to='/dashboard'>
-              <h1 className='text-[28px] font-bold'>&larr;</h1>
-            </Link>
-            <h1 className='text-xl font-bold'>SETTINGS</h1>
-          </div>
+        <div className="flex items-center gap-3 p-3 border-b border-gray-200 sticky top-0 z-10 bg-white h-[56px]">
+          <Link to="/dashboard">
+            <span className="text-xl font-bold cursor-pointer">&larr;</span>
+          </Link>
+          <h1 className="text-base font-bold">SETTINGS</h1>
         </div>
 
-        {/* Settings Content */}
-        <div className='flex flex-col gap-5 px-5 py-5 '>
-          <h1 className='text-lg font-semibold border-b'>@u507114711</h1>
-
-          {/* Main Settings List */}
-          <ul className='flex flex-col gap-3'>
-            <Link to='/my/settings/profile'className='border-b' >
-              <li className='flex justify-between items-center hover:bg-gray-100 p-2 rounded-md cursor-pointer'>
-                <span>Profile</span>
-                <span>&rarr;</span>
-              </li>
-            </Link>
-            <Link to='/my/settings/account'className='border-b'>
-              <li className='flex justify-between items-center hover:bg-gray-100 p-2 rounded-md cursor-pointer'>
-                <span>Account</span>
-                <span>&rarr;</span>
-              </li>
-            </Link>
-            <Link to='/my/settings/privacy'className='border-b' >
-              <li className='flex justify-between items-center hover:bg-gray-100 p-2 rounded-md cursor-pointer'>
-                <span>Privacy and Safety</span>
-                <span>&rarr;</span>
-              </li>
-            </Link>
-            <Link to='/my/settings/subscription' className='border-b' >
-              <li className='flex justify-between items-center hover:bg-gray-100 p-2 rounded-md cursor-pointer'>
-                <span>Subscription Price</span>
-                <span>&rarr;</span>
-              </li>
-            </Link>
-            <Link to='/my/settings/notifications '  className='border-b'  >
-              <li className='flex justify-between items-center hover:bg-gray-100 p-2 rounded-md cursor-pointer'>
-                <span>Notifications</span>
-                <span>&rarr;</span>
-              </li>
-            </Link>
-          </ul>
-
-          {/* General Section */}
-          <div className='mt-5'>
-            <h1 className='text-md font-semibold mb-2 border-b '>General</h1>
-            <ul className='flex flex-col gap-3'>
-              <Link to='/my/settings/display'>
-                <li className='flex justify-between items-center hover:bg-gray-100 p-2 rounded-md cursor-pointer'>
-                  <span>Display</span>
-                  <span>&rarr;</span>
-                </li>
-              </Link>
-            </ul>
-          </div>
+        {/* Username */}
+        <div className="px-4 py-3 border-b border-gray-200">
+          <p className="font-semibold text-sm text-gray-900">@{user?.username || "none"}</p>
         </div>
+
+        {/* Settings List */}
+        <ul className="text-sm text-gray-900 divide-y divide-gray-200">
+          <Link to="/my/settings/profile">
+            <li className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
+              <span>Profile</span>
+              <span className="text-gray-400 text-base">&rsaquo;</span>
+            </li>
+          </Link>
+
+          <Link to="/my/settings/account">
+            <li className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
+              <span>Account</span>
+              <span className="text-gray-400 text-base">&rsaquo;</span>
+            </li>
+          </Link>
+
+          <Link to="/my/settings/privacy">
+            <li className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
+              <span>Privacy and safety</span>
+              <span className="text-gray-400 text-base">&rsaquo;</span>
+            </li>
+          </Link>
+
+          <Link to="/my/settings/subscription">
+            <li className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
+              <span>Subscription price</span>
+              <span className="text-gray-400 text-base">&rsaquo;</span>
+            </li>
+          </Link>
+
+          <Link to="/my/settings/notifications">
+            <li className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
+              <span>Notifications</span>
+              <span className="text-gray-400 text-base">&rsaquo;</span>
+            </li>
+          </Link>
+        </ul>
+
+        {/* General Section */}
+        <div className="px-4 py-2 border-t border-gray-200 text-xs font-semibold text-gray-600 uppercase">
+          General
+        </div>
+        <ul className="text-sm text-gray-900 divide-y divide-gray-200">
+          <Link to="/my/settings/display">
+            <li className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
+              <span>Display</span>
+              <span className="text-gray-400 text-base">&rsaquo;</span>
+            </li>
+          </Link>
+        </ul>
       </div>
     </section>
   );
 }
-
-export default Settingscenter;

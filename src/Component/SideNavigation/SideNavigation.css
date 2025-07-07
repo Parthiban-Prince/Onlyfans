@@ -1,0 +1,39 @@
+/* Base styles */
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+/* Mobile (default styles) */
+#Side {
+    display: none;
+}
+
+/* Tablet */
+@media (min-width: 426px) and (max-width: 1024px) {
+    span {
+        display: none;
+    }
+
+    #Side {
+        display: block;
+        width: 200px;
+    }
+
+    .content {
+        padding: 16px;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+    #Side {
+        display: block;
+        width: 250px;
+    }
+
+    .content {
+        display: flex;
+        gap: 16px;
+    }
+}

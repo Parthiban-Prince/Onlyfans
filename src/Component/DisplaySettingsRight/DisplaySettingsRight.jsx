@@ -1,28 +1,35 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Displaysettings() {
   return (
+    <section className="flex relative border border-gray-300">
+      <div className="w-full sm:w-[632px]">
+        {/* Header */}
+        <div className="flex justify-between items-center px-4 py-3 border-b border-gray-300 h-[56px] sticky top-0 z-10 bg-white">
+          <h1 className="text-xl font-bold">DISPLAY</h1>
+        </div>
 
+        {/* Content */}
+        <div className="flex flex-col gap-4 px-5 py-6">
+          <div>
+            <h2 className="text-base font-semibold border-b pb-1 mb-2 text-gray-800">
+              Customize your view
+            </h2>
 
-
-
-    <section className='flex relative border-[1px] border-gray-400 ' >
-        <div  className='w-[632px]'>
-            <div className='flex justify-between items-center p-3  border-b-[1px] border-gray-300 h-[56px]  sticky w-full  z-10 bg-white top-0 '>
-                <h1 className='text-xl font-bold'>DISPLAY</h1>
-
+            {/* Language */}
+            <div className="py-2 border-b text-sm">
+              <span className="text-gray-700 font-medium">Language</span>
+              <p className="text-gray-500 text-sm mt-1">English</p>
             </div>
-                            <div className='flex gap-1 flex-col my-5'>
-                                 <div className='px-5' >
-                                    <h1 className='font-semibold border-b'  >Customize your view</h1>
-                                    <h3 className='border-b py-1' >Language <span className='block'>English</span></h3>
-                                    <h3 className='border-b py-1' >Dark mode</h3>
-                                </div>
-                            </div>
+
+            {/* Dark Mode */}
+            <div className="py-2 border-b text-sm text-gray-700 font-medium">
+              Dark mode
             </div>
+          </div>
+        </div>
+      </div>
     </section>
-  )
+  );
 }
-
-

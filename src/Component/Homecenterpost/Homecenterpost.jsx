@@ -1,78 +1,151 @@
-import React, { useRef, useState } from 'react'
-import Profile from '../../assets/images/OnlyFans_Logo_Icon_Blue.png'
+import React from 'react';
+import { useState,useRef } from 'react';
 import Play from '../../assets/Icons_Images/play.png'
+import Suggestioncard from '../Suggestioncard/Suggestioncard';
+import Card from '../Suggestioncard/card';
+import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32 (1).png'
 
 
 
-function FeaturedCard() {
+
+function HomeCenterPost() {
 
 
-
-
-    const videoref = useRef(null)
-    const[isPlaying,setIsPlaying]=useState(false)
-
-
-    function handleplay(){
-        if(videoref.current){
-            videoref.current.play();
-            setIsPlaying(true)
+        const videoref = useRef(null)
+        const[isPlaying,setIsPlaying]=useState(false)
+    
+    
+        function handleplay(){
+            if(videoref.current){
+                videoref.current.play();
+                setIsPlaying(true)
+            }
         }
-    }
+    
 
+  return (
+    <div className='w-[380px]md:max-w-[856px] w-full mb-10 rounded-md overflow-hidden border border-gray-200 shadow-sm'>
 
- return (
+      {/* Header */}
+      <div className='flex justify-between items-center px-4 py-3'>
+        <div className='flex items-center gap-3'>
+          <img
+            src='https://res.cloudinary.com/dri7edc3h/image/upload/v1749632907/Amisha/n1tzjvbpugi1rid9rauf.jpg'
+            alt='OnlyFans Logo'
+            className='w-[50px] h-[50px] object-cover object-top rounded-full'
+          />
+          <div className='leading-4'>
+            <h1 className='font-bold text-sm'>OnlyFans ✅</h1>
+            <p className='text-gray-600 text-sm'>@onlyfans</p>
+          </div>
+        </div>
+        <p className='text-gray-500 text-sm'>8 hours ago</p>
+      </div>
 
+      {/* Caption */}
+      <div className='px-4 pb-3 text-[15px] text-gray-800 leading-5'>
+        Ready to tee it up with <span className='text-blue-500'>@karinhart.golf</span>? Tag along as she plays three holes at a stunning Florida course—nothing but fairways and solid swings. 🏌️‍♀️ ⛳
+        <br />
+        <a href='https://onlyfans.com/karinhart.golf' className='text-blue-500 block'>
+          onlyfans.com/karinhart.golf / onlyfans.com/oftv
+        </a>
+      </div>
+
+      {/* Preview Image */}
+
+    <div className="relative w-full h-[481px] -z-1">
+      {!isPlaying && (
         <>
-            <div className='max-w-[856px] max-h-[641px] h-[641px] mb-[50px] rounded-sm overflow-hidden shadow-xs shadow-black relative box-border '>
-                <div className='flex justify-between relative'>
-                    <div className='flex px-4 py-3'>
-                        <img src = {Profile} alt='Profile' className='w-[48px] h-[48px]'/>
-                        <div className='flex flex-col justify-center items-center'>
-                            <h1 className='font-bold'>Onlyfans
-                            </h1>
-                            <p>@onlyfans</p>
-                        </div>
-                    </div>
-                    <div className='px-4 py-1'>
-                        3 hours ago
-                    </div>
-                </div>
-                <div className='px-4 py-1 mb-3'>
-                    <p>
-                        @anacheri shares her top bedtime tips to help wind down the right way. From cozy lighting to screen-free rituals, these small shifts can lead to deeper rest and brighter mornings. 🌙💤
-                        <span className='block'>
-                            onlyfans.com/anacheri / onlyfans.com/oftv
-                        </span>
-                    </p>
-                </div>
-                <div className='h-[481px] max--full relative box-border'>
-                    {!isPlaying && 
-                    (<>
-                                            <img src='https://res.cloudinary.com/dri7edc3h/image/upload/v1749891332/kayadu/ipwbjagjdunrcuizwa66.jpg' 
-                        className='w-full absolute top-0 left-0 z-1 h-[481px] object-cover'
-                        onClick={handleplay}
-                        />
-                                                    <img src={Play} className='absolute z-2 w-[60px] h-[60px] left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full object-none bg-[#0202028a] hover:bg-blue-500 transition-all ease duration-300'
-                                                    title='Play video'
-                                                    alt='Play video'
-                                                    onClick={()=>setIsPlaying(true)}
-                                                    />
-                        
-                    </>
-                    )}
-                    <video
-                    ref={videoref}
-                    src='https://res.cloudinary.com/dri7edc3h/video/upload/v1750321477/Video/yquo0qruy1aqnq1waze8.mp4'
-                    controls
-                    className='w-full h-full object-cover'
-                    onPlay={()=>setIsPlaying(true)}
-                    />
-                </div>
-            </div>
+          <img
+            src="https://res.cloudinary.com/dri7edc3h/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1750309717/Samyukutha/fw3z3f1qrcnpahpcv6oi.jpg"
+            alt="Thumbnail"
+            className="absolute inset-0 w-full h-full object-cover z-1  cursor-pointer"
+            onClick={handleplay}
+          />
+          <img
+            src={Play}
+            className="absolute z-20 w-[60px] h-[60px] left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black/40 hover:bg-blue-500 rounded-full transition duration-300 ease-in-out cursor-pointer"
+            alt="Play video"
+            title="Play video"
+            onClick={() => setIsPlaying(true)}
+          />
         </>
+      )}
+      <video
+        ref={videoref}
+        src="https://res.cloudinary.com/dri7edc3h/video/upload/v1750321477/Video/yquo0qruy1aqnq1waze8.mp4"
+        controls
+        className="absolute inset-0 w-full h-full object-cover  z-0"
+        onPlay={() => setIsPlaying(true)}
+      />
+    </div>
+    
 
-  )
+      {/* Profile Card */}
+         <div className='flex px-4 pt-4'>
+                        <div className='relative w-full'>
+                            <img src='https://res.cloudinary.com/dri7edc3h/image/upload/v1749891332/kayadu/ipwbjagjdunrcuizwa66.jpg' alt='Profile' className='w-full h-[128px] flex rounded-md object-cover'/>
+                            <img src={Menu} alt='Menu-vertical' className='absolute top-2 right-2 w-[24px] h-[24px] z-10' />
+                            <div className=' absolute top-0 left-0 w-full h-full rounded-md  z-0 '>
+                                                    <div className='absolute top-0 left-0 w-full h-full  rounded-md bg-[rgba(0,0,0,25%)]'>
+                              <img src='https://res.cloudinary.com/dri7edc3h/image/upload/v1749891332/kayadu/ipwbjagjdunrcuizwa66.jpg' alt='Profile' className=' w-[96px] h-[96px] flex rounded-full z-1 object-cover absolute top-5 left-10'/>
+                            </div>
+                            <div className='bg-linear-to-br from-green-300-900 to-dark-900  rounded-md z-2'>
+                              <div className=' absolute left-36 top-15 flex flex-col  bg-linear-to r from-cyan-400 to-light-300 '>
+                                <h1 className='text-white font-bold text-lg'>Onlyfans</h1>
+                              <p className='text-white'>@onlyfans</p>
+                              </div>
+                            </div>
+                              </div>
+                        </div>
+                      </div>
+
+
+
+
+
+
+      {/* Action Buttons Below Card */}
+      <div className='flex  justify-between px-4 py-3 mt-2'>
+        <div className='flex gap-7'>
+                    <button title='Like'>
+          <img
+            src='https://cdn-icons-png.flaticon.com/512/833/833472.png'
+            alt='Like'
+            className='w-6 h-6'
+          />
+        </button>
+        <button title='Comment'>
+          <img
+            src='https://cdn-icons-png.flaticon.com/512/1380/1380338.png'
+            alt='Comment'
+            className='w-6 h-6'
+          />
+        </button>
+        <button title='Send Tip'>
+          <img
+            src='https://cdn-icons-png.flaticon.com/512/1828/1828970.png'
+            alt='Send Tip'
+            className='w-6 h-6'
+          />
+        </button>
+        </div>
+        <div>
+        <button title='Bookmark'>
+          <img
+            src='https://cdn-icons-png.flaticon.com/512/1828/1828859.png'
+            alt='Bookmark'
+            className='w-6 h-6'
+          />
+        </button>
+        </div>
+      </div>
+
+      {/* Like Count */}
+      <div className=' px-5 text-sm text-gray-600 pb-4'>83 likes</div>
+    </div>
+
+  );
 }
 
-export default FeaturedCard
+export default HomeCenterPost;

@@ -7,17 +7,18 @@ import Quiz from '../../assets/Icons_Images/icons8-ask-question-16.png'
 import Pencil from '../../assets/Icons_Images/icons8-pencil-32.png'
 import { Link } from 'react-router-dom'
 import HomeCenterPost from '../Homecenterpost/Homecenterpost'
+import HomeImagePost from '../Homecenterpost/HomeImagePost'
 
 
 function CenterContent() { 
   return (
-    <section className='flex relative border-[1px] border-gray-400 h-[100vh]' >
-        <div  className='w-[632px] relative h-[100vh]'>
-            <div className='flex justify-between items-center p-3  border-b-[1px] border-gray-300 h-[56px]  sticky w-full  z-10 bg-white top-0 '>
+    <section className='flex relative h-fit  border-l-gray-200 border-b-white border-r-gray-200 border-2' >
+        <div  className='w-[632px] relative'>
+            <div className='flex justify-between items-center p-3   h-[56px]  fixed w-[inherit]  z-1000 shadow-sm shadow-black/10 bg-white top-0 ' id="Home">
                 <h1 className='text-xl font-bold'>Home</h1>
                 <img src={menu} alt='Menu-vertical'/>
             </div>
-            <div className='w-full z-10 '>
+            <div className='w-full z-10 mt-14  shadow-sm shadow-light-900'>
                 
                 <form className='flex  items-center w-full overflow-hidden'>
                     <Link to='/posts/create' className='w-full h-[76px] flex items-center'>
@@ -25,20 +26,20 @@ function CenterContent() {
                     </Link>
 
                 </form>
-                <div className='flex border-b-[1px] border-gray-300 p-2 object-contain gap-5' >
+                <div className='flex  p-2 object-contain gap-5' >
                     <img src={UploadImage}  className="w-[30px] h-[30px] object-contain" />
                     <img src={Poll} className="w-[30px] h-[30px] "  />
                     <img src={Quiz} className="w-[30px] h-[30px]"  />
                     <img src={Text} className="w-[30px] h-[30px] object-contain "  />
                 </div>
             </div>
-            <div className='flex gap-5 items-center px-5  mt-5 border-b-1 border-gray-300 shadow-gray-300 bg-white py-2'>
-                <h3 className='border px-5 text-center rounded-full h-[25px]' >All</h3>
-                <h3  className='border px-5 text-center rounded-full h-[25px]' ><img src={Pencil} className= " w-[25px] h-[25px] rounded-full"/></h3>
+            <div className='flex gap-5 items-center px-5  mt-5  shadow-gray-300 bg-white py-2'>
+                <h3 className=' px-5 text-center rounded-full h-[25px]' >All</h3>
+                <h3  className=' px-5 text-center rounded-full h-[25px]' ><img src={Pencil} className= " w-[25px] h-[25px] rounded-full"/></h3>
             </div>
-            <div className=' border-b-[1px] border-gray-300'>
+            <div>
                 <HomeCenterPost/>
-                <HomeCenterPost/>
+                <HomeImagePost/>
             </div>
         </div>
     </section>

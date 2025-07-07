@@ -19,8 +19,7 @@ import NotificationsettingPage from "./Pages/NotificationSettingsPage/Notificati
 
 
 function App() {
-
-
+  
   return (
     <BrowserRouter>
         <Routes>
@@ -45,3 +44,10 @@ function App() {
 }
 
 export default App
+
+
+
+
+
+
+

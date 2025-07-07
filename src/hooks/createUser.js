@@ -8,17 +8,20 @@ function User(){
 
     const navigate = useNavigate();
     
-    const[name,setName]= useState();
-    const[email,setemail]=useState();
-    const[password,setpassword]=useState();
+    const[name,setName]= useState("");
+    const[email,setemail]=useState("");
+    const[password,setpassword]=useState("");
 
    async function createUser() {
 
 
-        try {
-            const response = await api.post("/auth/signup", { email, name, password });
 
-            if (response.status === 201) {
+        try {
+            const response = await api.post("/auth/SignUp", { email, name, password });
+       
+
+            if (response.status === 200) {
+                localStorage.setItem("token",response.token)
                 navigate("/dashboard");
             } else {
                 console.log("Signup failed");

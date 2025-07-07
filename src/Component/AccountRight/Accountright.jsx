@@ -1,52 +1,89 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 export default function Accountsettings() {
   return (
+    <div className=" bg-white shadow-sm min-h-screen text-sm w-[600px]">
+      
+      {/* Header */}
+      <div className="sticky top-0 bg-white z-10 border-b border-gray-200 px-4 py-3">
+        <h1 className="text-base font-bold text-gray-900">ACCOUNT</h1>
+      </div>
 
+      {/* Account Info */}
+      <div className="mb-2">
+        <div className="px-4 py-2 border-y border-gray-200 ">
+          <p className="text-sm font-semibold text-gray-700">Account info</p>
+        </div>
+        <div className="px-4 py-3 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
+          <p className="text-sm font-medium text-gray-900">Username</p>
+          <p className="text-sm text-gray-500">@u445384134</p>
+        </div>
+        <div className="px-4 py-3 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
+          <p className="text-sm font-medium text-gray-900">Email</p>
+          <p className="text-sm text-gray-500">parthibanws06@gmail.com</p>
+        </div>
+        <div className="px-4 py-3 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
+          <p className="text-sm font-medium text-gray-900">Phone number</p>
+        </div>
+      </div>
 
+      {/* Linked Accounts */}
+      <div className="mb-2">
+        <div className="px-4 py-2 border-y border-gray-200 ">
+          <p className="text-sm font-semibold text-gray-700">Linked accounts</p>
+        </div>
+        <div className="px-4 py-3 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
+          <p className="text-sm font-medium text-gray-900">X account</p>
+          <p className="text-sm text-gray-500">English</p>
+        </div>
+        <div className="px-4 py-3 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
+          <p className="text-sm font-medium text-gray-900">Google account</p>
+          <p className="text-sm text-gray-500">parthibanws06@gmail.com</p>
+        </div>
+      </div>
 
+      {/* Connected Accounts */}
+      <div className="mb-2">
+        <div className="px-4 py-2 border-y border-gray-200 ">
+          <p className="text-sm font-semibold text-gray-700">Connected accounts</p>
+        </div>
+        <div className="px-4 py-3 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
+          <p className="text-sm font-medium text-gray-900">Connect another Onlyfans account</p>
+          <p className="text-sm text-gray-500">English</p>
+        </div>
+      </div>
 
-    <section className='flex relative border-[1px] border-gray-400 ' >
-        <div  className='w-[632px]'>
-            <div className='flex justify-between items-center p-3  border-b-[1px] border-gray-300 h-[56px]  sticky w-full  z-10 bg-white top-0 '>
-                <h1 className='text-xl font-bold'>ACCOUNT</h1>
+      {/* Security */}
+      <div className="mb-2">
+        <div className="px-4 py-2 border-y border-gray-200 ">
+          <p className="text-sm font-semibold text-gray-700">Security</p>
+        </div>
+        <div className="px-4 py-3 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
+          <p className="text-sm font-medium text-gray-900">Password</p>
+        </div>
+        <div className="px-4 py-3 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
+          <p className="text-sm font-medium text-gray-900">Login sessions</p>
+          <p className="text-sm text-gray-500">English</p>
+        </div>
+        <div className="px-4 py-3 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
+          <p className="text-sm font-medium text-gray-900">Two Step Authentication</p>
+          <p className="text-sm text-gray-500">Enabled</p>
+        </div>
+        <div className="px-4 py-3 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
+          <p className="text-sm font-medium text-gray-900">Passwordless sign in</p>
+          <p className="text-sm text-gray-500">Off</p>
+        </div>
+      </div>
 
-            </div>
-                            <div className='flex gap-1 flex-col my-5'>
-                                 <div className='px-5' >
-                                    <h1 className='font-semibold border-b'  >Account info</h1>
-                                    <h3 className='border-b py-1' >UserName<span className='block'>English</span></h3>
-                                    <h3 className='border-b py-1' >Email<span className='block'>Parthiban@gmail.com</span></h3>
-                                    <h3 className='border-b py-1' >Phone number<span className='block'></span></h3>
-                                </div>
-                                <div className='px-5' >
-                                    <h1 className='font-semibold border-b'  >Account info</h1>
-                                    <h3 className='border-b py-1' >X account<span classname='inline'>English</span></h3>
-                                    <h3 className='border-b py-1' >Google account<span classname='block'>Parthiban@gmail.com</span></h3>
-                                   
-                                </div>
-                                <div className='px-5' >
-                                    <h1 className='font-semibold border-b'  >Connected accounts</h1>
-                                    <h3 className='border-b py-1' >Connect another Onlyfans account<span classname='inline'>English</span></h3>
-                         
-                                </div>
-                                <div className='px-5' >
-                                    <h1 className='font-semibold border-b'  >Security</h1>
-                                    <h3 className='border-b py-1'>Password</h3>
-                                    <h3 className='border-b py-1' >Login sessions<span classname='inline'>English</span></h3>
-                                    
-                                    <h3 className='border-b py-1' >Two step Authentications<span classname='inline'>Parthiban@gmail.com</span></h3>
-                                    <h3 className='border-b py-1' >Passwordless sign in<span classname='inline'></span></h3>
-                                </div>
-                                <div className='px-5' >
-                                    <h1 className='font-semibold border-b'  >Account management</h1>
-                                    <h3 className='border-b py-1' >Delete account<span classname='inline'>English</span></h3>
-                                </div>
-                            </div>
-            </div>
-    </section>
+      {/* Account Management */}
+      <div className="mb-2">
+        <div className="px-4 py-2 border-y border-gray-200">
+          <p className="text-sm font-semibold text-gray-700">Account management</p>
+        </div>
+        <div className="px-4 py-3 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
+          <p className="text-sm font-medium text-gray-900">Delete account</p>
+        </div>
+      </div>
+    </div>
   )
 }
-
-

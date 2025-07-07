@@ -28,7 +28,7 @@ async function Login() {
   const userPassword = password.current?.value;
 
   try {
-    const response = await fetch("http://localhost:3000/api/auth/Signin", {
+    const response = await fetch("http://onlyfans-backend-production.up.railway.app/api/auth/Signin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -61,7 +61,7 @@ async function Signup() {
   const name1 = name.current?.value;
 
   try {
-    const response = await fetch('http://localhost:3000/api/auth/Signup', {
+    const response = await fetch('http://onlyfans-backend-production.up.railway.app/api/auth/Signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

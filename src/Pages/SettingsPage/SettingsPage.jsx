@@ -1,8 +1,8 @@
 import React from 'react';
 import SideNavigation from '../../Component/SideNavigation/SideNavigation';
-import Settingscenter from '../../Component/Settingscenter/settingscenter';
 import Profilesettings from '../../Component/Profilesettings/Profilesettings';
 import BottomTab from '../../Component/BottomTab/Bottom';
+import Settingscenter from '../../Component/Settingscenter/settingscenter';
 
 export default function SettingsPage() {
   return (
@@ -15,7 +15,7 @@ export default function SettingsPage() {
 
       {/* Settings Center - always visible */}
   
-        <Settingscenter />
+        <Settingscenter/>
    
 
       {/* Profile Settings - visible on 426px and up */}

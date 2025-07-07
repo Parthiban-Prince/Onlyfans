@@ -4,7 +4,7 @@ import LoginPage from "./Pages/LoginPage/LoginPage"
 import HomePage from "./Pages/HomePage/HomePage"
 import NotificationPage from "./Pages/NotificationPage/NotificationPage"
 import PostPage from "./Pages/PostPage/PostPage"
-import AddcardPage from "./Pages/AddcardPage/addCardPage"
+import AddcardPage from "./Pages/AddcardPage/AddCardPage"
 import MessagePage from "./Pages/MessagePage/MessagePage"
 import CollectionPage from './Pages/CollectionPage/CollectionPage'
 import SubscriptionsPage from './Pages/SubscriptionsPage/SubscriptionsPage'

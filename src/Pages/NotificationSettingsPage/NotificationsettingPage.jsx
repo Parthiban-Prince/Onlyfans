@@ -1,8 +1,8 @@
 import React from 'react';
 import SideNavigation from '../../Component/SideNavigation/SideNavigation';
-import Settingscenter from '../../Component/Settingscenter/settingscenter';
 import Notificationsetting from '../../Component/NotificationRight/NotificationRight';
 import BottomTab from '../../Component/BottomTab/Bottom';
+import Settingscenter from '../../Component/Settingscenter/settingscenter';
 
 export default function NotificationsettingPage() {
   return (
@@ -15,7 +15,7 @@ export default function NotificationsettingPage() {
 
       {/* Main Settings Center - always visible */}
 
-        <Settingscenter />
+        <Settingscenter/>
   
 
       {/* Notification Settings - 426px and up */}

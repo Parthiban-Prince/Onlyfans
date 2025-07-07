@@ -14,7 +14,6 @@ function Suggestioncard() {
                           <p className='text-gray-500'>See all</p>
                           </div>
                             <Card/>
-
                   </div>
 
     </section>

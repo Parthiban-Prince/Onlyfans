@@ -2,7 +2,7 @@ import React from 'react';
 import SideNavigation from '../../Component/SideNavigation/SideNavigation';
 import Notificationsetting from '../../Component/NotificationRight/NotificationRight';
 import BottomTab from '../../Component/BottomTab/Bottom';
-import Settingscenter from '../../Component/Settingscenter/settingscenter';
+import Settingscenter from '../../Component/Settingscenter/Settingscenter';
 
 export default function NotificationsettingPage() {
   return (

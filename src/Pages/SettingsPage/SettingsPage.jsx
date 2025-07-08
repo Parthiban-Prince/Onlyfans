@@ -2,7 +2,7 @@ import React from 'react';
 import SideNavigation from '../../Component/SideNavigation/SideNavigation';
 import Profilesettings from '../../Component/Profilesettings/Profilesettings';
 import BottomTab from '../../Component/BottomTab/Bottom';
-import Settingscenter from '../../Component/Settingscenter/settingscenter';
+import Settingscenter from '../../Component/Settingscenter/Settingscenter';
 
 export default function SettingsPage() {
   return (

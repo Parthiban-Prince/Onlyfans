@@ -1,6 +1,6 @@
 import React from 'react';
 import SideNavigation from '../../Component/SideNavigation/SideNavigation';
-import Settingscenter from '../../Component/Settingscenter/settingscenter';
+import Settingscenter from '../../Component/Settingscenter/Settingscenter';
 import Subscriptionsettings from '../../Component/Subcriptionsright/Subscriptionsettingsright';
 import BottomTab from '../../Component/BottomTab/Bottom';
 

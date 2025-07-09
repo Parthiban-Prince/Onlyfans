@@ -24,7 +24,7 @@ function Postcenter() {
     formData.append("image",image)
      formData.append("captions",captions)
 
-     console.log(formData)
+  
    
    
 

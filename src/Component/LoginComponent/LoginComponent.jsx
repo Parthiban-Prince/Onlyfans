@@ -37,7 +37,7 @@ async function Login() {
     });
 
     const res = await response.json(); // ✅ Required step with fetch
-    console.log("Login response:", res); // 🔥 This shows your backend's reply
+    console.log("Login response:"); // 🔥 This shows your backend's reply
 
     // Save token if exists
     if (res.data) {
@@ -71,7 +71,7 @@ async function Signup() {
     });
 
     const data = await response.json();
-    console.log("Signup response:", data);
+    console.log("Signup response:");
     console.log(data)
     alert("user crated succefully")
     navigate('/')

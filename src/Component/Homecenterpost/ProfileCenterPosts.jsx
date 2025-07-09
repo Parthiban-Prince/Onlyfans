@@ -17,7 +17,7 @@ function ProfileCenterPosts
         });
 
         const data = await response.json();
-        console.log("Fetched Data:", data);
+        console.log("Fetched Data:");
         setUser(Array.isArray(data.data) ? data.data : []);
       } catch (error) {
         console.error("Error fetching posts:", error);

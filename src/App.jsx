@@ -1,5 +1,5 @@
 import React from "react"
-import { HashRouter,Routes,Route } from "react-router-dom"
+import { BrowserRouter,Routes,Route } from "react-router-dom"
 import LoginPage from "./Pages/LoginPage/LoginPage"
 import HomePage from "./Pages/HomePage/HomePage"
 import NotificationPage from "./Pages/NotificationPage/NotificationPage"
@@ -21,7 +21,7 @@ import NotificationsettingPage from "./Pages/NotificationSettingsPage/Notificati
 function App() {
   
   return (
-    <HashRouter>
+    <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginPage/>}/>
           <Route path="/dashboard" element={<HomePage/>}/>
@@ -39,7 +39,7 @@ function App() {
           <Route path="/my/settings/notifications" element={<NotificationsettingPage/>}/>
           <Route path="/my/settings/display" element={<DisplaysettingsPage/>}/>
         </Routes>
-    </HashRouter>
+    </BrowserRouter>
   )
 }
 

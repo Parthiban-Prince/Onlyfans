@@ -41,7 +41,7 @@ function FeaturedCard() {
         {!isPlaying && (
           <>
             <img
-              src="https://res.cloudinary.com/dri7edc3h/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1750309717/Samyukutha/fw3z3f1qrcnpahpcv6oi.jpg"
+              src="https://img.icons8.com/?size=100&id=ABBSjQJK83zf&format=png&color=000000"
               alt="Video Thumbnail"
               className="absolute inset-0 w-full h-full object-cover z-10 cursor-pointer"
               onClick={handlePlay}
@@ -57,7 +57,7 @@ function FeaturedCard() {
         )}
         <video
           ref={videoRef}
-          src="https://res.cloudinary.com/dri7edc3h/video/upload/v1750321477/Video/yquo0qruy1aqnq1waze8.mp4"
+          src="https://img.icons8.com/?size=100&id=ABBSjQJK83zf&format=png&color=000000"
           controls
           className="absolute inset-0 w-full h-full object-cover z-0"
           onPlay={() => setIsPlaying(true)}

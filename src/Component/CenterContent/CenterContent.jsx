@@ -38,7 +38,6 @@ function CenterContent() {
                 <h3  className=' px-5 text-center rounded-full h-[25px]' ><img src={Pencil} className= " w-[25px] h-[25px] rounded-full"/></h3>
             </div>
             <div>
-                <HomeCenterPost/>
                 <HomeImagePost/>
             </div>
         </div>

@@ -36,7 +36,7 @@ function Card() {
         <div key={user._id || index} className="relative w-full rounded-md overflow-hidden">
           {/* Background Image */}
           <img
-            src={user.coverPhoto || "https://res.cloudinary.com/dri7edc3h/image/upload/v1749891332/kayadu/ipwbjagjdunrcuizwa66.jpg"}
+            src={user.coverPhoto || "https://img.icons8.com/?size=100&id=ABBSjQJK83zf&format=png&color=000000"}
             alt="Profile Background"
             className="w-full h-[128px] object-cover"
           />
@@ -53,7 +53,7 @@ function Card() {
 
           {/* Profile Picture (fallback to coverPhoto or default) */}
           <img
-            src={user.coverPhoto || "https://res.cloudinary.com/dri7edc3h/image/upload/v1749891332/kayadu/ipwbjagjdunrcuizwa66.jpg"}
+            src={user.coverPhoto || "https://img.icons8.com/?size=100&id=ABBSjQJK83zf&format=png&color=000000"}
             alt="Avatar"
             className="w-[96px] h-[96px] object-cover rounded-full border-4 border-white absolute top-[20px] left-[20px] z-30"
           />

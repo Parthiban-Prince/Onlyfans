@@ -30,7 +30,7 @@ function HomeCenterPost() {
       <div className='flex justify-between items-center px-4 py-3'>
         <div className='flex items-center gap-3'>
           <img
-            src='https://res.cloudinary.com/dri7edc3h/image/upload/v1749632907/Amisha/n1tzjvbpugi1rid9rauf.jpg'
+            src='https://img.icons8.com/?size=100&id=ABBSjQJK83zf&format=png&color=000000'
             alt='OnlyFans Logo'
             className='w-[50px] h-[50px] object-cover object-top rounded-full'
           />
@@ -57,7 +57,7 @@ function HomeCenterPost() {
       {!isPlaying && (
         <>
           <img
-            src="https://res.cloudinary.com/dri7edc3h/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1750309717/Samyukutha/fw3z3f1qrcnpahpcv6oi.jpg"
+            src="https://img.icons8.com/?size=100&id=ABBSjQJK83zf&format=png&color=000000"
             alt="Thumbnail"
             className="absolute inset-0 w-full h-full object-cover z-1  cursor-pointer"
             onClick={handleplay}
@@ -73,7 +73,7 @@ function HomeCenterPost() {
       )}
       <video
         ref={videoref}
-        src="https://res.cloudinary.com/dri7edc3h/video/upload/v1750321477/Video/yquo0qruy1aqnq1waze8.mp4"
+        src="https://img.icons8.com/?size=100&id=ABBSjQJK83zf&format=png&color=000000"
         controls
         className="absolute inset-0 w-full h-full object-cover  z-0"
         onPlay={() => setIsPlaying(true)}
@@ -84,11 +84,11 @@ function HomeCenterPost() {
       {/* Profile Card */}
          <div className='flex px-4 pt-4'>
                         <div className='relative w-full'>
-                            <img src='https://res.cloudinary.com/dri7edc3h/image/upload/v1749891332/kayadu/ipwbjagjdunrcuizwa66.jpg' alt='Profile' className='w-full h-[128px] flex rounded-md object-cover'/>
+                            <img src='https://img.icons8.com/?size=100&id=ABBSjQJK83zf&format=png&color=000000' alt='Profile' className='w-full h-[128px] flex rounded-md object-cover'/>
                             <img src={Menu} alt='Menu-vertical' className='absolute top-2 right-2 w-[24px] h-[24px] z-10' />
                             <div className=' absolute top-0 left-0 w-full h-full rounded-md  z-0 '>
                                                     <div className='absolute top-0 left-0 w-full h-full  rounded-md bg-[rgba(0,0,0,25%)]'>
-                              <img src='https://res.cloudinary.com/dri7edc3h/image/upload/v1749891332/kayadu/ipwbjagjdunrcuizwa66.jpg' alt='Profile' className=' w-[96px] h-[96px] flex rounded-full z-1 object-cover absolute top-5 left-10'/>
+                              <img src='https://img.icons8.com/?size=100&id=ABBSjQJK83zf&format=png&color=000000' alt='Profile' className=' w-[96px] h-[96px] flex rounded-full z-1 object-cover absolute top-5 left-10'/>
                             </div>
                             <div className='bg-linear-to-br from-green-300-900 to-dark-900  rounded-md z-2'>
                               <div className=' absolute left-36 top-15 flex flex-col  bg-linear-to r from-cyan-400 to-light-300 '>

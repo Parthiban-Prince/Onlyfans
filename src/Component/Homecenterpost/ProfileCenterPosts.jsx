@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32 (1).png';
 
-function HomeImagePost() {
+function ProfileCenterPosts
+() {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch("https://onlyfans-backend-production.up.railway.app/api/Post/all", {
+        const response = await fetch("https://onlyfans-backend-production.up.railway.app/api/create/Posts", {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${localStorage.getItem("token")}`,
@@ -135,4 +136,5 @@ function HomeImagePost() {
   );
 }
 
-export default HomeImagePost;
+export default ProfileCenterPosts
+;

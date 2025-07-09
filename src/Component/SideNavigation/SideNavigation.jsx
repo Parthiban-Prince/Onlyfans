@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Home from '../../assets/Icons_Images/icons8-home-24.png';
 import Notification from '../../assets/Icons_Images/icons8-notification-32.png';
 import Message from '../../assets/Icons_Images/icons8-message-48.png';
@@ -13,6 +13,10 @@ import Logut from '../../utils/logout';
 import './SideNavigation.css';
 
 function SideNavigation() {
+
+
+  const navigate  =useNavigate()
+
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null);
 
@@ -30,12 +34,23 @@ function SideNavigation() {
     alert("This feature is under development.");
   };
 
+
+  async function handleLogut(){
+  await localStorage.removeItem("token")
+  navigate('/')
+  }
+
+
   useEffect(() => {
     const usertoken = localStorage.getItem("token")
 
+
+
+    //https://onlyfans-backend-production.up.railway.app
+
     const fetchProfileData = async () => {
       try {
-        const response = await fetch('https://onlyfans-backend-production.up.railway.app/api/my/Profile', {
+        const response = await fetch('https://onlyfans-backend-production.up.railway.app/api/my/:Profile', {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${usertoken}`
@@ -64,7 +79,7 @@ function SideNavigation() {
                 <img
                   src={user?.profilePhoto || 'https://img.icons8.com/?size=100&id=bjHuxcHTNosO&format=png&color=000000'}
                   alt='Profile'
-                  className='w-full h-full object-contain object-top'
+                  className='w-full h-full object-cover object-top'
                 />
               </button>
               <button className='text-xl font-bold hover:text-red-500' onClick={handleClose}>×</button>
@@ -122,7 +137,7 @@ function SideNavigation() {
               </div>
 
               <div>
-                <Link className='flex items-center gap-4 p-2 hover:bg-red-50 text-red-500 rounded-lg' onClick={() => Logut('/src/Pages/LoginPage/LoginPage.jsx')}>
+                <Link className='flex items-center gap-4 p-2 hover:bg-red-50 text-red-500 rounded-lg' onClick={handleLogut}>
                   <img src='https://img.icons8.com/ios-filled/50/logout-rounded.png' alt='Logout' className='w-[24px] h-[24px]' />
                   <span>Logout</span>
                 </Link>

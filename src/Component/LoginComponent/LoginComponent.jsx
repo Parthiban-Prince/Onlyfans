@@ -138,7 +138,7 @@ async function Signup() {
             {sign ? "Create an Account" : "Log in"}
           </h6>
 
-          <form className="flex flex-col gap-5" onSubmit={(e) => e.preventDefault()}>
+          <form className="flex flex-col gap-5">
             {sign ? (
               <>
                 <input

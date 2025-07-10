@@ -3,6 +3,7 @@ import menu from '../../assets/Icons_Images/icons8-menu-vertical-32.png';
 import settings from '../../assets/Icons_Images/icons8-settings-50.png';
 import Pencil from '../../assets/Icons_Images/icons8-pencil-32.png';
 import { Link } from 'react-router-dom';
+import HomeCenterPost from '../Homecenterpost/Homecenterpost';
 
 function NotificationCentre() {
   return (
@@ -37,6 +38,10 @@ function NotificationCentre() {
           <div className="flex items-center bg-gray-300 px-3 py-1 rounded-full cursor-pointer hover:bg-blue-500 transition">
             <img src={Pencil} alt="Compose" className="w-[25px] h-[25px] object-center" />
           </div>
+        </div>
+        <div>
+          <HomeCenterPost/>
+           <HomeCenterPost/>
         </div>
       </div>
     </section>

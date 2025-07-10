@@ -4,13 +4,14 @@ import plus from '../../assets/Icons_Images/icons8-plus-24.png';
 import pencil from '../../assets/Icons_Images/icons8-pencil-32.png';
 import sort from '../../assets/Icons_Images/icons8-sorting-50.png';
 import { Link } from 'react-router-dom';
+import Homecenterpost from '../Homecenterpost/Homecenterpost'
 
 function MessageCenter() {
   return (
-    <section className="flex relative border-x border-gray-300 bg-white h-full">
+    <section className="flex relative border-x border-gray-300 bg-white">
       <div className="w-[395px] h-full overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 z-10 flex justify-between items-center p-4 border-b border-gray-300 bg-white">
+        <div className="fixed top-0 z-10 flex justify-between items-center p-4 border-b border-gray-300 bg-white w-[inherit]">
           <div className="flex items-center gap-3">
             <Link to="/Dashboard">
               <span className="text-[30px] font-light hover:text-blue-500 transition">&larr;</span>
@@ -24,7 +25,7 @@ function MessageCenter() {
         </div>
 
         {/* Sorting */}
-        <div className="flex flex-col gap-3 px-5 py-4">
+        <div className="flex flex-col gap-3 px-5 py-4 mt-20">
           <div className="flex justify-between items-center">
             <h1 className="text-sm font-medium text-gray-600">Newest First</h1>
             <img src={sort} alt="Sort" className="w-6 h-6 cursor-pointer" />
@@ -39,6 +40,11 @@ function MessageCenter() {
               <img src={pencil} alt="Pencil" className="w-5 h-5" />
             </button>
           </div>
+        </div>
+        <div>
+          <Homecenterpost/>
+           <Homecenterpost/>
+            <Homecenterpost/>
         </div>
       </div>
     </section>

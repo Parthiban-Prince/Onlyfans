@@ -15,6 +15,7 @@ import AccountPage from "./Pages/AccountsettingsPage/AccountPage"
 import PrivacyPage from "./Pages/PrivacysettingsPage/PrivacyPage"
 import SubscriptionsettingPage from "./Pages/SubscriptionSettingPage/subcriptionsetting"
 import NotificationsettingPage from "./Pages/NotificationSettingsPage/NotificationsettingPage"
+import ProtectedRoute from "./Component/ProtectedRouted/Protected"
 
 
 
@@ -24,20 +25,23 @@ function App() {
     <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginPage/>}/>
-          <Route path="/dashboard" element={<HomePage/>}/>
-          <Route path="/my/notification" element={<NotificationPage/>}/>
-          <Route path="/posts/create" element={<PostPage/>}/>
-          <Route path='/my/payments/add_card' element={<AddcardPage/>}/>
-          <Route path='my/chats/' element={<MessagePage/>}/>
-          <Route path='my/collection/user-lists/subscribers/active' element={<CollectionPage/>}/>
-          <Route path="my/collections/user-lists/subscriptions" element={<SubscriptionsPage/>}/>
-          <Route path="/_idu507114711" element={<ProfilePage/>}/>
-          <Route path="/my/settings/profile" element={<SettingsPage/>}/>
-          <Route path="/my/settings/account" element={<AccountPage/>}/>
-          <Route path="/my/settings/privacy" element={<PrivacyPage/>}/>
-          <Route path="/my/settings/subscription" element={<SubscriptionsettingPage/>}/>
-          <Route path="/my/settings/notifications" element={<NotificationsettingPage/>}/>
-          <Route path="/my/settings/display" element={<DisplaysettingsPage/>}/>
+          <Route path="/dashboard" element={ <ProtectedRoute>
+            <HomePage/>
+          </ProtectedRoute>}/>
+
+          <Route path="/my/notification" element={ <ProtectedRoute><NotificationPage/></ProtectedRoute>    }/>
+          <Route path="/posts/create" element={ <ProtectedRoute> <PostPage/> </ProtectedRoute>  }/>
+          <Route path='/my/payments/add_card' element={<ProtectedRoute><AddcardPage/></ProtectedRoute>}/>
+          <Route path='my/chats/' element={<ProtectedRoute><MessagePage/></ProtectedRoute>}/>
+          <Route path='my/collection/user-lists/subscribers/active' element={<ProtectedRoute><CollectionPage/></ProtectedRoute>}/>
+          <Route path="my/collections/user-lists/subscriptions" element={<ProtectedRoute><SubscriptionsPage/></ProtectedRoute>}/>
+          <Route path="/_idu507114711" element={<ProtectedRoute><ProfilePage/></ProtectedRoute>}/>
+          <Route path="/my/settings/profile" element={<ProtectedRoute><SettingsPage/></ProtectedRoute>}/>
+          <Route path="/my/settings/account" element={<ProtectedRoute><AccountPage/></ProtectedRoute>}/>
+          <Route path="/my/settings/privacy" element={<ProtectedRoute><PrivacyPage/></ProtectedRoute>}/>
+          <Route path="/my/settings/subscription" element={<ProtectedRoute><SubscriptionsettingPage/></ProtectedRoute>}/>
+          <Route path="/my/settings/notifications" element={<ProtectedRoute><NotificationsettingPage/></ProtectedRoute>}/>
+          <Route path="/my/settings/display" element={<ProtectedRoute><DisplaysettingsPage/></ProtectedRoute>}/>
         </Routes>
     </BrowserRouter>
   )

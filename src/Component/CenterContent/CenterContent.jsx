@@ -12,7 +12,7 @@ import HomeImagePost from '../Homecenterpost/HomeImagePost'
 
 function CenterContent() { 
   return (
-    <section className='flex relative h-fit  border-l-gray-200 border-b-white border-r-gray-200 border-2' >
+    <section className='flex relative h-full  border-l-gray-200 border-b-white border-r-gray-200 border-2' >
         <div  className='w-[632px] relative'>
             <div className='flex justify-between items-center p-3   h-[56px]  fixed w-[inherit]  z-1000 shadow-sm shadow-black/10 bg-white top-0 ' id="Home">
                 <h1 className='text-xl font-bold'>Home</h1>
@@ -39,6 +39,7 @@ function CenterContent() {
             </div>
             <div>
                 <HomeImagePost/>
+                <HomeCenterPost/>
             </div>
         </div>
     </section>

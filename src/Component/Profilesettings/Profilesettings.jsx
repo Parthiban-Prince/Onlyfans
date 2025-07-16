@@ -13,7 +13,7 @@ export default function Profilesettings() {
 
     const fetchProfileData = async () => {
       try {
-        const response = await fetch('https://https://onlyfans-backend-production.up.railway.app//api/my/Profile', {
+        const response = await fetch('https://onlyfans-backend-production.up.railway.app//api/my/Profile', {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${usertoken}`
@@ -61,7 +61,7 @@ export default function Profilesettings() {
     if (user?.Bio) formData.append("Bio", user.Bio);
 
     try {
-      const response = await fetch("https://https://onlyfans-backend-production.up.railway.app//api/my/Profile/update", {
+      const response = await fetch("https://onlyfans-backend-production.up.railway.app//api/my/Profile/update", {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${usertoken}`,

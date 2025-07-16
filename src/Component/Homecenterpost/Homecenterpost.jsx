@@ -11,7 +11,7 @@ function HomeCenterPost() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch("https://https://onlyfans-backend-production.up.railway.app//api/Post/all", {
+        const response = await fetch("https://onlyfans-backend-production.up.railway.app//api/Post/all", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

@@ -17,7 +17,7 @@ export default function Settingscenter() {
     
         const fetchProfileData = async () => {
           try {
-            const response = await fetch('https://https://onlyfans-backend-production.up.railway.app//api/my/Profile', {
+            const response = await fetch('https://onlyfans-backend-production.up.railway.app//api/my/Profile', {
               headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`

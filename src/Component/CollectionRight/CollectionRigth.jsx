@@ -48,16 +48,7 @@ function CollectionRight() {
 
           {/* Empty Placeholder (optional for now) */}
           <div className="flex justify-center items-center h-40 text-gray-400 text-sm">
-          <UserCard
-  name="Lina Ivy"
-  username="sweetlinaivy"
-  avatarUrl="https://res.cloudinary.com/dri7edc3h/image/upload/v1750065731/Samyukutha/oxvlo7cbh49e6lxk1mvv.jpg"
-  bannerUrl="https://res.cloudinary.com/dri7edc3h/image/upload/v1750065731/Samyukutha/fd2avl9xh9hj7ove4uj1.jpg"
-  isVerified={true}
-  isAvailable={true}
-  newPosts={1}
-  expiredDate="May 23, 2025"
-/>
+
 
           </div>
         </div>

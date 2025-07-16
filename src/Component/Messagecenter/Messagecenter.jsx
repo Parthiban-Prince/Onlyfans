@@ -42,16 +42,7 @@ function MessageCenter() {
             </button>
           </div>
         </div>
-        <Chat/>
-         <Chat/>
-          <Chat/>
-           <Chat/>
-            <Chat/>
-             <Chat/>
-              <Chat/>
-               <Chat/>
-                <Chat/>
-                 <Chat/>
+        Still Development
       </div>
     </section>
   );

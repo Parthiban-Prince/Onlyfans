@@ -1,10 +1,11 @@
 import React from 'react';
 import search from '../../assets/Icons_Images/icons8-search-50.png';
 import sort from '../../assets/Icons_Images/icons8-sorting-50.png';
+import UserCard from '../userCard/UserCard';
 
 function CollectionRight() {
   return (
-    <section className="flex border-r border-gray-300 w-[640px]">
+    <section className="flex border-r border-gray-300 w-[640px] h-dvh">
       <div className="w-full sm:w-[640px] h-full overflow-y-auto relative">
         {/* Header */}
         <div className="flex justify-between items-center px-4 py-3 border-b border-gray-300 h-[56px] sticky top-0 z-10 bg-white">
@@ -47,7 +48,17 @@ function CollectionRight() {
 
           {/* Empty Placeholder (optional for now) */}
           <div className="flex justify-center items-center h-40 text-gray-400 text-sm">
-            No fans to show yet.
+          <UserCard
+  name="Lina Ivy"
+  username="sweetlinaivy"
+  avatarUrl="https://res.cloudinary.com/dri7edc3h/image/upload/v1750065731/Samyukutha/oxvlo7cbh49e6lxk1mvv.jpg"
+  bannerUrl="https://res.cloudinary.com/dri7edc3h/image/upload/v1750065731/Samyukutha/fd2avl9xh9hj7ove4uj1.jpg"
+  isVerified={true}
+  isAvailable={true}
+  newPosts={1}
+  expiredDate="May 23, 2025"
+/>
+
           </div>
         </div>
       </div>

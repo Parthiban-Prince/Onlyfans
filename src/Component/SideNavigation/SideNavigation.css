@@ -10,10 +10,8 @@ body {
 }
 
 /* Tablet */
-@media (min-width: 426px) and (max-width: 1024px) {
-    span {
-        display: none;
-    }
+@media (min-width: 426px) and (max-width: 1440px) {
+
 
     #Side {
         display: block;

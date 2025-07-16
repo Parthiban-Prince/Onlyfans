@@ -4,7 +4,9 @@
 
 
 @theme{
-    --breakpoint-xs:375px;
+
+
+    --breakpoint-xs:320px;
     --breakpoint-s:501px;
     --breakpoint-sm:768px;
     --breakpoint-md:1024px;
@@ -32,74 +34,57 @@
   font-optical-sizing: auto;
   font-style: normal;
 
+
 }
 
 
 button{
     cursor: pointer;
-
 }
 
-
-
-/* ===========================
-   RESPONSIVE BREAKPOINTS (No Resets)
-=========================== */
-
-/* ===========================
-   ONLY UTILITY CLASSES (NO RESET, NO TAILWIND CONFLICT)
-=========================== */
-.no-radius {
-  border-radius: 0 !important;
-}
-
-.text-ellipsis {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.scroll-hide::-webkit-scrollbar {
+.no-scrollbar::-webkit-scrollbar {
   display: none;
 }
-
-.scroll-hide {
+.no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
-.input-no-style {
-  border: none;
-  outline: none;
-  background: transparent;
-}
 
-.transition-soft {
+/* global.css */
+* {
   transition: all 0.3s ease-in-out;
+  box-sizing: border-box;
 }
 
-.z-top {
-  z-index: 9999;
+html {
+  scroll-behavior: smooth;
 }
 
-/* Responsive Text Size Helpers */
-@media (max-width: 425px) {
-  .text-xs-custom { font-size: 12px; }
-  .hide-on-xs { display: none !important; }
+/* Smoother global transitions */
+* {
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    opacity 0.3s ease;
+  box-sizing: border-box;
 }
 
-@media (min-width: 426px) and (max-width: 767px) {
-  .text-sm-custom { font-size: 14px; }
+/* Smooth scroll for anchors */
+html {
+  scroll-behavior: smooth;
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
-  .text-md-custom { font-size: 16px; }
-}
+/* Body fade-in on load */
+/* global.css or App.css */
 
-@media (min-width: 1024px) and (max-width: 1439px) {
-  .text-lg-custom { font-size: 18px; }
-}
+/* Style all anchor tags */
+a {
 
-@media (min-width: 1440px) {
-  .text-xl-custom { font-size: 20px; }
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
 }

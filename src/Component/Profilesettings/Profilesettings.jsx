@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32.png'
 
 export default function Profilesettings() {
   const [user, setUser] = useState(null);
@@ -12,7 +13,7 @@ export default function Profilesettings() {
 
     const fetchProfileData = async () => {
       try {
-        const response = await fetch('https://onlyfans-backend-production.up.railway.app/api/my/Profile', {
+        const response = await fetch('http://localhost:3000/api/my/Profile', {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${usertoken}`
@@ -60,7 +61,7 @@ export default function Profilesettings() {
     if (user?.Bio) formData.append("Bio", user.Bio);
 
     try {
-      const response = await fetch("https://onlyfans-backend-production.up.railway.app/api/my/Profile/update", {
+      const response = await fetch("http://localhost:3000/api/my/Profile/update", {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${usertoken}`,
@@ -87,7 +88,7 @@ export default function Profilesettings() {
       <div className="w-[632px]">
         {/* Header */}
         <div className="flex justify-between items-center p-3 border-b border-gray-300 h-[56px] sticky top-0 z-10 bg-white rounded-t-md">
-          <h1 className="text-xl font-bold">EDIT PROFILE</h1>
+          <h1 className="text-xl font-bold flex gap-5 items-center"><span className='md:hidden'><img src={Menu}/></span> EDIT PROFILE</h1>
           <button
             className="bg-gray-800 text-white px-5 py-1 font-semibold rounded-md uppercase text-sm"
             onClick={UploadProfile}

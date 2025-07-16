@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 function SubscriptionsRight() {
   return (
-        <section className='flex  border-r-[1px]  border-gray-400' >
+        <section className='flex  border-r-[1px]  border-gray-400 h-dvh' >
             <div  className='w-[640px] relative h-full'>
                 <div className='flex justify-between items-center p-3  border-b-[1px] border-gray-300 h-[56px]  sticky w-full  z-10 bg-white top-0 '>
                   <div className='flex items-center gap-3 px-5'>

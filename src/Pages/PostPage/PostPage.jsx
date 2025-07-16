@@ -6,16 +6,17 @@ import BottomTab from '../../Component/BottomTab/Bottom';
 
 function PostPage() {
   return (
-    <div className="flex flex-col md:flex-row w-full min-h-screen justify-center">
+    <div className="flex flex-col md:flex-row w-full  justify-center">
 
       {/* Left Sidebar - visible on 426px+ */}
-      <div className="hidden s:block">
+     <div className="hidden  h-auto s:block md:w-[100px] lg:w-auto">
         <SideNavigation />
       </div>
 
       {/* Main Post Content - always visible */}
-
-        <Postcenter />
+      <div className="m-auto s:ml-[75px] md:m-0">
+       <Postcenter/>
+      </div>
  
 
       {/* Right Suggestions - visible on 426px+ */}

@@ -4,12 +4,13 @@ import plus from '../../assets/Icons_Images/icons8-plus-24.png';
 import pencil from '../../assets/Icons_Images/icons8-pencil-32.png';
 import sort from '../../assets/Icons_Images/icons8-sorting-50.png';
 import { Link } from 'react-router-dom';
-import Homecenterpost from '../Homecenterpost/Homecenterpost'
+import Chat from './chat/chat';
+
 
 function MessageCenter() {
   return (
     <section className="flex relative border-x border-gray-300 bg-white">
-      <div className="w-[395px] h-full overflow-y-auto">
+      <div className="w-full md:w-[395px] h-full overflow-y-auto">
         {/* Header */}
         <div className="fixed top-0 z-10 flex justify-between items-center p-4 border-b border-gray-300 bg-white w-[inherit]">
           <div className="flex items-center gap-3">
@@ -41,11 +42,16 @@ function MessageCenter() {
             </button>
           </div>
         </div>
-        <div>
-          <Homecenterpost/>
-           <Homecenterpost/>
-            <Homecenterpost/>
-        </div>
+        <Chat/>
+         <Chat/>
+          <Chat/>
+           <Chat/>
+            <Chat/>
+             <Chat/>
+              <Chat/>
+               <Chat/>
+                <Chat/>
+                 <Chat/>
       </div>
     </section>
   );

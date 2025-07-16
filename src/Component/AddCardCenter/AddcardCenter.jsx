@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function AddcardCenter() {
   return (
-    <section className="flex flex-col border-x border-gray-300">
+    <section className="flex flex-col border-x border-gray-300 h-dvh">
       <div className="w-full max-w-3xl mx-auto relative">
         {/* Header */}
         <div className="flex justify-between items-center px-4 py-3 border-b border-gray-300 h-[56px] sticky top-0 bg-white z-10">
@@ -105,7 +105,7 @@ function AddcardCenter() {
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="bg-[#00aff0] text-white font-medium rounded-md h-11 px-6 hover:bg-[#0095cc] transition"
+                className="bg-[#00aff0] text-white font-medium rounded-md h-11 px-6 hover:bg-[#0095cc] transition mb-15" 
               >
                 Submit
               </button>

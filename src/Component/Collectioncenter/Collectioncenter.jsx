@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function CollectionCenter() {
   return (
-    <section className="flex  relative border-l border-r border-gray-400">
+    <section className="flex  relative border-l border-r border-gray-400 h-dvh">
       <div className="w-full sm:w-[395px] relative h-full overflow-y-auto">
         {/* Header */}
         <div className="flex justify-between items-center px-4 py-2 border-b border-gray-300 h-[56px] sticky top-0 z-10 bg-white">

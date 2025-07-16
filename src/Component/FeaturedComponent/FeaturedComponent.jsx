@@ -13,9 +13,7 @@ function FeaturedComponent() {
 
       {/* Cards */}
       <div className="flex flex-col items-center gap-10 px-4 sm:px-8 md:px-16 lg:px-32">
-        {Array(4).fill(0).map((_, index) => (
-          <FeaturedCard key={index} />
-        ))}
+        <FeaturedCard/>
       </div>
     </section>
   );

@@ -1,103 +1,190 @@
-import React, { useRef } from 'react';
-import Poll from '../../assets/Icons_Images/icons8-poll-horizontal-48.png';
-import UploadImage from '../../assets/Icons_Images/icons8-image-24.png';
-import Text from '../../assets/Icons_Images/icons8-font-size-16.png';
-import Quiz from '../../assets/Icons_Images/icons8-ask-question-16.png';
+import React, { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Postcenter() {
+  const navigate = useNavigate();
 
+  const captionRef = useRef(null);
+  const imageRef = useRef(null);
+  const videoRef = useRef(null);
+  const thumbnailRef = useRef(null);
 
-  const navigate = useNavigate()
+  const [preview, setPreview] = useState({
+    image: null,
+    video: null,
+    thumbnail: null,
+  });
 
-  const Imageref = useRef(null)
-  const caption = useRef(null)
+  const handlePreview = (e, type) => {
+    const file = e.target.files[0];
+    if (file) {
+      setPreview(prev => ({
+        ...prev,
+        [type]: URL.createObjectURL(file),
+      }));
+    }
+  };
 
-  const  postUpload = async ()=>{
+  const postUpload = async () => {
+    const images = imageRef.current?.files[0];
+    const video = videoRef.current?.files[0];
+    const thumbnail = thumbnailRef.current?.files[0];
+    const captions = captionRef.current?.value;
 
-    const image = Imageref.current?.files[0]
-    const captions =  caption.current?.value
-    
+    const formData = new FormData();
 
-    const formData = new FormData()
+    // Either video or image as "media"
+    if (video) {
+      formData.append("media", video);
+    } else if (images) {
+      formData.append("media", images);
+    }
 
-    formData.append("image",image)
-     formData.append("captions",captions)
+    // Optional fields
+    if (thumbnail) formData.append("thumbnail", thumbnail);
+    if (images) formData.append("image", images); // optional image again
+    formData.append("captions", captions);
 
-  
-   
-   
+    const toastId = toast.loading("Uploading your post...");
 
+    try {
+      const response = await fetch('http://localhost:3000/api/create/Posts', {
+        method: "POST",
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: formData,
+      });
 
-
-    const response  =  await fetch('https://onlyfans-backend-production.up.railway.app/api/create/Posts',{
-      method:"POST",
-      headers:{
-        'Authorization':`Bearer ${localStorage.getItem("token")}`,
-      },
-      body:formData
-    })
-
-    if(response.status == 200){
-      
-      alert("succefully Make a Post")
-      navigate('/dashboard')
-
-    }else(
-    alert("error")
-  )
-}
-
-
-
+      if (response.status === 200) {
+        toast.update(toastId, {
+          render: "✅ Post uploaded successfully!",
+          type: "success",
+          isLoading: false,
+          autoClose: 3000,
+        });
+        navigate('/dashboard');
+      } else {
+        throw new Error("Upload failed");
+      }
+    } catch (error) {
+      toast.update(toastId, {
+        render: "❌ Failed to upload. Please try again.",
+        type: "error",
+        isLoading: false,
+        autoClose: 3000,
+      });
+    }
+  };
 
   return (
-    <section className="flex relative border-l border-r border-gray-400">
+    <section className="flex relative border-l border-r border-gray-400 w-full md:w-[632px] h-dvh">
       <div className="w-[632px] h-full overflow-y-auto">
-        {/* Top Header */}
-        <div className="flex justify-between items-center px-4 py-3 border-b border-gray-300 h-[56px] sticky w-full z-10 bg-white top-0 rounded-t-md">
+        {/* Toasts */}
+        <ToastContainer position="top-right" />
+
+        {/* Header */}
+        <div className="flex justify-between items-center px-4 py-3 border-b border-gray-300 h-[56px] sticky w-full z-10 bg-white top-0">
           <div className="flex items-center gap-3">
-            <Link to="/Dashboard">
+            <Link to="/dashboard">
               <h1 className="text-[32px] font-light leading-none">&larr;</h1>
             </Link>
             <h1 className="text-lg font-bold tracking-wide">NEW POST</h1>
           </div>
-          <div className="bg-gray-300 px-5 py-1 text-white text-sm font-semibold uppercase tracking-wider rounded-md hover:bg-gray-800 transition duration-200">
-            <h1 onClick={postUpload} >POST</h1>
-          </div>
+          <button
+            onClick={postUpload}
+            className="bg-gray-300 px-5 py-1 text-white text-sm font-semibold uppercase tracking-wider rounded hover:bg-gray-800"
+          >
+            POST
+          </button>
         </div>
 
-        {/* Post Input */}
+        {/* Caption Input */}
         <div className="px-4 pt-4">
-          <form>
-            <textarea
-              placeholder="Compose New Post..."
-              rows={4}
-              className="w-full border border-gray-300 text-sm px-3 py-2 resize-none outline-none rounded-md"
-              name='captions'
-              ref={caption}
-            />
-          </form>
+          <textarea
+            placeholder="Compose New Post..."
+            rows={4}
+            className="w-full border border-gray-300 text-sm px-3 py-2 resize-none outline-none rounded-md"
+            ref={captionRef}
+          />
         </div>
 
-        {/* Media Options */}
-        <div className="flex items-center gap-6 px-4 py-4 border-t border-b border-gray-300 mt-4 rounded-md">
-          <form >
-            <label htmlFor='Image-Upload'>
-                        <img src={UploadImage} alt="Upload" className="w-6 h-6 object-contain rounded-md hover:scale-105 transition"/>   
-            </label>
-            <input type='file' id='Image-Upload' name='image' ref={Imageref} accept='image/*' />
-          </form>
-          <img src={Poll} alt="Poll" className="w-6 h-6 object-contain rounded-md hover:scale-105 transition" />
-          <img src={Quiz} alt="Quiz" className="w-6 h-6 object-contain rounded-md hover:scale-105 transition" />
-          <img src={Text} alt="Text" className="w-6 h-6 object-contain rounded-md hover:scale-105 transition" />
+        {/* Upload Buttons */}
+        <div className="flex flex-wrap items-center gap-4 px-4 py-4 mt-4 border-t border-b border-gray-300">
+          <UploadButton
+            label="Image"
+            icon="https://img.icons8.com/ios-filled/50/image.png"
+            inputRef={imageRef}
+            inputId="image-upload"
+            accept="image/*"
+            onChange={(e) => handlePreview(e, 'image')}
+          />
+          <UploadButton
+            label="Video"
+            icon="https://img.icons8.com/ios-filled/50/video.png"
+            inputRef={videoRef}
+            inputId="video-upload"
+            accept="video/*"
+            onChange={(e) => handlePreview(e, 'video')}
+          />
+          <UploadButton
+            label="Thumbnail"
+            icon="https://img.icons8.com/ios-filled/50/film-reel.png"
+            inputRef={thumbnailRef}
+            inputId="thumbnail-upload"
+            accept="image/*"
+            onChange={(e) => handlePreview(e, 'thumbnail')}
+          />
         </div>
-        <div>
-          
+
+        {/* Preview Section */}
+        <div className="px-4 py-4 space-y-4">
+          {preview.image && (
+            <PreviewBlock title="Image Preview" type="image" src={preview.image} />
+          )}
+          {preview.video && (
+            <PreviewBlock title="Video Preview" type="video" src={preview.video} />
+          )}
+          {preview.thumbnail && (
+            <PreviewBlock title="Thumbnail Preview" type="image" src={preview.thumbnail} />
+          )}
         </div>
       </div>
     </section>
   );
 }
+
+// Upload Button Component
+const UploadButton = ({ label, icon, inputRef, inputId, accept, onChange }) => (
+  <div>
+    <label htmlFor={inputId} className="cursor-pointer flex items-center gap-2 text-sm bg-gray-100 px-3 py-2 rounded hover:bg-gray-200">
+      <img src={icon} alt={label} className="w-5 h-5" />
+      {label}
+    </label>
+    <input
+      type="file"
+      id={inputId}
+      accept={accept}
+      ref={inputRef}
+      className="hidden"
+      onChange={onChange}
+      multiple={true}
+    />
+  </div>
+);
+
+// Preview Component
+const PreviewBlock = ({ title, type, src }) => (
+  <div>
+    <h3 className="text-sm font-medium mb-1">{title}:</h3>
+    {type === 'video' ? (
+      <video src={src} controls className="max-h-60 w-full rounded-md" />
+    ) : (
+      <img src={src} alt={title} className="w-24 h-24 object-cover rounded-md border" />
+    )}
+  </div>
+);
 
 export default Postcenter;

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useEffect,useState } from 'react';
+import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32.png'
 
 export default function Accountsettings() {
 
@@ -13,7 +14,7 @@ export default function Accountsettings() {
     
         const fetchProfileData = async () => {
           try {
-            const response = await fetch('https://onlyfans-backend-production.up.railway.app/api/my/Profile', {
+            const response = await fetch('http://localhost:3000/api/my/Profile', {
               headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
@@ -34,11 +35,11 @@ export default function Accountsettings() {
 
 
   return (
-    <div className=" bg-white shadow-sm min-h-screen text-sm w-[600px]">
+    <div className="w-full bg-white shadow-sm min-h-screen text-sm md:w-[600px]">
       
       {/* Header */}
       <div className="sticky top-0 bg-white z-10 border-b border-gray-200 px-4 py-3">
-        <h1 className="text-base font-bold text-gray-900">ACCOUNT</h1>
+        <h1 className="text-base font-bold text-gray-900 flex gap-5 items-center"><span className='md:hidden'><img src={Menu}/></span> ACCOUNT</h1>
       </div>
 
       {/* Account Info */}

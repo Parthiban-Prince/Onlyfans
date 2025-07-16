@@ -7,15 +7,15 @@ import './HomePage.css'
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col md:flex-row w-full min-h-screen justify-center">
+    <div className="flex flex-col md:flex-row w-full  justify-center">
 
       {/* Show SideNavigation from 426px and up */}
-      <div className="hidden  h-auto s:block">
+      <div className="hidden  h-auto s:block md:w-[100px] lg:w-auto">
         <SideNavigation />
       </div>
 
       {/* Center Content should always be visible and fill space */}
-      <div className="m-auto md:m-0">
+      <div className="m-auto s:ml-[75px] md:m-0">
         <CenterContent />
       </div>
 

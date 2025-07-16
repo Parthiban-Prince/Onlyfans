@@ -6,18 +6,18 @@ import BottomTab from '../../Component/BottomTab/Bottom';
 
 export default function MessagePage() {
   return (
-    <div className="flex flex-col md:flex-row w-full min-h-screen justify-center">
+    <div className="flex flex-col md:flex-row w-full  justify-center">
 
       {/* Left Sidebar (426px and up) */}
-      <div className="hidden s:block">
+    <div className="hidden  h-auto s:block md:w-[100px] lg:w-auto">
         <SideNavigation />
       </div>
 
       {/* Message Center: Always visible */}
-  
-        <MessageCenter />
 
-
+      <div className="m-auto s:ml-[75px] md:m-0">
+        <MessageCenter/>
+      </div>
       {/* Right Chat/User Info: 426px and up */}
       <div className="hidden s:block">
         <MessageRight />

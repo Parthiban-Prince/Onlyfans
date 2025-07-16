@@ -8,7 +8,7 @@ function ProfileCenterPosts
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch("https://onlyfans-backend-production.up.railway.app/api/create/Posts", {
+        const response = await fetch("http://localhost:3000/api/create/Posts", {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${localStorage.getItem("token")}`,

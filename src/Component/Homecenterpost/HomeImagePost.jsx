@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32 (1).png';
+import LikeButton from '../likezButton/like';
 
 function HomeImagePost() {
   const [user, setUser] = useState([]);
@@ -7,7 +8,7 @@ function HomeImagePost() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch("https://onlyfans-backend-production.up.railway.app/api/Post/all", {
+        const response = await fetch("http://localhost:3000/api/Post/all", {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${localStorage.getItem("token")}`,
@@ -34,7 +35,7 @@ function HomeImagePost() {
           : userItem.images;
 
         return (
-          <div key={index} className="md:max-w-[856px] w-full mb-10 rounded-md border border-gray-200 shadow-sm bg-white">
+          <div key={index} className="w-full md:max-w-[856px] mb-10 rounded-md border border-gray-200 shadow-sm bg-white">
             {/* Header */}
             <div className="flex justify-between items-center px-4 py-3">
               <div className="flex items-center gap-3">
@@ -97,12 +98,12 @@ function HomeImagePost() {
             {/* Actions */}
             <div className="flex justify-between px-4 py-3 mt-2">
               <div className="flex gap-6">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/833/833472.png"
-                  alt="Like"
-                  title="Like"
-                  className="w-6 h-6 cursor-pointer"
-                />
+        
+        <LikeButton
+  postId={userItem._id}
+  initialLiked={false} // update to true if you track user likes
+  initialCount={userItem.likes || 0}
+/>
                 <img
                   src="https://cdn-icons-png.flaticon.com/512/1380/1380338.png"
                   alt="Comment"
@@ -125,9 +126,6 @@ function HomeImagePost() {
             </div>
 
             {/* Likes Count */}
-            <div className="px-5 text-sm text-gray-600 pb-4">
-              {userItem.likes || 83} likes
-            </div>
           </div>
         );
       })}

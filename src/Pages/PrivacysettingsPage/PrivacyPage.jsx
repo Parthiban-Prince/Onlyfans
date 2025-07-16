@@ -6,10 +6,10 @@ import BottomTab from '../../Component/BottomTab/Bottom';
 
 export default function PrivacyPage() {
   return (
-    <div className="flex flex-col md:flex-row w-full min-h-screen justify-center">
+    <div className="flex flex-col md:flex-row w-full  justify-center">
 
       {/* Sidebar - 426px and up */}
-      <div className="hidden s:block">
+    <div className="hidden  h-auto s:block md:w-[100px] lg:w-auto">
         <SideNavigation />
       </div>
 

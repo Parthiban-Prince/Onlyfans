@@ -8,7 +8,7 @@ function Card() {
     async function fetchSuggestions() {
       const token = localStorage.getItem("token")
       try {
-        const response = await fetch("https://onlyfans-backend-production.up.railway.app/api/suggestion/card", {
+        const response = await fetch("http://localhost:3000/api/suggestion/card", {
           method: "GET",
           headers: {
             'Content-Type': 'application/json',

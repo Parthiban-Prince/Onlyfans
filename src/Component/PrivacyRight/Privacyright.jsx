@@ -1,12 +1,13 @@
 import React from 'react';
+import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32.png'
 
 export default function Privacysettings() {
   return (
-    <section className="flex relative border border-gray-400">
+    <section className="flex relative border border-gray-400 h-dvh">
       <div className="w-[632px]">
         {/* Header */}
         <div className="flex items-center p-3 border-b border-gray-300 h-[56px] sticky w-full z-10 bg-white top-0">
-          <h1 className="text-lg font-bold tracking-wide">PRIVACY AND SAFETY</h1>
+          <h1 className="text-lg font-bold tracking-wide flex gap-5 items-center"><span className='md:hidden'><img src={Menu}/></span>PRIVACY AND SAFETY</h1>
         </div>
 
         {/* Content */}

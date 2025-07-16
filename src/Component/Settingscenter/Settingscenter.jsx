@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState,useEffect } from 'react';
+import useDeviceType from '../../hooks/useDeviceType'; 
 
 export default function Settingscenter() {
 
 
   
     const [user,setUser] = useState(null)
+    const isMobile = useDeviceType();
   
   
   
@@ -15,7 +17,7 @@ export default function Settingscenter() {
     
         const fetchProfileData = async () => {
           try {
-            const response = await fetch('https://onlyfans-backend-production.up.railway.app/api/my/Profile', {
+            const response = await fetch('http://localhost:3000/api/my/Profile', {
               headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -37,8 +39,8 @@ export default function Settingscenter() {
 
 
   return (
-    <section className="flex relative border border-gray-300 w-full max-w-md bg-white">
-      <div className="w-full h-full overflow-y-auto">
+    <section className="flex relative border border-gray-300 w-full   md:w-[632px] bg-white">
+      <div className="w-full">
         
         {/* Header */}
         <div className="flex items-center gap-3 p-3 border-b border-gray-200 sticky top-0 z-10 bg-white h-[56px]">
@@ -55,35 +57,35 @@ export default function Settingscenter() {
 
         {/* Settings List */}
         <ul className="text-sm text-gray-900 divide-y divide-gray-200">
-          <Link to="/my/settings/profile">
+          <Link to={isMobile ?  '/my/settings/profile/profileSettings': '/my/settings/profile' }>
             <li className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
               <span>Profile</span>
               <span className="text-gray-400 text-base">&rsaquo;</span>
             </li>
           </Link>
 
-          <Link to="/my/settings/account">
+          <Link to={isMobile ? '/my/settings/account/accountSettings':"/my/settings/account"}>
             <li className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
               <span>Account</span>
               <span className="text-gray-400 text-base">&rsaquo;</span>
             </li>
           </Link>
 
-          <Link to="/my/settings/privacy">
+          <Link to={isMobile ? '/my/settings/privacy/privacySettings':"/my/settings/privacy"}>
             <li className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
               <span>Privacy and safety</span>
               <span className="text-gray-400 text-base">&rsaquo;</span>
             </li>
           </Link>
 
-          <Link to="/my/settings/subscription">
+          <Link to={isMobile ? '/my/settings/subscription/subscriptionSettings':"/my/settings/subscription"}>
             <li className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
               <span>Subscription price</span>
               <span className="text-gray-400 text-base">&rsaquo;</span>
             </li>
           </Link>
 
-          <Link to="/my/settings/notifications">
+          <Link to={isMobile ? "/my/settings/notifications/notificationsSettings":"/my/settings/notifications"}>
             <li className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
               <span>Notifications</span>
               <span className="text-gray-400 text-base">&rsaquo;</span>
@@ -96,7 +98,7 @@ export default function Settingscenter() {
           General
         </div>
         <ul className="text-sm text-gray-900 divide-y divide-gray-200">
-          <Link to="/my/settings/display">
+          <Link to={isMobile ?  '/my/settings/display/displaySettings':"/my/settings/display"}>
             <li className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
               <span>Display</span>
               <span className="text-gray-400 text-base">&rsaquo;</span>

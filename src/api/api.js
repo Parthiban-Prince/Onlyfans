@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 export const api = axios.create({
-    baseURL:"https://onlyfans-backend-production.up.railway.app/",
+    baseURL:"https://onlyfans.up.railway.app",
 
 })
 

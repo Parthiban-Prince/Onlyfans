@@ -38,7 +38,7 @@ function SideNavigation() {
 
     const fetchProfileData = async () => {
       try {
-        const res = await fetch('https://onlyfans-backend-production.up.railway.app//api/my/profile', {
+        const res = await fetch('https://onlyfans.up.railway.app/api/my/profile', {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,

@@ -14,7 +14,7 @@ function Profilecenter() {
 
     const fetchProfile = async () => {
       try {
-        const res = await fetch('https://onlyfans-backend-production.up.railway.app//api/my/Profile', {
+        const res = await fetch('https://onlyfans.up.railway.app/api/my/Profile', {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ function Profilecenter() {
 
     const fetchPosts = async () => {
       try {
-        const res = await fetch('https://onlyfans-backend-production.up.railway.app//api/create/Posts', {
+        const res = await fetch('https://onlyfans.up.railway.app/api/create/Posts', {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',

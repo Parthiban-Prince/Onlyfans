@@ -11,12 +11,12 @@ function LikeButton({ postId }) {
     requestIdleCallback(async () => {
       try {
         const [statusRes, countRes] = await Promise.all([
-          fetch(`https://onlyfans-backend-production.up.railway.app//api/create/${postId}/isLiked`, {
+          fetch(`https://onlyfans.up.railway.app/api/create/${postId}/isLiked`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           }),
-          fetch(`https://onlyfans-backend-production.up.railway.app//api/create/${postId}/count`),
+          fetch(`https://onlyfans.up.railway.app/api/create/${postId}/count`),
         ]);
 
         const statusData = await statusRes.json();
@@ -38,7 +38,7 @@ function LikeButton({ postId }) {
     setCount((prev) => prev + (updated ? 1 : -1));
 
     try {
-      const res = await fetch(`https://onlyfans-backend-production.up.railway.app//api/create/${postId}/toggle`, {
+      const res = await fetch(`https://onlyfans.up.railway.app/api/create/${postId}/toggle`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

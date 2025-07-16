@@ -10,7 +10,7 @@ export default function PublicProfile() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch(`https://onlyfans-backend-production.up.railway.app//api/public/${profileName}`)
+        const response = await fetch(`https://onlyfans.up.railway.app/api/public/${profileName}`)
         const result = await response.json()
         console.log(result.data)
         setUser(result.data)

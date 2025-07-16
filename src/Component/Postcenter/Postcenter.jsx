@@ -50,7 +50,7 @@ function Postcenter() {
     const toastId = toast.loading("Uploading your post...");
 
     try {
-      const response = await fetch('http://localhost:3000/api/create/Posts', {
+      const response = await fetch('https://https://onlyfans-backend-production.up.railway.app//api/create/Posts', {
         method: "POST",
         headers: {
           'Authorization': `Bearer ${localStorage.getItem("token")}`,

@@ -14,7 +14,7 @@ function FeaturedCard() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/owner/me", {
+        const response = await fetch("https://https://onlyfans-backend-production.up.railway.app//api/owner/me", {
           method: "GET",
           headers: { 'Content-Type': "application/json" }
         });

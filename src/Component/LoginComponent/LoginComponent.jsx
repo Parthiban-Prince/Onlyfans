@@ -44,8 +44,8 @@ function LoginComponent() {
     try {
       const response = await fetch(
         sign
-          ? 'http://localhost:3000/api/auth/Signup'
-          : 'http://localhost:3000/api/auth/Signin',
+          ? 'https://https://onlyfans-backend-production.up.railway.app//api/auth/Signup'
+          : 'https://https://onlyfans-backend-production.up.railway.app//api/auth/Signin',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

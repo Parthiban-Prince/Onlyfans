@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 
-export  function ProtectedRoute({ children }) {
+export default function ProtectedRoute({ children }) {
   const token = localStorage.getItem("token");
 
   if (!token) {
@@ -11,15 +11,3 @@ export  function ProtectedRoute({ children }) {
 }
 
 
-
-export function ProtectedRoute2({ children }) {
-  const token = localStorage.getItem("token");
-
-  if (token) {
-    return <Navigate to="/dashbord" />;
-  }
-
-  return children;
-}
-
-export default {ProtectedRoute,ProtectedRoute2}

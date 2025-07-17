@@ -1,7 +1,6 @@
 import React from 'react';
-import search from '../../assets/Icons_Images/icons8-search-50.png';
-import sort from '../../assets/Icons_Images/icons8-sorting-50.png';
 import UserCard from '../userCard/UserCard';
+import { IoFilterOutline, IoSearchOutline } from 'react-icons/io5';
 
 function CollectionRight() {
   return (
@@ -26,10 +25,10 @@ function CollectionRight() {
             <h2 className="text-sm font-semibold text-gray-500 px-1">RECENT</h2>
             <div className="flex gap-3 pr-1">
               <button>
-                <img src={search} alt="Search" className="w-[24px] h-[24px] hover:opacity-80" />
+                <IoSearchOutline alt="Search" className="w-6 h-6 hover:opacity-80" />
               </button>
               <button>
-                <img src={sort} alt="Sort" className="w-[24px] h-[24px] hover:opacity-80" />
+                <IoFilterOutline alt="Sort" className="w-6 h-6 hover:opacity-80" />
               </button>
             </div>
           </div>

@@ -20,9 +20,9 @@ function PostPage() {
  
 
       {/* Right Suggestions - visible on 426px+ */}
-      <div className="hidden s:block">
+     
         <SuggestionCard />
-      </div>
+   
 
       {/* BottomTab - only visible on small screens (<426px) */}
       <div className="block s:hidden fixed bottom-0 left-0 right-0 z-50">

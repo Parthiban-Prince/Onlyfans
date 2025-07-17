@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import menu from '../../assets/Icons_Images/icons8-menu-vertical-32 (1).png';
-import Poll from '../../assets/Icons_Images/icons8-poll-horizontal-48.png';
 import { Link } from 'react-router-dom';
+import { api } from '../../api/api';
+import { IoArrowBackOutline, IoEllipsisVerticalOutline, IoSettingsOutline, } from 'react-icons/io5';
+import { SlShareAlt } from "react-icons/sl";
 
 function Profilecenter() {
   const [user, setUser] = useState(null);
@@ -14,7 +15,7 @@ function Profilecenter() {
 
     const fetchProfile = async () => {
       try {
-        const res = await fetch('https://onlyfans.up.railway.app/api/my/Profile', {
+        const res = await fetch(`${api}/api/my/Profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
@@ -29,7 +30,7 @@ function Profilecenter() {
 
     const fetchPosts = async () => {
       try {
-        const res = await fetch('https://onlyfans.up.railway.app/api/create/Posts', {
+        const res = await fetch(`${api}/api/create/Posts`, {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
@@ -62,15 +63,15 @@ function Profilecenter() {
         {/* Top Bar */}
         <div className="absolute top-0 left-0 w-full flex justify-between items-center p-3 text-white">
           <div className="flex gap-4 items-center">
-            <img src={menu} alt="Menu" className="rotate-90" />
-            <h1 className="text-lg font-bold">Home</h1>
+            <IoArrowBackOutline  className="z-10 w-6 h-6 text-black" />
+            <h1 className="text-lg font-bold text-black">Home</h1>
           </div>
-          <img src={menu} alt="Menu" />
+          <IoEllipsisVerticalOutline  className='w-6 h-6 text-black' />
         </div>
 
         {/* Profile Info */}
         <div className="relative px-5 mt-[-50px]">
-          <div className="w-[100px] h-[100px] rounded-full border-[3px] border-white overflow-hidden">
+          <div className="w-[100px] h-[100px] rounded-full border-[3px] border-gray-400/70 overflow-hidden">
             <img
               src={user?.profilePhoto || 'https://img.icons8.com/?size=100&id=ABBSjQJK83zf&format=png&color=000000'}
               className="w-full h-full object-cover object-top"
@@ -92,13 +93,13 @@ function Profilecenter() {
 
           <div className="flex items-center gap-4">
             <Link to="/my/settings/profile">
-              <button className="bg-[#00Aff0] text-white font-medium px-4 py-2 rounded-md">
-                Edit Profile
+              <button className="bg-[#00Aff0] text-white font-medium px-4 py-2 rounded-md flex gap-5 items-center">
+                <IoSettingsOutline className='text-white w-6 h-6'/>Edit Profile
               </button>
             </Link>
 
             <button className="bg-[#00aff0] p-2 rounded-md">
-              <img src={Poll} alt="Poll" className="w-5 h-5" />
+              <SlShareAlt alt="Poll" className="w-6 h-6 text-white" />
             </button>
           </div>
         </div>

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32 (1).png';
 import LikeButton from '../likezButton/like';
+import {api} from '../../api/api'
+import { IoBookmarkOutline, IoChatbubble, IoChatbubbleOutline } from 'react-icons/io5';
+import { HiCurrencyDollar, HiOutlineCurrencyDollar } from 'react-icons/hi2';
 
 function HomeImagePost() {
   const [user, setUser] = useState([]);
@@ -8,7 +11,7 @@ function HomeImagePost() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch("https://onlyfans.up.railway.app/api/Post/all", {
+        const response = await fetch(`${api}/api/Post/all`, {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${localStorage.getItem("token")}`,
@@ -18,7 +21,19 @@ function HomeImagePost() {
 
         const data = await response.json();
         console.log("Fetched Data:");
-        setUser(Array.isArray(data.data) ? data.data : []);
+
+
+            const filteredData = Array.isArray(data.data)
+        ? data.data.filter(post => {
+            // Ensure images is either a non-empty array or a valid string
+            if (Array.isArray(post.images)) {
+              return post.images.length > 0 && post.images[0];
+            }
+            return post.images; // If not an array, it must be a non-null string
+          })
+        : [];
+
+        setUser(filteredData);
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
@@ -104,21 +119,21 @@ function HomeImagePost() {
   initialLiked={false} // update to true if you track user likes
   initialCount={userItem.likes || 0}
 />
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/1380/1380338.png"
+                <IoChatbubbleOutline
+                 
                   alt="Comment"
                   title="Comment"
                   className="w-6 h-6 cursor-pointer"
                 />
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/1828/1828970.png"
+                <HiOutlineCurrencyDollar
+                 
                   alt="Send Tip"
                   title="Send Tip"
                   className="w-6 h-6 cursor-pointer"
                 />
               </div>
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png"
+              <IoBookmarkOutline
+              
                 alt="Bookmark"
                 title="Bookmark"
                 className="w-6 h-6 cursor-pointer"

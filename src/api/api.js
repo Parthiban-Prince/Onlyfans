@@ -1,9 +1,3 @@
-import axios from "axios";
+ //export const api = "http://localhost:3000"
 
-
-export const api = axios.create({
-    baseURL:"https://onlyfans.up.railway.app",
-
-})
-
-export default api
+export const api = "https://onlyfans.up.railway.app"

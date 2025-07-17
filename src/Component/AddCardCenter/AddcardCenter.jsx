@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { IoArrowBackOutline } from 'react-icons/io5';
 function AddcardCenter() {
   return (
     <section className="flex flex-col border-x border-gray-300 h-dvh">
@@ -8,9 +8,9 @@ function AddcardCenter() {
         {/* Header */}
         <div className="flex justify-between items-center px-4 py-3 border-b border-gray-300 h-[56px] sticky top-0 bg-white z-10">
           <div className="flex items-center gap-3">
-            <Link to="/dashboard">
-              <span className="text-[28px] font-bold cursor-pointer">&larr;</span>
-            </Link>
+             <Link to="/Dashboard">
+                          <IoArrowBackOutline className="w-6 h-6"/>
+                        </Link>
             <h1 className="text-lg sm:text-xl font-bold">ADD CARD</h1>
           </div>
           <div className="text-[#00aff0] font-semibold text-sm sm:text-base">

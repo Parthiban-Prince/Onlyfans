@@ -20,9 +20,9 @@ export default function HomePage() {
       </div>
 
       {/* Suggestion Card visible only 426px and up */}
-      <div id='Suggest'>
+  
         <SuggestionCard />
-      </div>
+  
 
       {/* Bottom Tab: Only on small (mobile) screens <426px */}
       <div className="block s:hidden fixed bottom-0 left-0 right-0 z-50">

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32 (1).png';
+import {api} from '../../api/api'
+import { IoEllipsisVerticalOutline } from 'react-icons/io5';
 
 function Card() {
   const [users, setUsers] = useState([]);
@@ -8,7 +9,7 @@ function Card() {
     async function fetchSuggestions() {
       const token = localStorage.getItem("token")
       try {
-        const response = await fetch("https://onlyfans.up.railway.app/api/suggestion/card", {
+        const response = await fetch(`${api}/api/suggestion/card`, {
           method: "GET",
           headers: {
             'Content-Type': 'application/json',
@@ -38,22 +39,18 @@ function Card() {
           <img
             src={user.coverPhoto || "https://img.icons8.com/?size=100&id=ABBSjQJK83zf&format=png&color=000000"}
             alt="Profile Background"
-            className="w-full h-[128px] object-cover"
+            className="w-full h-[128px] object-cover opacity-50"
           />
 
           {/* Menu Icon */}
-          <img
-            src={Menu}
-            alt="Menu"
-            className="absolute top-2 right-2 w-[24px] h-[24px] z-20"
-          />
+          <IoEllipsisVerticalOutline className="absolute top-2 right-2 w-[24px] h-[24px] z-20 text-white"/>
 
           {/* Overlay */}
           <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-10" />
 
           {/* Profile Picture (fallback to coverPhoto or default) */}
           <img
-            src={user.coverPhoto || "https://img.icons8.com/?size=100&id=ABBSjQJK83zf&format=png&color=000000"}
+            src={user?.profilePhoto || "https://img.icons8.com/?size=100&id=ABBSjQJK83zf&format=png&color=000000"}
             alt="Avatar"
             className="w-[96px] h-[96px] object-cover rounded-full border-4 border-white absolute top-[20px] left-[20px] z-30"
           />

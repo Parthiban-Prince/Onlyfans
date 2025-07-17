@@ -1,8 +1,6 @@
 import React from 'react';
-import search from '../../assets/Icons_Images/icons8-search-50.png';
-import plus from '../../assets/Icons_Images/icons8-plus-24.png';
-import sort from '../../assets/Icons_Images/icons8-sorting-50.png';
 import { Link } from 'react-router-dom';
+import { IoAddCircleOutline, IoAddOutline, IoArrowBackOutline, IoFilterOutline, IoSearchOutline } from 'react-icons/io5';
 
 function CollectionCenter() {
   return (
@@ -12,13 +10,13 @@ function CollectionCenter() {
         <div className="flex justify-between items-center px-4 py-2 border-b border-gray-300 h-[56px] sticky top-0 z-10 bg-white">
           <div className="flex items-center gap-3">
             <Link to="/dashboard">
-              <span className="text-[28px] font-bold cursor-pointer">&larr;</span>
+              <span className="cursor-pointer"><IoArrowBackOutline className='w-6 h-6'/></span>
             </Link>
             <h1 className="text-lg font-semibold">COLLECTIONS</h1>
           </div>
           <div className="flex items-center gap-3">
-            <img src={search} alt="Search" className="w-[22px] h-[22px] cursor-pointer" />
-            <img src={plus} alt="Add" className="w-[26px] h-[26px] bg-black rounded-full p-1 cursor-pointer" />
+            <IoSearchOutline alt="Search" className="w-6 h-6 cursor-pointer" />
+            <IoAddCircleOutline alt="Add" className="w-6 h-6 cursor-pointer" />
           </div>
         </div>
 
@@ -33,7 +31,7 @@ function CollectionCenter() {
           {/* Sort */}
           <div className="flex justify-between items-center px-5 py-2">
             <h3 className="text-sm font-semibold text-gray-600">CUSTOM ORDER</h3>
-            <img src={sort} alt="Sort" className="w-6 h-6 cursor-pointer" />
+            <IoFilterOutline alt="Sort" className="w-6 h-6 cursor-pointer" />
           </div>
 
           {/* List Items */}

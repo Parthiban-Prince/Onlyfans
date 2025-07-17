@@ -6,6 +6,7 @@ import Google from '../../assets/Icons_Images/google.png';
 import finger from '../../assets/Icons_Images/fingerIcon.png';
 import white from '../../assets/images/OnlyFans_Logo_Full_White.png';
 import '../LoginComponent/LoginCompontent.css';
+import { api } from '../../api/api';
 
 function LoginComponent() {
   const [sign, setSignup] = useState(false);
@@ -44,8 +45,8 @@ function LoginComponent() {
     try {
       const response = await fetch(
         sign
-          ? 'https://onlyfans.up.railway.app/api/auth/Signup'
-          : 'https://onlyfans.up.railway.app/api/auth/Signin',
+          ? `${api}/api/auth/Signup`
+          : `${api}/api/auth/Signin`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

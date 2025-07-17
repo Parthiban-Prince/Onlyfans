@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { api } from '../../api/api';
+import { IoHeartOutline, IoHeartSharp } from 'react-icons/io5';
 
 function LikeButton({ postId }) {
   const [liked, setLiked] = useState(false);
@@ -11,12 +13,12 @@ function LikeButton({ postId }) {
     requestIdleCallback(async () => {
       try {
         const [statusRes, countRes] = await Promise.all([
-          fetch(`https://onlyfans.up.railway.app/api/create/${postId}/isLiked`, {
+          fetch(`${api}/api/create/${postId}/isLiked`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           }),
-          fetch(`https://onlyfans.up.railway.app/api/create/${postId}/count`),
+          fetch(`${api}/api/create/${postId}/count`),
         ]);
 
         const statusData = await statusRes.json();
@@ -38,7 +40,7 @@ function LikeButton({ postId }) {
     setCount((prev) => prev + (updated ? 1 : -1));
 
     try {
-      const res = await fetch(`https://onlyfans.up.railway.app/api/create/${postId}/toggle`, {
+      const res = await fetch(`${api}/api/create/${postId}/toggle`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -56,16 +58,12 @@ function LikeButton({ postId }) {
 
   return (
     <div className="flex items-center gap-1">
-      <img
-        src={
+      
+        {
           liked
-            ? "https://img.icons8.com/color/48/like--v3.png"
-            : "https://img.icons8.com/ios/50/000000/like--v1.png"
+            ? <IoHeartSharp className='w-6 h-6 text-red-600'      onClick={ready ? toggleLike : undefined} />
+            : <IoHeartOutline className='w-6 h-6'      onClick={ready ? toggleLike : undefined} />
         }
-        alt="Like"
-        className={`w-6 h-6 cursor-pointer transition hover:scale-110 ${ready ? '' : 'opacity-50 pointer-events-none'}`}
-        onClick={ready ? toggleLike : undefined}
-      />
       <span className="text-sm text-gray-600">{count} likes</span>
     </div>
   );

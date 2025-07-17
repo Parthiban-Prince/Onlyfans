@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { api } from '../../api/api';
 
 function Postcenter() {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ function Postcenter() {
     const toastId = toast.loading("Uploading your post...");
 
     try {
-      const response = await fetch('https://onlyfans.up.railway.app/api/create/Posts', {
+      const response = await fetch(`${api}/api/create/Posts`, {
         method: "POST",
         headers: {
           'Authorization': `Bearer ${localStorage.getItem("token")}`,
@@ -71,7 +72,7 @@ function Postcenter() {
       }
     } catch (error) {
       toast.update(toastId, {
-        render: "❌ Failed to upload. Please try again.",
+        render: "❌ Failed to upload. Please try again."+error,
         type: "error",
         isLoading: false,
         autoClose: 3000,

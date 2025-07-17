@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState,useEffect } from 'react';
 import useDeviceType from '../../hooks/useDeviceType'; 
+import { api } from '../../api/api';
 
 export default function Settingscenter() {
 
@@ -17,7 +18,7 @@ export default function Settingscenter() {
     
         const fetchProfileData = async () => {
           try {
-            const response = await fetch('https://onlyfans.up.railway.app/api/my/Profile', {
+            const response = await fetch(`${api}/api/api/my/Profile`, {
               headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`

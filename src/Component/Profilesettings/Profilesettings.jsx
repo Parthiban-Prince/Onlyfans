@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32.png'
+import {api} from '../../api/api'
 
 export default function Profilesettings() {
   const [user, setUser] = useState(null);
@@ -13,7 +14,7 @@ export default function Profilesettings() {
 
     const fetchProfileData = async () => {
       try {
-        const response = await fetch('https://onlyfans.up.railway.app/api/my/Profile', {
+        const response = await fetch(`${api}/api/my/Profile`, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${usertoken}`
@@ -61,7 +62,7 @@ export default function Profilesettings() {
     if (user?.Bio) formData.append("Bio", user.Bio);
 
     try {
-      const response = await fetch("https://onlyfans.up.railway.app/api/my/Profile/update", {
+      const response = await fetch("api/api/my/Profile/update", {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${usertoken}`,

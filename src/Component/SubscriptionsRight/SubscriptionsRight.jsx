@@ -1,9 +1,6 @@
 import React from 'react';
-
-import search from '../../assets/Icons_Images/icons8-search-50.png';
-
-import sort from '../../assets/Icons_Images/icons8-sorting-50.png'
 import { Link } from 'react-router-dom';
+import { IoFilterOutline, IoOptionsOutline, IoSearchOutline } from 'react-icons/io5';
 
 
 function SubscriptionsRight() {
@@ -26,13 +23,13 @@ function SubscriptionsRight() {
                     </div>
                     <div className='flex gap-5 px-1'>
                                                      <button>
-                      <img src={search} className= " w-[25px] h-[25px] rounded-full object-center"/>
+                      <IoSearchOutline className= " w-6 h-6  object-center"/>
                     </button>
                                                         <button>
-                      <img src={sort} className= " w-[25px] h-[25px] rounded-full object-center"/>
+                      <IoOptionsOutline className= " w-6 h-6  object-center"/>
                     </button>
                                                    <button>
-                      <img src={sort} className= " w-[25px] h-[25px] rounded-full object-center"/>
+                      <IoFilterOutline className= " w-6 h-6  object-center"/>
                     </button>
                     </div>
                   </div>

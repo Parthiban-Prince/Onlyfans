@@ -1,5 +1,6 @@
 import React from 'react';
 import Paymentbag from '../../assets/Icons_Images/icons8-shopping-bag-50.png';
+import { IoCartOutline } from 'react-icons/io5';
 
 function AddcardRight() {
   return (
@@ -30,7 +31,7 @@ function AddcardRight() {
         <div className="flex flex-col gap-6 w-full md:w-[400px] h-[300px] py-5 px-5 border border-gray-300 rounded-md bg-white shadow-sm">
           <h2 className="text-lg font-semibold text-gray-700">LATEST TRANSACTIONS</h2>
           <div className="flex flex-col items-center justify-center text-gray-400 flex-1">
-            <img src={Paymentbag} className="w-8 h-8 mb-2" alt="No payments" />
+            <IoCartOutline className="w-8 h-8 mb-2" alt="No payments" />
             <p className="text-sm">No payments done yet</p>
           </div>
         </div>

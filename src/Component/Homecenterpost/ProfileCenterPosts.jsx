@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32 (1).png';
+import { api } from '../../api/api';
 
 function ProfileCenterPosts
 () {
@@ -8,7 +9,7 @@ function ProfileCenterPosts
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch("https://onlyfans.up.railway.app/api/create/Posts", {
+        const response = await fetch(`${api}/api/create/Posts`, {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${localStorage.getItem("token")}`,

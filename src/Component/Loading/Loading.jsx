@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32.png'
 import BottomPublic from '../BottomTab/BottmPublic'
+import { api } from '../../api/api'
 
 export default function PublicProfile() {
   const { profileName } = useParams()
@@ -10,7 +11,7 @@ export default function PublicProfile() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch(`https://onlyfans.up.railway.app/api/public/${profileName}`)
+        const response = await fetch(`${api}/api/public/${profileName}`)
         const result = await response.json()
         console.log(result.data)
         setUser(result.data)

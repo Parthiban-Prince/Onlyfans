@@ -1,5 +1,5 @@
 import React from 'react';
-import Spotify from '../../assets/Icons_Images/icons8-spotify-32.png';
+import { AiOutlineSpotify } from "react-icons/ai";
 
 function ProfileRight() {
   return (
@@ -18,7 +18,7 @@ function ProfileRight() {
         <div className="flex flex-col gap-6 border border-gray-300 px-4 py-4 rounded-xl shadow-sm bg-white">
           <h1 className="text-xl text-gray-600 font-bold">SPOTIFY</h1>
           <div className="flex items-center gap-4 bg-[#1DB954] px-4 py-2 cursor-pointer rounded-full hover:bg-[#1ed760] transition duration-300">
-            <img src={Spotify} alt="Spotify" className="w-6 h-6" />
+            <AiOutlineSpotify alt="Spotify" className="w-6 h-6 text-white" />
             <button className="text-white font-semibold text-sm">
               SIGN IN WITH SPOTIFY
             </button>

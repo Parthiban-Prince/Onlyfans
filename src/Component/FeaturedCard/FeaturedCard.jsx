@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Profile from '../../assets/images/OnlyFans_Logo_Icon_Blue.png';
 import Play from '../../assets/Icons_Images/play.png';
+import { api } from '../../api/api';
 
 const fallbackThumbnail = "https://via.placeholder.com/856x480.png?text=No+Thumbnail";
 const fallbackVideo = "https://www.w3schools.com/html/mov_bbb.mp4";
@@ -14,7 +15,7 @@ function FeaturedCard() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch("https://onlyfans.up.railway.app/api/owner/me", {
+        const response = await fetch(`${api}/api/owner/me`, {
           method: "GET",
           headers: { 'Content-Type': "application/json" }
         });

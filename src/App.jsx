@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter,Routes,Route } from "react-router-dom"
+import {Routes,Route } from "react-router-dom"
 import LoginPage from "./Pages/LoginPage/LoginPage"
 import HomePage from "./Pages/HomePage/HomePage"
 import NotificationPage from "./Pages/NotificationPage/NotificationPage"
@@ -16,7 +16,6 @@ import PrivacyPage from "./Pages/PrivacysettingsPage/PrivacyPage"
 import SubscriptionsettingPage from "./Pages/SubscriptionSettingPage/subcriptionsetting"
 import NotificationsettingPage from "./Pages/NotificationSettingsPage/NotificationsettingPage"
 import ProtectedRoute from "./Component/ProtectedRouted/Protected"
-import PublicProfilePage from "./Pages/PublicProfile/PublicProfilePage"
 import Settingscenter from "./Component/Settingscenter/Settingscenter"
 import Profilesettings from "./Component/Profilesettings/Profilesettings"
 import Accountsettings from "./Component/AccountRight/Accountright"
@@ -24,7 +23,6 @@ import Privacysettings from "./Component/PrivacyRight/Privacyright"
 import Subscriptionsettings from "./Component/Subcriptionsright/Subscriptionsettingsright"
 import Notificationsettings from "./Component/NotificationRight/NotificationRight"
 import Displaysettings from "./Component/DisplaySettingsRight/DisplaySettingsRight"
-
 
 
 function App() {
@@ -35,13 +33,14 @@ function App() {
 
   
   return (
-    <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginPage/>}/>     
           <Route path="/:user" element={ <ProtectedRoute>
-            <HomePage/>
+          <HomePage/>
           </ProtectedRoute>}/>
-          <Route path="/my/notification" element={ <ProtectedRoute><NotificationPage/></ProtectedRoute>    }/>
+          <Route path="/my/notification" element={ <ProtectedRoute><NotificationPage/></ProtectedRoute>    }>
+              <Route path="settings" element={<ProtectedRoute><NotificationsettingPage/></ProtectedRoute>}/>
+          </Route>
           <Route path="/posts/create" element={ <ProtectedRoute> <PostPage/> </ProtectedRoute>  }/>
           <Route path='/my/payments/add_card' element={<ProtectedRoute><AddcardPage/></ProtectedRoute>}/>
           <Route path='my/chats/' element={<ProtectedRoute><MessagePage/></ProtectedRoute>}/>
@@ -62,7 +61,6 @@ function App() {
           <Route path="/my/settings/notifications/notificationsSettings" element={<ProtectedRoute><Notificationsettings/></ProtectedRoute>}/>
           <Route path="/my/settings/display/displaySettings" element={<ProtectedRoute><Displaysettings/></ProtectedRoute>}/>
         </Routes>
-    </BrowserRouter>
   )
 }
 

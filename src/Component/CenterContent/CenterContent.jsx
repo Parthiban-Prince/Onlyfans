@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import menu from '../../assets/Icons_Images/icons8-menu-vertical-32.png';
-import Poll from '../../assets/Icons_Images/icons8-poll-horizontal-48.png';
-import UploadImage from '../../assets/Icons_Images/icons8-image-24.png';
-import Text from '../../assets/Icons_Images/icons8-font-size-16.png';
-import Quiz from '../../assets/Icons_Images/icons8-ask-question-16.png';
-import Pencil from '../../assets/Icons_Images/icons8-pencil-32.png';
 import HomeCenterPost from '../Homecenterpost/Homecenterpost';
 import HomeImagePost from '../Homecenterpost/HomeImagePost';
-import Sample from '../FeaturedComponent/FeaturedComponent'
+import { IoEllipsisVertical,IoImageOutline,IoTextOutline,IoPencilOutline } from 'react-icons/io5';
+import { MdOutlinePoll,MdOutlineQuiz } from "react-icons/md";
+import { HiOutlinePencil } from "react-icons/hi2";
 
 function CenterContent() {
   const [orderedPosts, setOrderedPosts] = useState([]);
@@ -24,12 +20,12 @@ function CenterContent() {
   }, []);
 
   return (
-    <section className="flex relative  border-l-gray-200 border-b-white border-r-gray-200 border-2 w-full">
+    <section className="flex relative  border-l-gray-200 border-b-white border-r-gray-200 border-2 w-full h-[--webkit-full]">
       <div className="w-full md:w-[632px] relative">
         {/* Header */}
         <div className="flex justify-between items-center p-3 h-[56px] fixed md:w-[632px]  shadow-sm shadow-black/10 bg-white top-0 w-full z-100">
           <h1 className="text-xl font-bold">Home</h1>
-          <img src={menu} alt="Menu-vertical" />
+          <IoEllipsisVertical className='w-6 h-6' />
         </div>
 
         {/* Compose New Post */}
@@ -46,18 +42,18 @@ function CenterContent() {
 
           {/* Icon Row */}
           <div className="flex p-2 object-contain gap-5">
-            <img src={UploadImage} className="w-[30px] h-[30px] object-contain" />
-            <img src={Poll} className="w-[30px] h-[30px]" />
-            <img src={Quiz} className="w-[30px] h-[30px]" />
-            <img src={Text} className="w-[30px] h-[30px] object-contain" />
+            <Link to='/posts/create' ><IoImageOutline  className="w-[30px] h-[30px]" /></Link>
+            <MdOutlinePoll className="w-[30px] h-[30px] rotate-90" />
+            <MdOutlineQuiz className="w-[30px] h-[30px]" />
+            <IoTextOutline className="w-[30px] h-[30px]" />
           </div>
         </div>
 
         {/* Filter Tabs */}
         <div className="flex gap-5 items-center px-5 mt-5 shadow-gray-300 bg-white py-2">
           <h3 className="px-5 text-center rounded-full h-[25px]">All</h3>
-          <h3 className="px-5 text-center rounded-full h-[25px]">
-            <img src={Pencil} className="w-[25px] h-[25px] rounded-full" />
+          <h3 className="">
+            <HiOutlinePencil className="w-[25px] h-[25px]" />
           </h3>
         </div>
 

@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import Play from '../../assets/Icons_Images/play.png';
 import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32 (1).png';
 import LikeButton from '../likezButton/like'; // ✅ Import LikeButton component
+import {api} from '../../api/api'
+import {IoBookmarkOutline, IoChatbubbleOutline, IoPlay, IoPlayOutline } from 'react-icons/io5';
+import { HiOutlineCurrencyDollar } from "react-icons/hi2";
 
 function HomeCenterPost() {
   const [posts, setPosts] = useState([]);
@@ -11,7 +14,7 @@ function HomeCenterPost() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch("https://onlyfans.up.railway.app/api/Post/all", {
+        const response = await fetch(`${api}/api/Post/all`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -87,9 +90,8 @@ function HomeCenterPost() {
                     className="absolute inset-0 w-full h-full object-cover cursor-pointer z-10"
                     onClick={() => handlePlay(index)}
                   />
-                  <img
-                    src={Play}
-                    className="absolute z-10 w-[60px] h-[60px] left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black/40 hover:bg-blue-500 rounded-full cursor-pointer"
+                  <IoPlayOutline
+                    className="absolute z-10 w-[60px] h-[60px] left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black/40 hover:bg-blue-500   cursor-pointer text-white rounded-md "
                     alt="Play"
                     onClick={() => handlePlay(index)}
                   />
@@ -137,10 +139,10 @@ function HomeCenterPost() {
                   initialCount={post.likes || 0}
                 />
 
-                <img src="https://cdn-icons-png.flaticon.com/512/1380/1380338.png" alt="Comment" className="w-6 h-6" />
-                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828970.png" alt="Tip" className="w-6 h-6" />
+                <IoChatbubbleOutline alt="Comment" className="w-6 h-6" />
+                <HiOutlineCurrencyDollar alt="Tip" className="w-6 h-6" />
               </div>
-              <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" alt="Bookmark" className="w-6 h-6" />
+              <IoBookmarkOutline alt="Bookmark" className="w-6 h-6" />
             </div>
           </div>
         );

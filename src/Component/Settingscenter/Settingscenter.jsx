@@ -18,7 +18,7 @@ export default function Settingscenter() {
     
         const fetchProfileData = async () => {
           try {
-            const response = await fetch(`${api}/api/api/my/Profile`, {
+            const response = await fetch(`${api}/api/my/Profile`, {
               headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${usertoken}`
@@ -29,6 +29,7 @@ export default function Settingscenter() {
             if (result.data) {
               setUser(result.data);
             }
+            console.log("setting"+result.data)
           } catch (error) {
             console.error("Error fetching profile:", error.message);
           }

@@ -75,7 +75,7 @@ function FeaturedCard() {
                 <p className="text-sm text-gray-600">@{post?.user?.username || 'onlyfans'}</p>
               </div>
             </div>
-            <div className="text-sm text-gray-500 pt-2 pr-1">3 hours ago</div>
+            <div className="text-sm text-gray-500 pt-2 pr-1"></div>
           </div>
 
           {/* Caption */}

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useState,useEffect } from 'react';
 import useDeviceType from '../../hooks/useDeviceType'; 
 import { api } from '../../api/api';
+import { IoArrowBackOutline } from 'react-icons/io5';
 
 export default function Settingscenter() {
 
@@ -46,9 +47,9 @@ export default function Settingscenter() {
         
         {/* Header */}
         <div className="flex items-center gap-3 p-3 border-b border-gray-200 sticky top-0 z-10 bg-white h-[56px]">
-          <Link to="/dashboard">
-            <span className="text-xl font-bold cursor-pointer">&larr;</span>
-          </Link>
+        <Link to="/Dashboard">
+                      <IoArrowBackOutline className="w-6 h-6"/>
+                    </Link>
           <h1 className="text-base font-bold">SETTINGS</h1>
         </div>
 

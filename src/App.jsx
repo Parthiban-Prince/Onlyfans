@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import {Routes,Route } from "react-router-dom"
 import LoginPage from "./Pages/LoginPage/LoginPage"
 import HomePage from "./Pages/HomePage/HomePage"
@@ -15,7 +15,7 @@ import AccountPage from "./Pages/AccountsettingsPage/AccountPage"
 import PrivacyPage from "./Pages/PrivacysettingsPage/PrivacyPage"
 import SubscriptionsettingPage from "./Pages/SubscriptionSettingPage/subcriptionsetting"
 import NotificationsettingPage from "./Pages/NotificationSettingsPage/NotificationsettingPage"
-import ProtectedRoute from "./Component/ProtectedRouted/Protected"
+import ProtectedRoute from "./routes/ProtectedRouted/Protected"
 import Settingscenter from "./Component/Settingscenter/Settingscenter"
 import Profilesettings from "./Component/Profilesettings/Profilesettings"
 import Accountsettings from "./Component/AccountRight/Accountright"
@@ -23,6 +23,8 @@ import Privacysettings from "./Component/PrivacyRight/Privacyright"
 import Subscriptionsettings from "./Component/Subcriptionsright/Subscriptionsettingsright"
 import Notificationsettings from "./Component/NotificationRight/NotificationRight"
 import Displaysettings from "./Component/DisplaySettingsRight/DisplaySettingsRight"
+import { useEffect } from "react"
+import SideNavigation from "./Component/SideNavigation/SideNavigation"
 
 
 function App() {
@@ -30,14 +32,21 @@ function App() {
 
 
 
+  const [auth ,setAuth] = useState(false)
+
+useEffect(() => {
+  const token = localStorage.getItem("token");
+  setAuth(!!token);
+}, []);
+
 
   
   return (
         <Routes>
-          <Route path="/" element={<LoginPage/>}/>     
-          <Route path="/:user" element={ <ProtectedRoute>
-          <HomePage/>
-          </ProtectedRoute>}/>
+          <Route path="/" element={auth ? <HomePage/> : <LoginPage/>}/>
+
+          
+                    <Route path="/:user" element={ <ProtectedRoute><HomePage/></ProtectedRoute>}/>
           <Route path="/my/notification" element={ <ProtectedRoute><NotificationPage/></ProtectedRoute>    }>
               <Route path="settings" element={<ProtectedRoute><NotificationsettingPage/></ProtectedRoute>}/>
           </Route>
@@ -60,7 +69,8 @@ function App() {
           <Route path="/my/settings/subscription/subscriptionSettings" element={<ProtectedRoute><Subscriptionsettings/></ProtectedRoute>}/>
           <Route path="/my/settings/notifications/notificationsSettings" element={<ProtectedRoute><Notificationsettings/></ProtectedRoute>}/>
           <Route path="/my/settings/display/displaySettings" element={<ProtectedRoute><Displaysettings/></ProtectedRoute>}/>
-        </Routes>
+          
+          </Routes> 
   )
 }
 

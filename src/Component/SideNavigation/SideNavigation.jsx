@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import './SideNavigation.css';
 import { api } from '../../api/api';
 import { IoAddOutline, IoBookmarkOutline, IoCardOutline, IoChatbubbleEllipsesOutline, IoCloseCircleOutline, IoEllipsisHorizontalOutline, IoExitOutline, IoHelpCircleOutline, IoHomeOutline,IoLanguageOutline,IoMoonOutline,IoNotificationsOutline, IoPeopleOutline, IoPersonAddOutline, IoPersonCircleOutline, IoPersonOutline, IoSettingsOutline } from "react-icons/io5";
@@ -134,42 +134,42 @@ function SideNavigation() {
         <button className="border rounded-full overflow-hidden w-fit h-fit">
           <img src={user?.profilePhoto || 'https://img.icons8.com/?size=100&id=bjHuxcHTNosO&format=png'} className="w-9 h-9 object-cover" />
         </button>
-        <Link to={`/${user?.username}`} className="flex items-center gap-3">
+        <NavLink to={`/${user?.username}`} className="flex items-center gap-3">
           <IoHomeOutline className="w-8 h-8" />
           <span className="hidden lg:inline">Home</span>
-        </Link>
-        <Link to="/my/notification" className="flex items-center gap-3">
+        </NavLink>
+        <NavLink to="/my/notification" className="flex items-center gap-3">
           <IoNotificationsOutline className="w-8 h-8" />
           <span className="hidden lg:inline">Notifications</span>
-        </Link>
-        <Link to="/my/chats" className="flex items-center gap-3">
+        </NavLink>
+        <NavLink to="/my/chats" className="flex items-center gap-3">
           <IoChatbubbleEllipsesOutline className="w-8 h-8" />
           <span className="hidden lg:inline">Message</span>
-        </Link>
-        <Link to="/my/collection/user-lists/subscribers/active" className="flex items-center gap-3">
+        </NavLink>
+        <NavLink to="/my/collection/user-lists/subscribers/active" className="flex items-center gap-3">
           <IoBookmarkOutline className="w-8 h-8" />
           <span className="hidden lg:inline">Collection</span>
-        </Link>
-        <Link to="/my/collections/user-lists/subscriptions" className="flex items-center gap-3">
+        </NavLink>
+        <NavLink to="/my/collections/user-lists/subscriptions" className="flex items-center gap-3">
           <IoPeopleOutline className="w-8 h-8" />
           <span className="hidden lg:inline">Subscriptions</span>
-        </Link>
-        <Link to="/my/payments/add_card" className="flex items-center gap-3">
+        </NavLink>
+        <NavLink to="/my/payments/add_card" className="flex items-center gap-3">
           <IoCardOutline className="w-8 h-8" />
           <span className="hidden lg:inline">Add Card</span>
-        </Link>
-        <Link to='/Profile' className="flex items-center gap-3">
+        </NavLink>
+        <NavLink to='/Profile' className="flex items-center gap-3">
           <IoPersonCircleOutline className="w-8 h-8" />
           <span className="hidden lg:inline">My Profile</span>
-        </Link>
+        </NavLink>
         <button onClick={handleClick} className="flex items-center gap-3">
           <IoEllipsisHorizontalOutline className="w-8 h-8" />
           <span className="hidden lg:inline font-medium">More</span>
         </button>
-        <Link to="/posts/create" className="flex items-center gap-3 bg-[#00aff0] text-white rounded-full h-[50px] px-4 justify-center">
+        <NavLink to="/posts/create" className="flex items-center gap-3 bg-[#00aff0] text-white rounded-full h-[50px] px-4 justify-center">
           <IoAddOutline className="w-6 h-6" />
           <span className="hidden lg:inline">NEW POST</span>
-        </Link>
+        </NavLink>
       </nav>
     </section>
   );

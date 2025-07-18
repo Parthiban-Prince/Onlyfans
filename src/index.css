@@ -63,6 +63,10 @@ html {
 
 /* Smoother global transitions */
 * {
+  box-sizing: border-box;
+  font-family: 'Roboto',sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
   transition:
     color 0.3s ease,
     background-color 0.3s ease,
@@ -87,4 +91,9 @@ a {
   font-weight: 500;
   text-decoration: none;
   text-align: center;
+}
+
+a.active{
+  background-color: lightblue;
+  border-radius: 5px;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Chat from '../Messagecenter/chat/chat'
 import { HiOutlinePencil } from 'react-icons/hi2';
 import { IoArrowBackOutline, IoEllipsisVerticalOutline, IoSettingsOutline } from 'react-icons/io5';
@@ -7,6 +7,7 @@ import useDeviceType from '../../hooks/useDeviceType';
 
 function NotificationCentre() {
 
+  const navigate  = useNavigate()
 
   const  isMobile  = useDeviceType
 
@@ -23,7 +24,7 @@ function NotificationCentre() {
           </div>
           <div className="flex items-center gap-3">
             <IoEllipsisVerticalOutline alt="Menu" className="w-[24px] h-[24px] md:w-[28px] md:h-[28px]" />
-             <Link to={isMobile ? "/settings":"/my/settings"}> <IoSettingsOutline alt="Settings" className="w-[24px] h-[24px] md:w-[30px] md:h-[30px]" />  </Link>   
+             <Link to={isMobile ? "settings":"/my/settings"}> <IoSettingsOutline alt="Settings" className="w-[24px] h-[24px] md:w-[30px] md:h-[30px]" />  </Link>   
           </div>
         </div>
 

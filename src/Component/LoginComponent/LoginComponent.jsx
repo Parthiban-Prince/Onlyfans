@@ -36,6 +36,7 @@ function LoginComponent() {
 
   async function handleAuth() {
     setLoading(true);
+e.preventDefault
     setErrorMessage('');
 
     const userEmail = email.current?.value?.toLowerCase();

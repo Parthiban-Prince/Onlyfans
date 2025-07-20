@@ -5,7 +5,10 @@ import { api } from '../../api/api';
 import { IoAddOutline, IoBookmarkOutline, IoCardOutline, IoChatbubbleEllipsesOutline, IoCloseCircleOutline, IoEllipsisHorizontalOutline, IoExitOutline, IoHelpCircleOutline, IoHomeOutline,IoLanguageOutline,IoMoonOutline,IoNotificationsOutline, IoPeopleOutline, IoPersonAddOutline, IoPersonCircleOutline, IoPersonOutline, IoSettingsOutline } from "react-icons/io5";
 
 function SideNavigation() {
-  const navigate = useNavigate();
+
+  const navigate = useNavigate()
+
+
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null);
 
@@ -20,10 +23,11 @@ function SideNavigation() {
   };
 
   const darkMode = () => alert("This feature is under development.");
+ 
 
-  const handleLogut = async () => {
-    await localStorage.removeItem("token");
-    navigate('/');
+   const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/", { replace: true });
   };
 
   useEffect(() => {
@@ -119,7 +123,7 @@ function SideNavigation() {
                 </div>
 
                 <div>
-                  <Link onClick={handleLogut} className="flex items-center gap-4 p-2 hover:bg-red-50  rounded-lg">
+                  <Link onClick={handleLogout} className="flex items-center gap-4 p-2 hover:bg-red-50  rounded-lg">
                     <IoExitOutline className="w-6 h-6 rotate-180" />
                     <span className="hidden s:inline text-red-500">Logout</span>
                   </Link>

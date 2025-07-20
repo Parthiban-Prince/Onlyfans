@@ -25,6 +25,7 @@ import Notificationsettings from "./Component/NotificationRight/NotificationRigh
 import Displaysettings from "./Component/DisplaySettingsRight/DisplaySettingsRight"
 import { useEffect } from "react"
 import SideNavigation from "./Component/SideNavigation/SideNavigation"
+import Notfound from './Component/NotFound/Notfound'
 
 
 function App() {
@@ -44,6 +45,8 @@ useEffect(() => {
   return (
         <Routes>
           <Route path="/" element={auth ? <HomePage/> : <LoginPage/>}/>
+
+
 
           
                     <Route path="/:user" element={ <ProtectedRoute><HomePage/></ProtectedRoute>}/>
@@ -69,6 +72,8 @@ useEffect(() => {
           <Route path="/my/settings/subscription/subscriptionSettings" element={<ProtectedRoute><Subscriptionsettings/></ProtectedRoute>}/>
           <Route path="/my/settings/notifications/notificationsSettings" element={<ProtectedRoute><Notificationsettings/></ProtectedRoute>}/>
           <Route path="/my/settings/display/displaySettings" element={<ProtectedRoute><Displaysettings/></ProtectedRoute>}/>
+
+          <Route path="*" elemen={<Notfound/>} />
           
           </Routes> 
   )

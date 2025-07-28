@@ -1,12 +1,10 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Bluelogo from '../../assets/images/Text_with_Bluelogo.png';
-import X from '../../assets/Icons_Images/x.png';
-import Google from '../../assets/Icons_Images/google.png';
-import finger from '../../assets/Icons_Images/fingerIcon.png';
 import white from '../../assets/images/OnlyFans_Logo_Full_White.png';
 import '../LoginComponent/LoginCompontent.css';
 import { api } from '../../api/api';
+import {IoFingerPrintOutline, IoLogoGoogle, IoLogoTwitter} from 'react-icons/io5'
 
 function LoginComponent() {
   const [sign, setSignup] = useState(false);
@@ -59,6 +57,7 @@ function LoginComponent() {
       );
 
       const data = await response.json();
+      console.log(data);
 
       if (!response.ok) {
         alert(setErrorMessage(data?.message || 'Invalid credentials'))
@@ -178,21 +177,21 @@ function LoginComponent() {
               <div className="flex flex-col text-[14px] gap-4 text-white font-semibold">
                 <button className="bg-[#00aff0] rounded-full h-10 flex items-center justify-center">
                   <div className="flex items-center gap-3">
-                    <img src={X} alt="X sign-in" className="h-[24px] w-[24px]" />
+                    <IoLogoTwitter  className="h-[24px] w-[24px]" />
                     <span>SIGN IN WITH X</span>
                   </div>
                 </button>
 
                 <button className="bg-[#4285f4] rounded-full h-10 flex items-center justify-center">
                   <div className="flex items-center gap-3">
-                    <img src={Google} alt="Google sign-in" className="h-[24px] w-[24px]" />
+                    <IoLogoGoogle  className="h-[24px] w-[24px]" />
                     <span>SIGN IN WITH GOOGLE</span>
                   </div>
                 </button>
 
                 <button className="bg-[#00aff0] px-2 rounded-full h-10 flex items-center justify-center">
                   <div className="flex items-center gap-3">
-                    <img src={finger} alt="Passwordless sign-in" className="h-[24px] w-[24px]" />
+                    <IoFingerPrintOutline  alt="Passwordless sign-in" className="h-[24px] w-[24px]" />
                     <span>PASSWORDLESS SIGN</span>
                   </div>
                 </button>

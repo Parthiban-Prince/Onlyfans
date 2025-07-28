@@ -8,10 +8,6 @@ export default function AccountPage() {
   return (
     <div className="flex flex-col md:flex-row w-full justify-center">
 
-      {/* SideNavigation: Show on 426px+ */}
-      <div className="hidden  h-auto s:block md:w-[100px] lg:w-auto">
-        <SideNavigation />
-      </div>
 
       {/* Center Settings: Always visible */}
         <Settingscenter />

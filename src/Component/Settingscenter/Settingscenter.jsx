@@ -42,7 +42,7 @@ export default function Settingscenter() {
 
 
   return (
-    <section className="flex relative border border-gray-300 w-full   md:w-[632px] bg-white">
+    <section className="flex relative border border-gray-300 w-full   md:w-[362px] bg-white">
       <div className="w-full">
         
         {/* Header */}

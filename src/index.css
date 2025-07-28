@@ -91,9 +91,32 @@ a {
   font-weight: 500;
   text-decoration: none;
   text-align: center;
+  color: gray;
 }
 
 a.active{
-  background-color: lightblue;
+
   border-radius: 5px;
+  color: black;
+}
+
+a:hover {
+  background-color: #65c1fa52;
+  color: var(--color-blue);
+}
+
+
+@keyframes bounceFade {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+.bounce-fade {
+  animation: bounceFade 1.2s ease-in-out infinite;
 }

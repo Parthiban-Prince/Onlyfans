@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { api } from '../../api/api';
+import { IoArrowBackOutline } from 'react-icons/io5';
 
 function Postcenter() {
   const navigate = useNavigate();
@@ -82,7 +83,7 @@ function Postcenter() {
 
   return (
     <section className="flex relative border-l border-r border-gray-400 w-full md:w-[632px] h-dvh">
-      <div className="w-[632px] h-full overflow-y-auto">
+      <div className="md:w-[632px] h-full overflow-y-auto">
         {/* Toasts */}
         <ToastContainer position="top-right" />
 
@@ -90,7 +91,7 @@ function Postcenter() {
         <div className="flex justify-between items-center px-4 py-3 border-b border-gray-300 h-[56px] sticky w-full z-10 bg-white top-0">
           <div className="flex items-center gap-3">
             <Link to="/dashboard">
-              <h1 className="text-[32px] font-light leading-none">&larr;</h1>
+             <IoArrowBackOutline className="w-6 h-6"/>
             </Link>
             <h1 className="text-lg font-bold tracking-wide">NEW POST</h1>
           </div>

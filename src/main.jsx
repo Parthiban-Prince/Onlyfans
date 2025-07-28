@@ -4,11 +4,16 @@ import './index.css'
 import App from './App.jsx'
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
+import {QueryClientProvider,QueryClient} from '@tanstack/react-query'
+
+
+const queryClient =new QueryClient()
+
 
 createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
             <App />
-        </BrowserRouter>
+        </QueryClientProvider>
     </React.StrictMode>
 )

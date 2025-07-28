@@ -62,7 +62,7 @@ export default function Profilesettings() {
     if (user?.Bio) formData.append("Bio", user.Bio);
 
     try {
-      const response = await fetch("api/api/my/Profile/update", {
+      const response = await fetch(`${api}/api/my/Profile/update`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${usertoken}`,

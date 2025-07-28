@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import './SideNavigation.css';
 import { api } from '../../api/api';
-import { IoAddOutline, IoBookmarkOutline, IoCardOutline, IoChatbubbleEllipsesOutline, IoCloseCircleOutline, IoEllipsisHorizontalOutline, IoExitOutline, IoHelpCircleOutline, IoHomeOutline,IoLanguageOutline,IoMoonOutline,IoNotificationsOutline, IoPeopleOutline, IoPersonAddOutline, IoPersonCircleOutline, IoPersonOutline, IoSettingsOutline } from "react-icons/io5";
+import { IoAddOutline, IoBookmarkOutline, IoCardOutline, IoChatbubbleEllipsesOutline, IoCloseCircleOutline, IoEllipsisHorizontalCircleOutline, IoEllipsisHorizontalOutline, IoExitOutline, IoHelpCircleOutline, IoHomeOutline,IoLanguageOutline,IoMoonOutline,IoNotificationsOutline, IoPeopleOutline, IoPersonAddOutline, IoPersonCircleOutline, IoPersonOutline, IoSettingsOutline } from "react-icons/io5";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 function SideNavigation() {
 
@@ -35,6 +37,9 @@ function SideNavigation() {
 
     const fetchProfileData = async () => {
       try {
+
+      
+
         const res = await fetch(`${api}/api/my/profile`, {
           headers: {
             'Content-Type': 'application/json',
@@ -54,7 +59,7 @@ function SideNavigation() {
   }, []);
 
   return (
-    <section id="Side">
+    <section id="Side" className='relative '>
       {isOpen && (
         <>
           <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[9999]" onClick={handleClose}></div>
@@ -63,7 +68,7 @@ function SideNavigation() {
               <div className="flex justify-between items-center">
                 <button className="border-2 border-blue-500 rounded-full overflow-hidden w-12 h-12">
                   <img
-                    src={user?.profilePhoto || 'https://img.icons8.com/?size=100&id=bjHuxcHTNosO&format=png'}
+                    src={user?.profilePhoto || <Skeleton count={10}/>}
                     alt="Profile"
                     className="w-full h-full object-cover object-center"
                   />
@@ -82,7 +87,7 @@ function SideNavigation() {
 
               <nav className="flex flex-col gap-4 text-sm">
                 <div className="border-b pb-4">
-                  <Link to={`/${user?.username}`} className="flex items-center gap-4 p-2 hover:bg-blue-50 rounded-lg">
+                  <Link to={`/Profile`} className="flex items-center gap-4 p-2 hover:bg-blue-50 rounded-lg">
                     <IoPersonOutline className="w-6 h-6" />
                     <span className="hidden s:inline">My Profile</span>
                   </Link>
@@ -135,44 +140,44 @@ function SideNavigation() {
       )}
 
       <nav className="fixed left-auto flex flex-col gap-5 mt-5 ml-2 z-[50]">
-        <button className="border rounded-full overflow-hidden w-fit h-fit">
-          <img src={user?.profilePhoto || 'https://img.icons8.com/?size=100&id=bjHuxcHTNosO&format=png'} className="w-9 h-9 object-cover" />
+        <button className="border border-blue-500 rounded-full overflow-hidden w-fit h-fit">
+          <img src={user?.profilePhoto || <Skeleton />} className="w-9 h-9 object-cover" />
         </button>
-        <NavLink to={`/${user?.username}`} className="flex items-center gap-3">
+        <NavLink to={`/${user?.username}`} className="flex items-center gap-3  hover:rounded-sm hover:text-white">
           <IoHomeOutline className="w-8 h-8" />
           <span className="hidden lg:inline">Home</span>
         </NavLink>
-        <NavLink to="/my/notification" className="flex items-center gap-3">
+        <NavLink to="/my/notification" className="flex items-center gap-3  hover:rounded-sm">
           <IoNotificationsOutline className="w-8 h-8" />
           <span className="hidden lg:inline">Notifications</span>
         </NavLink>
-        <NavLink to="/my/chats" className="flex items-center gap-3">
+        <NavLink to="/my/chats" className="flex items-center gap-3  hover:rounded-sm">
           <IoChatbubbleEllipsesOutline className="w-8 h-8" />
           <span className="hidden lg:inline">Message</span>
         </NavLink>
-        <NavLink to="/my/collection/user-lists/subscribers/active" className="flex items-center gap-3">
+        <NavLink to="/my/collection/user-lists/subscribers/active" className="flex items-center gap-3  hover:rounded-sm">
           <IoBookmarkOutline className="w-8 h-8" />
           <span className="hidden lg:inline">Collection</span>
         </NavLink>
-        <NavLink to="/my/collections/user-lists/subscriptions" className="flex items-center gap-3">
+        <NavLink to="/my/collections/user-lists/subscriptions" className="flex items-center gap-3  hover:rounded-sm">
           <IoPeopleOutline className="w-8 h-8" />
           <span className="hidden lg:inline">Subscriptions</span>
         </NavLink>
-        <NavLink to="/my/payments/add_card" className="flex items-center gap-3">
+        <NavLink to="/my/payments/add_card" className="flex items-center gap-3  hover:rounded-sm">
           <IoCardOutline className="w-8 h-8" />
           <span className="hidden lg:inline">Add Card</span>
         </NavLink>
-        <NavLink to='/Profile' className="flex items-center gap-3">
+        <NavLink to='/my/profile' className="flex items-center gap-3  hover:rounded-sm">
           <IoPersonCircleOutline className="w-8 h-8" />
           <span className="hidden lg:inline">My Profile</span>
         </NavLink>
-        <button onClick={handleClick} className="flex items-center gap-3">
-          <IoEllipsisHorizontalOutline className="w-8 h-8" />
-          <span className="hidden lg:inline font-medium">More</span>
+        <button onClick={handleClick} className="flex items-center gap-3 hover:rounded-sm more">
+          <IoEllipsisHorizontalCircleOutline className="w-8 h-8 text-gray-500  " />
+          <span className="hidden lg:inline font-medium text-gray-500">More</span>
         </button>
-        <NavLink to="/posts/create" className="flex items-center gap-3 bg-[#00aff0] text-white rounded-full h-[50px] px-4 justify-center">
-          <IoAddOutline className="w-6 h-6" />
-          <span className="hidden lg:inline">NEW POST</span>
+        <NavLink to="/:user/posts/create" className="flex items-center gap-3 bg-[#00aff0] text-white rounded-full h-[50px] px-4 justify-center">
+          <IoAddOutline className="w-6 h-6 text-white" />
+          <span className="hidden lg:inline text-white">NEW POST</span>
         </NavLink>
       </nav>
     </section>

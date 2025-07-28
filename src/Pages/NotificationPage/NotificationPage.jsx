@@ -10,9 +10,7 @@ function NotificationPage() {
     <div className="flex flex-col md:flex-row w-full  justify-center">
 
       {/* Sidebar - visible on 426px+ */}
-  <div className="hidden  h-auto s:block md:w-[100px] lg:w-auto">
-        <SideNavigation />
-      </div>
+
 
       {/* Notification Center - always visible */}
       <div className="m-auto s:ml-[75px] md:m-0">

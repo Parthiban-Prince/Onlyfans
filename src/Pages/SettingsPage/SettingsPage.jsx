@@ -9,9 +9,6 @@ export default function SettingsPage() {
     <div className="flex flex-col md:flex-row w-full  justify-center">
 
       {/* Sidebar - visible on 426px and up */}
-     <div className="hidden  h-auto s:block md:w-[100px] lg:w-auto">
-        <SideNavigation />
-      </div>
 
       {/* Settings Center - always visible */}
   

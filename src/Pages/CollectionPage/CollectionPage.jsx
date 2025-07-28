@@ -9,9 +9,7 @@ export default function CollectionPage() {
     <div className="flex flex-col md:flex-row w-full  justify-center">
 
       {/* Left Sidebar: show only on 426px+ */}
-     <div className="hidden  h-auto s:block md:w-[100px] lg:w-auto">
-        <SideNavigation />
-      </div>
+
 
       {/* Center: always visible */}
         <CollectionCenter />

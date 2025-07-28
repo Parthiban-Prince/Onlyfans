@@ -1,21 +1,11 @@
-/* Base styles */
-body {
-    margin: 0;
-    font-family: sans-serif;
-}
 
-/* Mobile (default styles) */
-#Side {
-    display: none;
-}
 
 /* Tablet */
-@media (min-width: 426px) and (max-width: 1440px) {
+@media (min-width: 0px) and (max-width: 500px) {
 
 
     #Side {
-        display: block;
-        width: 200px;
+        display: none;
     }
 
     .content {

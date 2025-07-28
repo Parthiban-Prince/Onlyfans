@@ -52,7 +52,7 @@ function HomeCenterPost() {
         if (!post?.media || !post?.thumbnail) return null;
 
         return (
-          <div key={post._id} className="w-full md:max-w-[856px] mb-10 rounded-md overflow-hidden border border-gray-200 shadow-sm">
+          <div key={post._id} className="w-full md:max-w-[856px]   overflow-hidden  shadow-sm border-t-gray-300 border-b-gray-300 border-l-gray-300 border-r-gray-300 border-1 bg-white">
             
             {/* Header */}
             <div className="flex justify-between items-center px-4 py-3">
@@ -131,7 +131,7 @@ function HomeCenterPost() {
 
             {/* Action Buttons */}
             <div className="flex justify-between px-4 py-3 mt-2">
-              <div className="flex gap-6">
+              <div className="flex gap-5">
                 {/* ✅ Like Button Component */}
                 <LikeButton
                   postId={post._id}
@@ -140,7 +140,10 @@ function HomeCenterPost() {
                 />
 
                 <IoChatbubbleOutline alt="Comment" className="w-6 h-6" />
-                <HiOutlineCurrencyDollar alt="Tip" className="w-6 h-6" />
+                <div className='flex items-center gap-2'>
+                       <HiOutlineCurrencyDollar alt="Tip" className="w-6 h-6" /><h1>Send TIps</h1>
+                </div>
+           
               </div>
               <IoBookmarkOutline alt="Bookmark" className="w-6 h-6" />
             </div>

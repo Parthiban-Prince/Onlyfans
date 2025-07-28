@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import HomeCenterPost from '../Homecenterpost/Homecenterpost';
 import HomeImagePost from '../Homecenterpost/HomeImagePost';
@@ -8,6 +8,7 @@ import { HiOutlinePencil } from "react-icons/hi2";
 
 function CenterContent() {
   const [orderedPosts, setOrderedPosts] = useState([]);
+
 
   useEffect(() => {
     const image = <HomeImagePost key="image" />;
@@ -19,11 +20,12 @@ function CenterContent() {
     setOrderedPosts(result);
   }, []);
 
+
   return (
-    <section className="flex relative  border-l-gray-200 border-b-white border-r-gray-200 border-2 w-full h-[--webkit-full]">
-      <div className="w-full md:w-[632px] relative">
+    <section className="flex relative  border-l-gray-300 border-b-white border-r-gray-300 border-1 w-full h-dvh md:w-[632px]  bg-white overflow-auto no-scrollbar">
+      <div className=" relative w-full h-dvh">
         {/* Header */}
-        <div className="flex justify-between items-center p-3 h-[56px] fixed md:w-[632px]  shadow-sm shadow-black/10 bg-white top-0 w-full z-100">
+        <div className="flex justify-between items-center p-3 h-[56px] fixed md:w-[632px]  bg-white top-0 w-full z-50">
           <h1 className="text-xl font-bold">Home</h1>
           <IoEllipsisVertical className='w-6 h-6' />
         </div>
@@ -31,7 +33,7 @@ function CenterContent() {
         {/* Compose New Post */}
         <div className="w-full z-10 mt-14 shadow-sm shadow-light-900">
           <form className="flex items-center w-full overflow-hidden">
-            <Link to="/posts/create" className="w-full h-[76px] flex items-center">
+            <Link to="/:user/posts/create" className="w-full h-[76px] flex items-center">
               <input
                 type="textarea"
                 placeholder="Compose New Post..."
@@ -42,7 +44,7 @@ function CenterContent() {
 
           {/* Icon Row */}
           <div className="flex p-2 object-contain gap-5">
-            <Link to='/posts/create' ><IoImageOutline  className="w-[30px] h-[30px]" /></Link>
+            <Link to='/:user/posts/create' ><IoImageOutline  className="w-[30px] h-[30px]" /></Link>
             <MdOutlinePoll className="w-[30px] h-[30px] rotate-90" />
             <MdOutlineQuiz className="w-[30px] h-[30px]" />
             <IoTextOutline className="w-[30px] h-[30px]" />

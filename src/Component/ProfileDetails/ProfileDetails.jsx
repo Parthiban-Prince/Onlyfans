@@ -1,32 +1,41 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React from 'react'
+import { useLocation } from 'react-router-dom'
 import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32.png'
 import BottomPublic from '../BottomTab/BottmPublic'
 import { api } from '../../api/api'
+import { useQuery } from '@tanstack/react-query'
+import SpinLoder from '../SpinLoader/SpinLoader'
 
 export default function PublicProfile() {
-  const { profileName } = useParams()
-  const [user, setUser] = useState(null)
+  const location = useLocation()
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const response = await fetch(`${api}/api/public/${profileName}`)
-        const result = await response.json()
-        console.log(result.data)
-        setUser(result.data)
-      } catch (err) {
-        console.error('Fetch error:', err)
+  const profileName=location.state
+
+
+  const {isPending,error,data} = useQuery({
+    queryKey: ['ProfileDetails'],
+    queryFn: async () => {
+      const response = await fetch(`${api}/api/public/${profileName}`)
+      if (!response.ok) {
+        throw new Error('Network response was not ok')
       }
-    }
+      const result = await response.json()
+      return result.data
+    },
+  })
 
-    if (profileName) fetchProfile()
-  }, [profileName])
+  if (isPending) {
+    return <SpinLoder/>
+  }
 
-  if (!user){
+  console.log('Profile Data:', data)
+
+
+
+  if (error){
     return(
       <>
-      <div>
+      <div className='flex flex-col items-center justify-center h-screen text-center'>
         <h1>Sorry</h1>
         <p>this page is not available</p>
         <h1>The link you followed may be broken, or the page may have been removed.</h1>
@@ -44,33 +53,33 @@ export default function PublicProfile() {
         {/* Header */}
         <div className="relative">
           <img
-            src={user?.coverPhoto  ||"https://public.onlyfans.com/files/t/td/tdg/tdg08m7z04rgqddih8yb0kwegkhtlv0s1576661836/header.jpg"}
+            src={data?.coverPhoto  ||"https://public.onlyfans.com/files/t/td/tdg/tdg08m7z04rgqddih8yb0kwegkhtlv0s1576661836/header.jpg"}
             alt="Header"
             className="w-full h-[200px] object-cover"
           />
           <img src={Menu} alt="Menu" className="absolute top-3 left-3 w-6 h-6 bg-blue-600 rotate-90 p-1 rounded-full" />
-          <h1 className="absolute top-3 left-12 text-white text-xl font-bold">{user.name}</h1>
+          <h1 className="absolute top-3 left-12 text-white text-xl font-bold">{data?.name}</h1>
 
           <div className="absolute top-10 left-12 text-white flex gap-4">
-            <span>@{user?.username}</span>
-            <span>{user.posts} posts</span>
-            <span>{user.media} media</span>
+            <span>@{data?.username}</span>
+            <span>{data?.posts} posts</span>
+            <span>{data?.media} media</span>
           </div>
 
-          <img src={user?.profilePhoto ||avatarUrl} alt="Profile" className="absolute bottom-[-48px] left-5 w-24 h-24 rounded-full border-2 border-black object-cover" />
+          <img src={data?.profilePhoto ||avatarUrl} alt="Profile" className="absolute bottom-[-48px] left-5 w-24 h-24 rounded-full border-2 border-black object-cover" />
         </div>
 
         {/* Info */}
         <div className="mt-16 px-5">
           <div className="flex justify-between items-center">
             <div>
-              <h2 className="text-2xl font-bold">{user.name}</h2>
-              <p className="text-sm text-gray-600">@{user.username} <span className="text-green-600 ml-1">• Available now</span></p>
+              <h2 className="text-2xl font-bold">{data?.name}</h2>
+              <p className="text-sm text-gray-600">@{data.username} <span className="text-green-600 ml-1">• Available now</span></p>
             </div>
-            <img src={avatarUrl} alt="Profile Small" className="w-12 h-12 rounded-full border-2 border-white object-cover" />
+            <img src={data?.profilePhoto || avatarUrl} alt="Profile Small" className="w-12 h-12 rounded-full border-2 border-gray-300 object-cover" />
           </div>
           <div className="mt-2">
-            <p>{user?.Bio || "Only place you can chat with me and find sexy content you won’t see anywhere else!"}</p>
+            <p>{data?.Bio || "Only place you can chat with me and find sexy content you won’t see anywhere else!"}</p>
             <button className="text-blue-500 font-semibold mt-1">More info</button>
           </div>
         </div>
@@ -83,7 +92,7 @@ export default function PublicProfile() {
             <p className="text-sm text-gray-500">Offer ends <strong>JUL 18</strong></p>
 
             <div className="flex items-start gap-3 border border-gray-200 p-3 rounded-md bg-gray-50">
-              <img src={user?.profilePhoto||avatarUrl} alt="Avatar" className="w-10 h-10 rounded-full object-cover border" />
+              <img src={data?.profilePhoto||avatarUrl} alt="Avatar" className="w-10 h-10 rounded-full object-cover border" />
               <p className="text-sm text-gray-700 leading-snug">You found me!! 🤭 Sub now for <span className="font-semibold text-blue-500">40% OFF</span> and let's get naughty 🔥</p>
             </div>
 
@@ -120,7 +129,7 @@ export default function PublicProfile() {
         {/* Footer Banner */}
         <div className="relative h-[200px] w-full">
           <img
-            src={user?.profilePhoto||"https://public.onlyfans.com/files/t/td/tdg/tdg08m7z04rgqddih8yb0kwegkhtlv0s1576661836/header.jpg"}
+            src={data?.profilePhoto||"https://public.onlyfans.com/files/t/td/tdg/tdg08m7z04rgqddih8yb0kwegkhtlv0s1576661836/header.jpg"}
             alt="Banner"
             className="w-full h-full object-cover rounded-t-md"
           />

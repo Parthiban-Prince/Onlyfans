@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import {api} from '../../api/api'
 import { IoEllipsisVerticalOutline } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 function Card() {
+
+  let { name } = useParams();
+
+  console.log("Username from params:", name);
+
+  const navigate = useNavigate()
+
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -31,15 +40,16 @@ function Card() {
     return <div className="p-4 text-gray-500">Loading cards...</div>;
   }
 
+
   return (
     <div className="flex flex-col gap-4 p-4">
       {users.map((user, index) => (
-        <div key={user._id || index} className="relative w-full rounded-md overflow-hidden">
+        <div key={user._id || index} className="relative w-[368px rounded-md overflow-hidden" onClick={() => navigate(`/${user.name}/ProfileDetails`, { state: user.name })}>
           {/* Background Image */}
           <img
             src={user.coverPhoto || "https://img.icons8.com/?size=100&id=ABBSjQJK83zf&format=png&color=000000"}
             alt="Profile Background"
-            className="w-full h-[128px] object-cover opacity-50"
+            className="w-full h-[128px] object-cover"
           />
 
           {/* Menu Icon */}

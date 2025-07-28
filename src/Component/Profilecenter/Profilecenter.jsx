@@ -5,6 +5,8 @@ import { IoArrowBackOutline, IoEllipsisVerticalOutline, IoSettingsOutline, } fro
 import { SlShareAlt } from "react-icons/sl";
 
 function Profilecenter() {
+
+  
   const [user, setUser] = useState(null);
   const [Post, setPost] = useState([]);
   const [activeTab, setActiveTab] = useState('Posts');

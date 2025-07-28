@@ -4,18 +4,18 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server:{
+   proxy: {
+  '/api': {
+    target: 'http://localhost:3000',
+    changeOrigin: true,
+    rewrite: path => path.replace(/^\/api/, '')
+  }
+}
+
+  },
   plugins: [
     react(),
     tailwindcss()
   ],
-  server: {
-    // Vite automatically handles SPA fallback, but for clarity:
-    fs: {
-      strict: false
-    }
-  },
-  build: {
-    outDir: 'dist',
-    emptyOutDir: true
-  }
 })

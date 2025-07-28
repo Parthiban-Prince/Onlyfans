@@ -9,9 +9,7 @@ export default function SubscriptionsPage() {
     <div className="flex flex-col md:flex-row w-full justify-center">
 
       {/* Sidebar - visible only on 426px and up */}
-      <div className="hidden s:block">
-        <SideNavigation />
-      </div>
+
 
       {/* Center content - always visible */}
       <div className="hidden  h-auto s:block md:w-[100px] lg:w-auto">

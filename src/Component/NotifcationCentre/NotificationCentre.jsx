@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Chat from '../Messagecenter/chat/chat'
 import { HiOutlinePencil } from 'react-icons/hi2';
 import { IoArrowBackOutline, IoEllipsisVerticalOutline, IoSettingsOutline } from 'react-icons/io5';
@@ -7,7 +7,6 @@ import useDeviceType from '../../hooks/useDeviceType';
 
 function NotificationCentre() {
 
-  const navigate  = useNavigate()
 
   const  isMobile  = useDeviceType
 
@@ -29,7 +28,7 @@ function NotificationCentre() {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex items-center gap-2 px-3 py-4 overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-2 px-3 py-4 overflow-x-auto scrollbar-hide">
           {['All', 'Tags', 'Comments', 'Mention', 'Subscriptions', 'Promotions'].map((label, index) => (
             <div
               key={index}

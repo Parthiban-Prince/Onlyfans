@@ -4,7 +4,7 @@ import Card from './card'
 
 function Suggestioncard() {
   return (
-    <section className='hidden lg:block lg:w-[368px] ml-4 basis-[280px]  py-5  relative z-10' >
+    <section className='hidden lg:block lg:w-[368px] ml-4   py-5  relative z-10' >
             <div className='fixed left-auto flex flex-col gap-3  px-[16px] md:w-[368px]' >
                     <div>
                             <input type='text' placeholder='Search Posts' className='w-full h-[40px] px-3 border border-gray-300 rounded-md' />

@@ -50,7 +50,7 @@ function HomeImagePost() {
           : userItem.images;
 
         return (
-          <div key={index} className="w-full md:max-w-[856px] mb-10 rounded-md border border-gray-200 shadow-sm bg-white">
+          <div key={index} className="w-full md:max-w-[856px]     border-gray-300 border-1">
             {/* Header */}
             <div className="flex justify-between items-center px-4 py-3">
               <div className="flex items-center gap-3">

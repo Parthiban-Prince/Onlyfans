@@ -9,9 +9,7 @@ export default function NotificationsettingPage() {
     <div className="flex flex-col md:flex-row w-full  justify-center">
 
       {/* Sidebar - 426px and up */}
-      <div className="hidden  h-auto s:block md:w-[100px] lg:w-auto">
-        <SideNavigation />
-      </div>
+
 
       {/* Main Settings Center - always visible */}
 

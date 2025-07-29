@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { data, useNavigate } from 'react-router-dom';
 import Bluelogo from '../../assets/images/Text_with_Bluelogo.png';
 import white from '../../assets/images/OnlyFans_Logo_Full_White.png';
 import '../LoginComponent/LoginCompontent.css';
@@ -60,7 +60,7 @@ function LoginComponent() {
       console.log(data);
 
       if (!response.ok) {
-        alert(setErrorMessage(data?.message || 'Invalid credentials'))
+        setErrorMessage(data?.message || 'Invalid credentials')
         return;
       }
 
@@ -70,11 +70,11 @@ function LoginComponent() {
       } else {
         if (data.data) {
           localStorage.setItem('token', data.data);
-          navigate('/dashboard');
+          navigate(`my/:username`);
         }
       }
     } catch (error) {
-      alert(setErrorMessage('Server error. Please try again later.'+error))
+      setErrorMessage(data?.message || 'An error occurred. Please try again.'+error.message);
     } finally {
       setLoading(false);
     }

@@ -9,6 +9,7 @@ import Account from '../../assets/Icons_Images/icons8-profile-50.png';
 import More from '../../assets/Icons_Images/icons8-menu-vertical-32.png';
 import Collection from '../../assets/Icons_Images/icons8-bookmark-24.png';
 import Logut from '../../utils/logout';
+import { IoArrowBackOutline, IoEllipsisHorizontal, IoEllipsisVertical, IoHomeOutline, IoPersonCircle, IoPersonCircleOutline, IoPersonOutline } from 'react-icons/io5';
 
 
 function PublicSidenav() {
@@ -17,11 +18,11 @@ function PublicSidenav() {
     <section id="Side">
 
       <nav className='fixed left-auto flex flex-col gap-5 overflow-y-hidden mt-[20px]' id='blackout'>
-        <button className='border rounded-full w-fit h-fit object-container overflow-hidden'>
-          <img src={"https://img.icons8.com/?size=100&id=bjHuxcHTNosO&format=png&color=000000"} alt='Profile' className='w-[36px] h-[36px] object-cover' />
+        <button className=' rounded-full w-fit h-fit object-container overflow-hidden'>
+          <IoPersonCircleOutline className='w-[36px] h-[36px]' />
         </button>
-        <Link  className='flex items-center gap-5'><img src={Home} alt='Home' className='w-[33px] h-[33px] object-contain' /><span>Home</span></Link>
-        <Link  className='flex items-center gap-5'><img src={More} alt='More' className='w-[33px] h-[33px] object-contain rotate-90' /><span>More</span></Link>
+        <Link  className='flex items-center gap-5'><IoHomeOutline alt='Home' className='w-[33px] h-[33px] object-contain' /><span>Home</span></Link>
+        <Link  className='flex items-center gap-5'><IoEllipsisHorizontal alt='More' className='w-[33px] h-[33px] object-contain ' /><span>More</span></Link>
       </nav>
     </section>
   );

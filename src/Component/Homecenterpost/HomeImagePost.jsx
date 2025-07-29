@@ -1,81 +1,86 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+
 import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32 (1).png';
 import LikeButton from '../likezButton/like';
-import {api} from '../../api/api'
-import { IoBookmarkOutline, IoChatbubble, IoChatbubbleOutline } from 'react-icons/io5';
-import { HiCurrencyDollar, HiOutlineCurrencyDollar } from 'react-icons/hi2';
+import { api } from '../../api/api';
+import { IoBookmarkOutline, IoChatbubbleOutline } from 'react-icons/io5';
+import { HiOutlineCurrencyDollar } from 'react-icons/hi2';
 
 function HomeImagePost() {
-  const [user, setUser] = useState([]);
-
-  useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const response = await fetch(`${api}/api/Post/all`, {
-          method: "GET",
-          headers: {
-            "Authorization": `Bearer ${localStorage.getItem("token")}`,
-            "Content-Type": "application/json"
-          }
-        });
-
-        const data = await response.json();
-        console.log("Fetched Data:");
-
-
-            const filteredData = Array.isArray(data.data)
-        ? data.data.filter(post => {
-            // Ensure images is either a non-empty array or a valid string
-            if (Array.isArray(post.images)) {
-              return post.images.length > 0 && post.images[0];
-            }
-            return post.images; // If not an array, it must be a non-null string
-          })
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['imagePosts'],
+    queryFn: async () => {
+      const response = await fetch(`${api}/api/Post/all`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      const result = await response.json();
+      return Array.isArray(result.data)
+        ? result.data.filter(post =>
+            (Array.isArray(post.images) && post.images.length > 0 && post.images[0]) ||
+            (typeof post.images === 'string' && post.images)
+          )
         : [];
+    },
+  });
 
-        setUser(filteredData);
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      }
-    };
+  if (isLoading) {
+    return (
+      <div className="w-full max-w-[856px] mx-auto px-4 py-5">
+        {[...Array(3)].map((_, i) => (
+          <div key={i} className="mb-6 border border-gray-300 bg-white p-4 rounded">
+            <Skeleton height={50} width={50} circle />
+            <Skeleton height={20} width={`60%`} className="mt-2" />
+            <Skeleton height={300} className="mt-4" />
+            <Skeleton height={100} className="mt-4" />
+          </div>
+        ))}
+      </div>
+    );
+  }
 
-    fetchPost();
-  }, []);
+  if (isError) {
+    return <div className="text-red-500 text-center mt-6">❌ Error fetching image posts.</div>;
+  }
 
   return (
     <>
-      {user && user.map((userItem, index) => {
-        const imageUrl = Array.isArray(userItem.images)
-          ? userItem.images[0]
-          : userItem.images;
+      {data.map((post, index) => {
+        const imageUrl = Array.isArray(post.images) ? post.images[0] : post.images;
 
         return (
-          <div key={index} className="w-full md:max-w-[856px]     border-gray-300 border-1">
+          <div key={index} className="w-full md:max-w-[856px] mx-auto mb-6 border border-gray-300 bg-white">
             {/* Header */}
             <div className="flex justify-between items-center px-4 py-3">
               <div className="flex items-center gap-3">
                 <img
-                  src={userItem.user?.profilePhoto || "https://via.placeholder.com/150"}
+                  src={post.user?.profilePhoto || 'https://via.placeholder.com/150'}
                   alt="Profile"
                   className="w-12 h-12 object-cover object-top rounded-full"
                 />
                 <div className="leading-4">
-                  <h1 className="font-bold text-sm">{userItem.user?.username || "OnlyFans ✅"}</h1>
-                  <p className="text-gray-600 text-sm">@{userItem.user?.username || "onlyfans"}</p>
+                  <h1 className="font-bold text-sm">{post.user?.username || 'OnlyFans ✅'}</h1>
+                  <p className="text-gray-600 text-sm">@{post.user?.username || 'onlyfans'}</p>
                 </div>
               </div>
-              <p className="text-gray-500 text-sm">{new Date(userItem.createdAt).toLocaleString() || "Just now"}</p>
+              <p className="text-gray-500 text-sm">{new Date(post.createdAt).toLocaleString()}</p>
             </div>
 
             {/* Caption */}
             <div className="px-4 pb-3 text-[15px] text-gray-800 leading-5">
-              {userItem.captions || "No caption available."}
+              {post.captions || 'No caption available.'}
             </div>
 
             {/* Main Image */}
             <div className="relative w-full h-auto">
               <img
-                src={imageUrl || "https://via.placeholder.com/500"}
+                src={imageUrl || 'https://via.placeholder.com/500'}
                 alt="Post"
                 className="w-full h-full object-cover"
               />
@@ -85,25 +90,21 @@ function HomeImagePost() {
             <div className="relative px-4 pt-4">
               <div className="relative w-full rounded-md overflow-hidden">
                 <img
-                  src={userItem.user?.coverPhoto || "https://via.placeholder.com/500"}
+                  src={post.user?.coverPhoto || 'https://via.placeholder.com/500'}
                   alt="Card Cover"
                   className="w-full h-32 object-cover rounded-md"
                 />
-                <img
-                  src={Menu}
-                  alt="Menu"
-                  className="absolute top-2 right-2 w-6 h-6 z-20"
-                />
+                <img src={Menu} alt="Menu" className="absolute top-2 right-2 w-6 h-6 z-20" />
                 <div className="absolute inset-0 bg-black/30 flex items-center rounded-md">
                   <div className="flex items-center gap-4 px-6">
                     <img
-                      src={userItem.user?.profilePhoto || "https://via.placeholder.com/150"}
+                      src={post.user?.profilePhoto || 'https://via.placeholder.com/150'}
                       alt="Profile"
                       className="w-20 h-20 rounded-full object-cover border-2 border-white"
                     />
                     <div className="text-white">
-                      <h1 className="text-lg font-bold">{userItem.user?.name || "OnlyFans"}</h1>
-                      <p>@{userItem.user?.username || "onlyfans"}</p>
+                      <h1 className="text-lg font-bold">{post.user?.name || 'OnlyFans'}</h1>
+                      <p>@{post.user?.username || 'onlyfans'}</p>
                     </div>
                   </div>
                 </div>
@@ -112,35 +113,17 @@ function HomeImagePost() {
 
             {/* Actions */}
             <div className="flex justify-between px-4 py-3 mt-2">
-              <div className="flex gap-6">
-        
-        <LikeButton
-  postId={userItem._id}
-  initialLiked={false} // update to true if you track user likes
-  initialCount={userItem.likes || 0}
-/>
-                <IoChatbubbleOutline
-                 
-                  alt="Comment"
-                  title="Comment"
-                  className="w-6 h-6 cursor-pointer"
+              <div className="flex gap-6 items-center">
+                <LikeButton
+                  postId={post._id}
+                  initialLiked={false}
+                  initialCount={post.likes || 0}
                 />
-                <HiOutlineCurrencyDollar
-                 
-                  alt="Send Tip"
-                  title="Send Tip"
-                  className="w-6 h-6 cursor-pointer"
-                />
+                <IoChatbubbleOutline className="w-6 h-6 cursor-pointer" title="Comment" />
+                <HiOutlineCurrencyDollar className="w-6 h-6 cursor-pointer" title="Send Tip" />
               </div>
-              <IoBookmarkOutline
-              
-                alt="Bookmark"
-                title="Bookmark"
-                className="w-6 h-6 cursor-pointer"
-              />
+              <IoBookmarkOutline className="w-6 h-6 cursor-pointer" title="Bookmark" />
             </div>
-
-            {/* Likes Count */}
           </div>
         );
       })}

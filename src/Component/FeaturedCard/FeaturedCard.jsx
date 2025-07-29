@@ -2,35 +2,28 @@ import React, { useEffect, useRef, useState } from 'react';
 import Profile from '../../assets/images/OnlyFans_Logo_Icon_Blue.png';
 import Play from '../../assets/Icons_Images/play.png';
 import { api } from '../../api/api';
+import { useQuery } from '@tanstack/react-query';
+import SpinLoader from '../SpinLoader/SpinLoader';
 
 const fallbackThumbnail = "https://via.placeholder.com/856x480.png?text=No+Thumbnail";
 const fallbackVideo = "https://www.w3schools.com/html/mov_bbb.mp4";
 
 function FeaturedCard() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [playingIndex, setPlayingIndex] = useState(null);
   const videoRefs = useRef([]);
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch(`${api}/api/owner/me`, {
-          method: "GET",
-          headers: { 'Content-Type': "application/json" }
-        });
-        const data = await response.json();
-        console.log(data.data);
-        setPosts(Array.isArray(data.data) ? data.data : []);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPosts();
-  }, []);
+  // ✅ useQuery is at top level — NOT inside any condition or function
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['featuredPosts'],
+    queryFn: async () => {
+      const response = await fetch(`${api}/api/owner/me`, {
+        method: "GET",
+        headers: { 'Content-Type': "application/json" }
+      });
+      const result = await response.json();
+      return Array.isArray(result.data) ? result.data : [];
+    }
+  });
 
   useEffect(() => {
     if (playingIndex !== null) {
@@ -47,9 +40,10 @@ function FeaturedCard() {
     }
   }, [playingIndex]);
 
-  if (loading) {
-    return <div className="text-center py-10 text-gray-500">Loading featured posts...</div>;
-  }
+  if (isLoading) return <SpinLoader />;
+  if (error) return <div className="text-red-500 text-center">Error fetching posts</div>;
+
+  const posts = data;
 
   if (!posts.length) {
     return <div className="text-center py-10 text-red-500">No posts found</div>;
@@ -75,7 +69,6 @@ function FeaturedCard() {
                 <p className="text-sm text-gray-600">@{post?.user?.username || 'onlyfans'}</p>
               </div>
             </div>
-            <div className="text-sm text-gray-500 pt-2 pr-1"></div>
           </div>
 
           {/* Caption */}

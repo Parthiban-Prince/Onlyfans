@@ -1,22 +1,41 @@
-// BottomTab.jsx
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Home from '../../assets/Icons_Images/icons8-home-24.png'
-import Notification from '../../assets/Icons_Images/icons8-notification-32.png'
-import Message from '../../assets/Icons_Images/icons8-message-48.png'
-import Profile from '../../assets/Icons_Images/icons8-profile-50.png'
-import './Bottom.css'
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import {
+  IoHomeOutline,
+  IoNotificationsOutline,
+  IoChatbubbleEllipsesOutline,
+  IoPersonOutline,
+} from 'react-icons/io5';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
-export default function BottomPublic() {
+export default function BottomPublic({ loading = false }) {
+  const { pathname } = useLocation();
+
+  const navItems = [
+    { path: '/dashboard', icon: IoHomeOutline, label: 'Home' },
+    { path: '/profile', icon: IoPersonOutline, label: 'Profile' },
+  ];
+
   return (
-    <div className="fixed bottom-0 w-full bg-white border-t border-gray-300  justify-between px-10 items-center py-2  z-100 flex" id='Bottom'>
-      <Link to="/dashboard">
-        <img src={Home} alt="Home" className="w-6 h-6" />
-      </Link>
-      <Link>
-        <img src={Profile} alt="Profile" className="w-6 h-6" />
-      </Link>
+    <div className="fixed bottom-0 w-full bg-white border-t border-gray-300 flex justify-around items-center py-3 z-[100] s:hidden" id="Bottom">
+      {loading
+        ? navItems.map((_, idx) => (
+            <Skeleton key={idx} circle width={28} height={28} />
+          ))
+        // eslint-disable-next-line no-unused-vars
+        : navItems.map(({ path, icon: Icon, label }) => (
+            <Link key={path} to={path} className="flex flex-col items-center">
+              <Icon
+                size={24}
+                className={`${
+                  pathname === path ? 'text-black' : 'text-gray-400'
+                } transition-colors`}
+              />
+              {/* Optional text label below icons */}
+              {/* <span className="text-xs mt-1">{label}</span> */}
+            </Link>
+          ))}
     </div>
-  )
+  );
 }
-

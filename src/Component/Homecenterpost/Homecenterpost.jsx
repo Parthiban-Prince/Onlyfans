@@ -1,36 +1,33 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Play from '../../assets/Icons_Images/play.png';
-import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32 (1).png';
-import LikeButton from '../likezButton/like'; // ✅ Import LikeButton component
-import {api} from '../../api/api'
-import {IoBookmarkOutline, IoChatbubbleOutline, IoPlay, IoPlayOutline } from 'react-icons/io5';
+import React, { useRef, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+import { api } from '../../api/api';
+
+import { IoBookmarkOutline, IoChatbubbleOutline, IoPlayOutline } from 'react-icons/io5';
 import { HiOutlineCurrencyDollar } from "react-icons/hi2";
 
+import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32 (1).png';
+import LikeButton from '../likezButton/like';
+
 function HomeCenterPost() {
-  const [posts, setPosts] = useState([]);
   const [playingIndex, setPlayingIndex] = useState(null);
   const videoRefs = useRef([]);
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const response = await fetch(`${api}/api/Post/all`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-            "Content-Type": "application/json"
-          }
-        });
-        const data = await response.json();
-        if (Array.isArray(data.data)) {
-          setPosts(data.data);
-        }
-      } catch (err) {
-        console.error("❌ Fetch error:", err);
-      }
-    };
-    fetchPost();
-  }, []);
+  // React Query to fetch posts
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['posts'],
+    queryFn: async () => {
+      const res = await fetch(`${api}/api/Post/all`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      const result = await res.json();
+      return result.data;
+    },
+  });
 
   const handlePlay = (index) => {
     videoRefs.current.forEach((video, i) => {
@@ -46,14 +43,35 @@ function HomeCenterPost() {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="w-full max-w-[856px] mx-auto px-4 py-5">
+        {[...Array(3)].map((_, i) => (
+          <div key={i} className="mb-6 border border-gray-300 bg-white p-4 rounded">
+            <Skeleton height={50} width={50} circle />
+            <Skeleton height={20} width={`60%`} className="mt-2" />
+            <Skeleton height={481} className="mt-4" />
+            <Skeleton height={100} className="mt-4" />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  if (isError) {
+    return <div className="text-center text-red-500 mt-10">Failed to load posts.</div>;
+  }
+
   return (
     <>
-      {posts.map((post, index) => {
+      {data?.map((post, index) => {
         if (!post?.media || !post?.thumbnail) return null;
 
         return (
-          <div key={post._id} className="w-full md:max-w-[856px]   overflow-hidden  shadow-sm border-t-gray-300 border-b-gray-300 border-l-gray-300 border-r-gray-300 border-1 bg-white">
-            
+          <div
+            key={post._id}
+            className="w-full md:max-w-[856px] mx-auto overflow-hidden shadow-sm border border-gray-300 bg-white mb-6"
+          >
             {/* Header */}
             <div className="flex justify-between items-center px-4 py-3">
               <div className="flex items-center gap-3">
@@ -91,8 +109,7 @@ function HomeCenterPost() {
                     onClick={() => handlePlay(index)}
                   />
                   <IoPlayOutline
-                    className="absolute z-10 w-[60px] h-[60px] left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black/40 hover:bg-blue-500   cursor-pointer text-white rounded-md "
-                    alt="Play"
+                    className="absolute z-10 w-[60px] h-[60px] left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black/40 hover:bg-blue-500 cursor-pointer text-white rounded-md"
                     onClick={() => handlePlay(index)}
                   />
                 </>
@@ -131,21 +148,18 @@ function HomeCenterPost() {
 
             {/* Action Buttons */}
             <div className="flex justify-between px-4 py-3 mt-2">
-              <div className="flex gap-5">
-                {/* ✅ Like Button Component */}
+              <div className="flex gap-5 items-center">
                 <LikeButton
                   postId={post._id}
-                  initialLiked={false} // If you track user likes, update this
+                  initialLiked={false}
                   initialCount={post.likes || 0}
                 />
-
-                <IoChatbubbleOutline alt="Comment" className="w-6 h-6" />
+                <IoChatbubbleOutline className="w-6 h-6" />
                 <div className='flex items-center gap-2'>
-                       <HiOutlineCurrencyDollar alt="Tip" className="w-6 h-6" /><h1>Send TIps</h1>
+                  <HiOutlineCurrencyDollar className="w-6 h-6" /><span>Send Tips</span>
                 </div>
-           
               </div>
-              <IoBookmarkOutline alt="Bookmark" className="w-6 h-6" />
+              <IoBookmarkOutline className="w-6 h-6" />
             </div>
           </div>
         );

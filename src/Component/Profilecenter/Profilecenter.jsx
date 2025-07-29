@@ -1,77 +1,94 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import { api } from '../../api/api';
-import { IoArrowBackOutline, IoEllipsisVerticalOutline, IoSettingsOutline, } from 'react-icons/io5';
+import { IoArrowBackOutline, IoEllipsisVerticalOutline, IoSettingsOutline } from 'react-icons/io5';
 import { SlShareAlt } from "react-icons/sl";
 
 function Profilecenter() {
-
-  
-  const [user, setUser] = useState(null);
-  const [Post, setPost] = useState([]);
   const [activeTab, setActiveTab] = useState('Posts');
   const [modalMedia, setModalMedia] = useState(null);
+  const token = localStorage.getItem('token');
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
+  const { data: user, isLoading: profileLoading, error: profileError } = useQuery({
+    queryKey: ['profile'],
+    queryFn: async () => {
+      const res = await fetch(`${api}/api/my/Profile`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      const result = await res.json();
+      return result.data;
+    },
+  });
 
-    const fetchProfile = async () => {
-      try {
-        const res = await fetch(`${api}/api/my/Profile`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-        });
-        const result = await res.json();
-        if (result.data) setUser(result.data);
-      } catch (err) {
-        console.error('Profile fetch error:', err);
-      }
-    };
+  const { data: posts = [], isLoading: postsLoading, error: postsError } = useQuery({
+    queryKey: ['posts'],
+    queryFn: async () => {
+      const res = await fetch(`${api}/api/create/Posts`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      const result = await res.json();
+      return result.data;
+    },
+  });
 
-    const fetchPosts = async () => {
-      try {
-        const res = await fetch(`${api}/api/create/Posts`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-        });
-        const result = await res.json();
-        if (result.data) setPost(result.data);
-      } catch (err) {
-        console.error('Post fetch error:', err);
-      }
-    };
+  if (profileLoading || postsLoading) {
+    return (
+      <div className="p-4 space-y-6 md:w-[600px] mx-auto">
+        <Skeleton height={180} /> {/* Banner */}
+        <div className="flex gap-4 items-center px-2">
+          <Skeleton circle width={100} height={100} />
+          <div className="flex-1 space-y-2">
+            <Skeleton width={150} height={20} />
+            <Skeleton width={100} height={15} />
+            <Skeleton width={120} height={30} />
+          </div>
+        </div>
+        <div className="flex gap-4 px-2">
+          <Skeleton width={140} height={40} />
+          <Skeleton width={40} height={40} />
+        </div>
+        <div className="space-y-4 mt-6">
+          {[...Array(2)].map((_, idx) => (
+            <div key={idx} className="space-y-2">
+              <Skeleton height={15} width="60%" />
+              <Skeleton height={200} />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
-    fetchProfile();
-    fetchPosts();
-  }, []);
+  if (profileError || postsError) {
+    return <div className="text-red-500 text-center p-4">Error loading data</div>;
+  }
 
   return (
-    <section className="flex flex-col relative border border-gray-300 md:w-[600px] shadow-sm h-screen overflow-hidden">
-      {/* Top Fixed Content */}
+    <section className="flex flex-col w-full relative border border-gray-300 md:w-[600px] shadow-sm h-screen overflow-hidden">
       <div className="absolute top-0 left-0 w-full z-10 bg-white">
-        {/* Banner */}
-        <div className="w-full">
-          <img
-            src={user?.coverPhoto || 'https://img.icons8.com/?size=100&id=ABBSjQJK83zf&format=png&color=000000'}
-            className="h-[180px] w-full object-cover"
-            alt="Banner"
-          />
-        </div>
+        <img
+          src={user?.coverPhoto || 'https://img.icons8.com/?size=100&id=ABBSjQJK83zf&format=png&color=000000'}
+          className="h-[180px] w-full object-cover"
+          alt="Banner"
+        />
 
-        {/* Top Bar */}
         <div className="absolute top-0 left-0 w-full flex justify-between items-center p-3 text-white">
           <div className="flex gap-4 items-center">
-            <IoArrowBackOutline  className="z-10 w-6 h-6 text-black" />
+            <IoArrowBackOutline className="z-10 w-6 h-6 text-black" />
             <h1 className="text-lg font-bold text-black">Home</h1>
           </div>
-          <IoEllipsisVerticalOutline  className='w-6 h-6 text-black' />
+          <IoEllipsisVerticalOutline className="w-6 h-6 text-black" />
         </div>
 
-        {/* Profile Info */}
         <div className="relative px-5 mt-[-50px]">
           <div className="w-[100px] h-[100px] rounded-full border-[3px] border-gray-400/70 overflow-hidden">
             <img
@@ -82,7 +99,6 @@ function Profilecenter() {
           </div>
         </div>
 
-        {/* Info & Buttons */}
         <div className="flex justify-between border-b border-gray-200 py-4 px-5 text-sm bg-white">
           <div className="flex flex-col gap-1">
             <h1 className="font-semibold">{user?.name || 'unknown'}</h1>
@@ -92,34 +108,27 @@ function Profilecenter() {
               <option>Invisible</option>
             </select>
           </div>
-
           <div className="flex items-center gap-4">
-            <Link to="/my/settings/profile">
-              <button className="bg-[#00Aff0] text-white font-medium px-4 py-2 rounded-md flex gap-5 items-center">
-                <IoSettingsOutline className='text-white w-6 h-6'/>Edit Profile
+            <Link to="/Settings/Profile">
+              <button className="bg-[#00Aff0] text-white font-medium px-4 py-2 rounded-md flex gap-2 items-center">
+                <IoSettingsOutline className="text-white w-5 h-5" />Edit Profile
               </button>
             </Link>
-
             <button className="bg-[#00aff0] p-2 rounded-md">
-              <SlShareAlt alt="Poll" className="w-6 h-6 text-white" />
+              <SlShareAlt className="w-6 h-6 text-white" />
             </button>
           </div>
         </div>
 
-        {/* Tabs */}
         <div className="grid grid-cols-2 text-center text-sm border-t border-gray-200">
           <div
-            className={`border-r border-gray-200 py-3 cursor-pointer ${
-              activeTab === 'Posts' ? 'bg-gray-100 font-semibold' : ''
-            }`}
+            className={`border-r border-gray-200 py-3 cursor-pointer ${activeTab === 'Posts' ? 'bg-gray-100 font-semibold' : ''}`}
             onClick={() => setActiveTab('Posts')}
           >
             Posts
           </div>
           <div
-            className={`py-3 cursor-pointer ${
-              activeTab === 'Media' ? 'bg-gray-100 font-semibold' : ''
-            }`}
+            className={`py-3 cursor-pointer ${activeTab === 'Media' ? 'bg-gray-100 font-semibold' : ''}`}
             onClick={() => setActiveTab('Media')}
           >
             Media
@@ -130,10 +139,10 @@ function Profilecenter() {
       {/* Scrollable Content */}
       <div className="mt-[410px] flex-1 overflow-y-auto no-scrollbar px-4 py-4">
         {activeTab === 'Posts' ? (
-          Post.length === 0 ? (
+          posts.length === 0 ? (
             <p className="text-gray-500 italic text-center">No posts available.</p>
           ) : (
-            Post.map((post, index) => {
+            posts.map((post, index) => {
               const images = Array.isArray(post.images) ? post.images : [post.images];
               const validImages = images.filter((img) => img && !img.includes(post.thumbnail));
               const hasVideo = post.media && post.thumbnail;
@@ -187,7 +196,7 @@ function Profilecenter() {
           )
         ) : (
           <div className="flex flex-wrap gap-4 justify-start">
-            {Post.map((post, index) => {
+            {posts.map((post, index) => {
               const images = Array.isArray(post.images) ? post.images : [post.images];
               const hasVideo = post.media && post.thumbnail;
 

@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
-  Route
+  Route,
+  Navigate,
+  Outlet
 } from "react-router-dom";
 
 import MainLayout from "./layout/MainLayout";
@@ -33,55 +35,84 @@ import Notificationsettings from "./Component/NotificationRight/NotificationRigh
 import Displaysettings from "./Component/DisplaySettingsRight/DisplaySettingsRight";
 
 import Notfound from './Component/NotFound/Notfound';
-import ProtectedRoute from "./routes/ProtectedRouted/Protected";
 import ProfileDetails from "./Component/ProfileDetails/ProfileDetails";
 import PublicProfilePage from './Pages/PublicProfile/PublicProfilePage';
 
+import io from 'socket.io-client';
+
+
+// ----- AUTH COMPONENTS -----
+
+const ProtectedRoute = ({ children }) => {
+  const token = localStorage.getItem("token");
+  return token ? children : <Navigate to="/" replace />;
+};
+
+const RedirectIfAuthenticated = ({ children }) => {
+  const token = localStorage.getItem("token");
+  return token ? <Navigate to="/my/yourusername" replace /> : children;
+};
+
+
+// ----- MAIN APP -----
+
 function App() {
+  useEffect(() => {
+    const socket = io("http://localhost:3000");
 
+    socket.on('connect', () => {
+      console.log(`Connected to socket server with id: ${socket.id}`);
+    });
 
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-<Route path="/" element={<LoginLayout />}>
-  <Route index element={<LoginPage />} />
-  
-  {/* Protected Authenticated Routes */}
-  <Route path="my/:username" element={<MainLayout />}>
-    <Route index element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
-    <Route path="notification" element={<ProtectedRoute><NotificationPage /></ProtectedRoute>} />
-    <Route path="posts/create" element={<ProtectedRoute><PostPage /></ProtectedRoute>} />
-    <Route path="payments/add_card" element={<ProtectedRoute><AddcardPage /></ProtectedRoute>} />
-    <Route path="chats" element={<ProtectedRoute><MessagePage /></ProtectedRoute>} />
-    <Route path="collection/user-lists/subscribers/active" element={<ProtectedRoute><CollectionPage /></ProtectedRoute>} />
-    <Route path="collections/user-lists/subscriptions" element={<ProtectedRoute><SubscriptionsPage /></ProtectedRoute>} />
-    <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
-    <Route path="ProfileDetails" element={<ProtectedRoute><ProfileDetails /></ProtectedRoute>} />
+      <Route path="/" element={<LoginLayout />}>
+        <Route index element={
+          <RedirectIfAuthenticated>
+            <LoginPage />
+          </RedirectIfAuthenticated>
+        } />
 
-    {/* Settings Pages */}
-    <Route path="settings" element={<ProtectedRoute><Settingscenter /></ProtectedRoute>} />
-    <Route path="settings/profile" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
-    <Route path="settings/account" element={<ProtectedRoute><AccountPage /></ProtectedRoute>} />
-    <Route path="settings/privacy" element={<ProtectedRoute><PrivacyPage /></ProtectedRoute>} />
-    <Route path="settings/subscription" element={<ProtectedRoute><SubscriptionsettingPage /></ProtectedRoute>} />
-    <Route path="settings/notifications" element={<ProtectedRoute><NotificationsettingPage /></ProtectedRoute>} />
-    <Route path="settings/display" element={<ProtectedRoute><DisplaysettingsPage /></ProtectedRoute>} />
+        {/* Protected Routes */}
+        <Route path="my/:username" element={<MainLayout />}>
+          <Route index element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+          <Route path="notification" element={<ProtectedRoute><NotificationPage /></ProtectedRoute>} />
+          <Route path="posts/create" element={<ProtectedRoute><PostPage /></ProtectedRoute>} />
+          <Route path="payments/add_card" element={<ProtectedRoute><AddcardPage /></ProtectedRoute>} />
+          <Route path="chats" element={<ProtectedRoute><MessagePage /></ProtectedRoute>} />
+          <Route path="collection/user-lists/subscribers/active" element={<ProtectedRoute><CollectionPage /></ProtectedRoute>} />
+          <Route path="collections/user-lists/subscriptions" element={<ProtectedRoute><SubscriptionsPage /></ProtectedRoute>} />
+          <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+          <Route path="ProfileDetails" element={<ProtectedRoute><ProfileDetails /></ProtectedRoute>} />
 
-    {/* Sub-settings */}
-    <Route path="settings/profile/profileSettings" element={<ProtectedRoute><Profilesettings /></ProtectedRoute>} />
-    <Route path="settings/account/accountSettings" element={<ProtectedRoute><Accountsettings /></ProtectedRoute>} />
-    <Route path="settings/privacy/privacySettings" element={<ProtectedRoute><Privacysettings /></ProtectedRoute>} />
-    <Route path="settings/subscription/subscriptionSettings" element={<ProtectedRoute><Subscriptionsettings /></ProtectedRoute>} />
-    <Route path="settings/notifications/notificationsSettings" element={<ProtectedRoute><Notificationsettings /></ProtectedRoute>} />
-    <Route path="settings/display/displaySettings" element={<ProtectedRoute><Displaysettings /></ProtectedRoute>} />
+          {/* Settings */}
+          <Route path="settings" element={<ProtectedRoute><Settingscenter /></ProtectedRoute>} />
+          <Route path="settings/profile" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
+          <Route path="settings/account" element={<ProtectedRoute><AccountPage /></ProtectedRoute>} />
+          <Route path="settings/privacy" element={<ProtectedRoute><PrivacyPage /></ProtectedRoute>} />
+          <Route path="settings/subscription" element={<ProtectedRoute><SubscriptionsettingPage /></ProtectedRoute>} />
+          <Route path="settings/notifications" element={<ProtectedRoute><NotificationsettingPage /></ProtectedRoute>} />
+          <Route path="settings/display" element={<ProtectedRoute><DisplaysettingsPage /></ProtectedRoute>} />
 
-    <Route path="*" element={<Notfound />} />
-  </Route>
+          {/* Sub-settings */}
+          <Route path="settings/profile/profileSettings" element={<ProtectedRoute><Profilesettings /></ProtectedRoute>} />
+          <Route path="settings/account/accountSettings" element={<ProtectedRoute><Accountsettings /></ProtectedRoute>} />
+          <Route path="settings/privacy/privacySettings" element={<ProtectedRoute><Privacysettings /></ProtectedRoute>} />
+          <Route path="settings/subscription/subscriptionSettings" element={<ProtectedRoute><Subscriptionsettings /></ProtectedRoute>} />
+          <Route path="settings/notifications/notificationsSettings" element={<ProtectedRoute><Notificationsettings /></ProtectedRoute>} />
+          <Route path="settings/display/displaySettings" element={<ProtectedRoute><Displaysettings /></ProtectedRoute>} />
 
-  {/* Public Route */}
-  <Route path=":username" element={<PublicProfilePage />} />
-</Route>
+          <Route path="*" element={<Notfound />} />
+        </Route>
 
+        {/* Public Profile */}
+        <Route path=":username" element={<PublicProfilePage />} />
+      </Route>
     )
   );
 

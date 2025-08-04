@@ -109,7 +109,7 @@ function Profilecenter() {
             </select>
           </div>
           <div className="flex items-center gap-4">
-            <Link to="profile">
+            <Link to={`/my/${user?.username}/settings/Profile`}>
               <button className="bg-[#00Aff0] text-white font-medium px-4 py-2 rounded-md flex gap-2 items-center">
                 <IoSettingsOutline className="text-white w-5 h-5" />Edit Profile
               </button>

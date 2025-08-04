@@ -88,7 +88,7 @@ export default function SideNavigation() {
                     <IoBookmarkOutline className="w-6 h-6" />
                     <span className="hidden s:inline">Collection</span>
                   </Link>
-                  <Link to={`/my/${user?.username}/settings/profile`} className="flex items-center gap-4 p-2 hover:bg-blue-50 rounded-lg">
+                  <Link to={`/my/${user?.username}/settings`} className="flex items-center gap-4 p-2 hover:bg-blue-50 rounded-lg">
                     <IoSettingsOutline className="w-6 h-6" />
                     <span className="hidden s:inline">Settings</span>
                   </Link>

@@ -5,11 +5,11 @@ import {
   RouterProvider,
   Route,
   Navigate,
-  Outlet
 } from "react-router-dom";
 
 import MainLayout from "./layout/MainLayout";
 import LoginLayout from "./layout/LoginLayout";
+
 import LoginPage from "./Pages/LoginPage/LoginPage";
 import HomePage from "./Pages/HomePage/HomePage";
 import NotificationPage from "./Pages/NotificationPage/NotificationPage";
@@ -19,6 +19,7 @@ import MessagePage from "./Pages/MessagePage/MessagePage";
 import CollectionPage from './Pages/CollectionPage/CollectionPage';
 import SubscriptionsPage from './Pages/SubscriptionsPage/SubscriptionsPage';
 import ProfilePage from "./Pages/MyProfile/ProfilePage";
+import ProfileDetails from "./Component/ProfileDetails/ProfileDetails";
 import SettingsPage from "./Pages/SettingsPage/SettingsPage";
 import DisplaysettingsPage from "./Pages/DisplaysettingPage/Displaysettings";
 import AccountPage from "./Pages/AccountsettingsPage/AccountPage";
@@ -34,15 +35,13 @@ import Subscriptionsettings from "./Component/Subcriptionsright/Subscriptionsett
 import Notificationsettings from "./Component/NotificationRight/NotificationRight";
 import Displaysettings from "./Component/DisplaySettingsRight/DisplaySettingsRight";
 
-import Notfound from './Component/NotFound/Notfound';
-import ProfileDetails from "./Component/ProfileDetails/ProfileDetails";
 import PublicProfilePage from './Pages/PublicProfile/PublicProfilePage';
+import Notfound from './Component/NotFound/Notfound';
 
 import io from 'socket.io-client';
 
 
 // ----- AUTH COMPONENTS -----
-
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
   return token ? children : <Navigate to="/" replace />;
@@ -55,31 +54,29 @@ const RedirectIfAuthenticated = ({ children }) => {
 
 
 // ----- MAIN APP -----
-
 function App() {
   useEffect(() => {
     const socket = io("http://localhost:3000");
-
     socket.on('connect', () => {
       console.log(`Connected to socket server with id: ${socket.id}`);
     });
-
-    return () => {
-      socket.disconnect();
-    };
+    return () => socket.disconnect();
   }, []);
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<LoginLayout />}>
-        <Route index element={
-          <RedirectIfAuthenticated>
-            <LoginPage />
-          </RedirectIfAuthenticated>
-        } />
+      <Route path="/" element={<LoginLayout />} errorElement={<Notfound />}>
+        <Route
+          index
+          element={
+            <RedirectIfAuthenticated>
+              <LoginPage />
+            </RedirectIfAuthenticated>
+          }
+        />
 
         {/* Protected Routes */}
-        <Route path="my/:username" element={<MainLayout />}>
+        <Route path="my/:username" element={<MainLayout />} errorElement={<Notfound />}>
           <Route index element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
           <Route path="notification" element={<ProtectedRoute><NotificationPage /></ProtectedRoute>} />
           <Route path="posts/create" element={<ProtectedRoute><PostPage /></ProtectedRoute>} />
@@ -89,9 +86,7 @@ function App() {
           <Route path="collections/user-lists/subscriptions" element={<ProtectedRoute><SubscriptionsPage /></ProtectedRoute>} />
           <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
           <Route path="ProfileDetails" element={<ProtectedRoute><ProfileDetails /></ProtectedRoute>} />
-
-          {/* Settings */}
-          <Route path="settings" element={<ProtectedRoute><Settingscenter /></ProtectedRoute>} />
+          <Route path="settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
           <Route path="settings/profile" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
           <Route path="settings/account" element={<ProtectedRoute><AccountPage /></ProtectedRoute>} />
           <Route path="settings/privacy" element={<ProtectedRoute><PrivacyPage /></ProtectedRoute>} />
@@ -112,6 +107,9 @@ function App() {
 
         {/* Public Profile */}
         <Route path=":username" element={<PublicProfilePage />} />
+
+        {/* Catch-all top-level */}
+        <Route path="*" element={<Notfound />} />
       </Route>
     )
   );

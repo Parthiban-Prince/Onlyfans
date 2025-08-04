@@ -33,7 +33,7 @@ function CenterContent() {
         {/* Compose New Post */}
         <div className="w-full z-10 mt-14 shadow-sm shadow-light-900">
           <form className="flex items-center w-full overflow-hidden">
-            <Link to="/:user/posts/create" className="w-full h-[76px] flex items-center">
+            <Link to="posts/create" className="w-full h-[76px] flex items-center">
               <input
                 type="textarea"
                 placeholder="Compose New Post..."
@@ -44,7 +44,7 @@ function CenterContent() {
 
           {/* Icon Row */}
           <div className="flex p-2 object-contain gap-5">
-            <Link to='/:user/posts/create' ><IoImageOutline  className="w-[30px] h-[30px]" /></Link>
+            <Link to='posts/create' ><IoImageOutline  className="w-[30px] h-[30px]" /></Link>
             <MdOutlinePoll className="w-[30px] h-[30px] rotate-90" />
             <MdOutlineQuiz className="w-[30px] h-[30px]" />
             <IoTextOutline className="w-[30px] h-[30px]" />

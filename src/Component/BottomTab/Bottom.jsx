@@ -49,7 +49,7 @@ export default function BottomTab() {
       {/* Bottom Nav */}
       <nav className="fixed bottom-0 inset-x-0 bg-white border-t border-gray-200 shadow-md sm:max-w-md s:hidden sm:mx-auto z-50">
         <div className="flex justify-around items-center px-2 py-3">
-          <NavLink to={`/my/${username}`} aria-label="Home">
+          <NavLink to={`/my/${user?.username}`} aria-label="Home">
             <IoHomeOutline className={`w-6 h-6 ${isActive(`/my/${username}`) && !isActive('notification') ? 'opacity-100' : 'opacity-60'}`} />
           </NavLink>
           <NavLink to={`/my/${username}/notification`} aria-label="Notifications">

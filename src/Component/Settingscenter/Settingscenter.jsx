@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { IoArrowBackOutline } from 'react-icons/io5';
 import useDeviceType from '../../hooks/useDeviceType';
 import { api } from '../../api/api';
+import BottomTab from '../BottomTab/Bottom';
 
 export default function Settingscenter() {
   const [user, setUser] = useState(null);
@@ -55,31 +56,31 @@ export default function Settingscenter() {
         {/* Settings List */}
         <ul className="text-sm text-gray-900 divide-y divide-gray-200">
           <li>
-            <Link to={isMobile ? `/my/${user?.username}/profile` : `/my/${user?.username}/settings/profile`} className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
+            <Link to={isMobile ? `/my/${user?.username}/settings/profile/profileSettings` : `/my/${user?.username}/settings/profile`} className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
               <span>Profile</span>
               <span className="text-gray-400 text-base">&rsaquo;</span>
             </Link>
           </li>
           <li>
-            <Link to={isMobile ? '/my/settings/account/accountSettings' : `/my/${user?.username}/settings/account`} className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
+            <Link to={isMobile ? `/my/${user?.username}/settings/account/accountSettings` : `/my/${user?.username}/settings/account`} className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
               <span>Account</span>
               <span className="text-gray-400 text-base">&rsaquo;</span>
             </Link>
           </li>
           <li>
-            <Link to={isMobile ? '/my/settings/privacy/privacySettings' : `/my/${user?.username}/settings/privacy`} className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
+            <Link to={isMobile ? `/my/${user?.username}/settings/privacy/privacySettings` : `/my/${user?.username}/settings/privacy`} className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
               <span>Privacy and safety</span>
               <span className="text-gray-400 text-base">&rsaquo;</span>
             </Link>
           </li>
           <li>
-            <Link to={isMobile ? '/my/settings/subscription/subscriptionSettings' : `/my/${user?.username}/settings/subscription`} className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
+            <Link to={isMobile ? `/my/${user?.username}/settings/subscription/subscriptionSettings` : `/my/${user?.username}/settings/subscription`} className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
               <span>Subscription price</span>
               <span className="text-gray-400 text-base">&rsaquo;</span>
             </Link>
           </li>
           <li>
-            <Link to={isMobile ? '/my/settings/notifications/notificationsSettings' : `/my/${user?.username}/settings/notifications`} className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
+            <Link to={isMobile ? `/my/${user?.username}/settings/notifications/notificationsSettings` : `/my/${user?.username}/settings/notifications`} className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
               <span>Notifications</span>
               <span className="text-gray-400 text-base">&rsaquo;</span>
             </Link>
@@ -92,13 +93,14 @@ export default function Settingscenter() {
         </div>
         <ul className="text-sm text-gray-900 divide-y divide-gray-200">
           <li>
-            <Link to={isMobile ? 'display' : `/my/${user?.username}/settings/display`} className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
+            <Link to={isMobile ? `/my/${user?.username}/settings/display/displaySettings` : `/my/${user?.username}/settings/display`} className="flex justify-between items-center px-4 py-3 hover:bg-gray-50">
               <span>Display</span>
               <span className="text-gray-400 text-base">&rsaquo;</span>
             </Link>
           </li>
         </ul>
       </div>
+      <BottomTab />
     </section>
   );
 }

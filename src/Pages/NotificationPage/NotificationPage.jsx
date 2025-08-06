@@ -13,7 +13,7 @@ function NotificationPage() {
 
 
       {/* Notification Center - always visible */}
-      <div className="m-auto s:ml-[75px] md:m-0">
+      <div className="">
         <NotificationCentre />
       </div>
   

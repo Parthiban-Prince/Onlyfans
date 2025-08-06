@@ -83,7 +83,10 @@ function Profilecenter() {
 
         <div className="absolute top-0 left-0 w-full flex justify-between items-center p-3 text-white">
           <div className="flex gap-4 items-center">
-            <IoArrowBackOutline className="z-10 w-6 h-6 text-black" />
+            <Link to={`/my/:username`}>
+              <IoArrowBackOutline className="z-10 w-6 h-6 text-black"  />
+            </Link>
+          
             <h1 className="text-lg font-bold text-black">Home</h1>
           </div>
           <IoEllipsisVerticalOutline className="w-6 h-6 text-black" />

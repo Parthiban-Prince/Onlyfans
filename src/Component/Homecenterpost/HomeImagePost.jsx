@@ -6,10 +6,15 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32 (1).png';
 import LikeButton from '../likezButton/like';
 import { api } from '../../api/api';
-import { IoBookmarkOutline, IoChatbubbleOutline } from 'react-icons/io5';
+import { IoBookmark, IoBookmarkOutline, IoChatbubbleOutline } from 'react-icons/io5';
 import { HiOutlineCurrencyDollar } from 'react-icons/hi2';
+import BookmarkButton from '../likezButton/Bookmark';
 
 function HomeImagePost() {
+
+
+
+  // Fetch image posts
   const { data, isLoading, isError } = useQuery({
     queryKey: ['imagePosts'],
     queryFn: async () => {
@@ -29,6 +34,10 @@ function HomeImagePost() {
         : [];
     },
   });
+
+
+
+  // Toggle bookmark
 
   if (isLoading) {
     return (
@@ -77,7 +86,7 @@ function HomeImagePost() {
               {post.captions || 'No caption available.'}
             </div>
 
-            {/* Main Image */}
+            {/* Image */}
             <div className="relative w-full h-auto">
               <img
                 src={imageUrl || 'https://via.placeholder.com/500'}
@@ -86,7 +95,7 @@ function HomeImagePost() {
               />
             </div>
 
-            {/* Profile Card Preview */}
+            {/* Card Preview */}
             <div className="relative px-4 pt-4">
               <div className="relative w-full rounded-md overflow-hidden">
                 <img
@@ -111,7 +120,7 @@ function HomeImagePost() {
               </div>
             </div>
 
-            {/* Actions */}
+            {/* Action Buttons */}
             <div className="flex justify-between px-4 py-3 mt-2">
               <div className="flex gap-6 items-center">
                 <LikeButton
@@ -122,7 +131,7 @@ function HomeImagePost() {
                 <IoChatbubbleOutline className="w-6 h-6 cursor-pointer" title="Comment" />
                 <HiOutlineCurrencyDollar className="w-6 h-6 cursor-pointer" title="Send Tip" />
               </div>
-              <IoBookmarkOutline className="w-6 h-6 cursor-pointer" title="Bookmark" />
+              <BookmarkButton postId={post._id}/>
             </div>
           </div>
         );

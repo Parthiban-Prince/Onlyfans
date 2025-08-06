@@ -12,7 +12,7 @@ function MessageCenter() {
         {/* Header */}
         <div className="fixed top-0 z-10 flex justify-between items-center p-4 border-b border-gray-300 bg-white w-[inherit]">
           <div className="flex items-center gap-3">
-            <Link to="/Dashboard">
+            <Link to="/my/:username">
               <span className=" hover:text-blue-500 transition"><IoArrowBackOutline className='w-6 h-6'/></span>
             </Link>
             <h1 className="text-lg font-semibold">Messages</h1>

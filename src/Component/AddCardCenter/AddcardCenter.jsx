@@ -18,7 +18,7 @@ export default function AddcardCenter() {
         {/* Header */}
         <div className="flex justify-between items-center py-3 border-b border-gray-300 h-[56px] sticky top-0 bg-white z-10">
           <div className="flex items-center gap-3">
-            <Link to="/Dashboard">
+            <Link to="/my/:username">
               <IoArrowBackOutline className="w-6 h-6" />
             </Link>
             {loading ? (

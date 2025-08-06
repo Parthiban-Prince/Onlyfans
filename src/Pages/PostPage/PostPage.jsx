@@ -11,7 +11,7 @@ function PostPage() {
       {/* Left Sidebar - visible on 426px+ */}
   
       {/* Main Post Content - always visible */}
-      <div className="m-auto s:ml-[75px] md:m-0">
+      <div className="">
        <Postcenter/>
       </div>
  

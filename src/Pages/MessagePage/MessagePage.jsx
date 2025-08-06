@@ -12,7 +12,7 @@ export default function MessagePage() {
 
       {/* Message Center: Always visible */}
 
-      <div className="m-auto s:ml-[75px] md:m-0">
+      <div className="">
         <MessageCenter/>
       </div>
       {/* Right Chat/User Info: 426px and up */}

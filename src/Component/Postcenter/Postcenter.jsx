@@ -67,7 +67,7 @@ function Postcenter() {
           isLoading: false,
           autoClose: 3000,
         });
-        navigate('/dashboard');
+        navigate('/my/:username');
       } else {
         throw new Error("Upload failed");
       }
@@ -83,14 +83,14 @@ function Postcenter() {
 
   return (
     <section className="flex relative border-l border-r border-gray-400 w-full md:w-[632px] h-dvh">
-      <div className="md:w-[632px] h-full overflow-y-auto">
+      <div className="w-full md:w-[632px] h-full overflow-y-auto">
         {/* Toasts */}
         <ToastContainer position="top-right" />
 
         {/* Header */}
         <div className="flex justify-between items-center px-4 py-3 border-b border-gray-300 h-[56px] sticky w-full z-10 bg-white top-0">
           <div className="flex items-center gap-3">
-            <Link to="/dashboard">
+            <Link to="/my/:username">
              <IoArrowBackOutline className="w-6 h-6"/>
             </Link>
             <h1 className="text-lg font-bold tracking-wide">NEW POST</h1>

@@ -4,7 +4,7 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { api } from '../../api/api';
 
-import { IoBookmarkOutline, IoChatbubbleOutline, IoPlayOutline } from 'react-icons/io5';
+import { IoBookmark, IoBookmarkOutline, IoChatbubbleOutline, IoPlayOutline } from 'react-icons/io5';
 import { HiOutlineCurrencyDollar } from "react-icons/hi2";
 
 import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32 (1).png';
@@ -12,9 +12,9 @@ import LikeButton from '../likezButton/like';
 
 function HomeCenterPost() {
   const [playingIndex, setPlayingIndex] = useState(null);
+  const [bookmarkedPosts, setBookmarkedPosts] = useState({});
   const videoRefs = useRef([]);
 
-  // React Query to fetch posts
   const { data, isLoading, isError } = useQuery({
     queryKey: ['posts'],
     queryFn: async () => {
@@ -41,6 +41,13 @@ function HomeCenterPost() {
       videoRefs.current[index].play();
       setPlayingIndex(index);
     }
+  };
+
+  const toggleBookmark = (postId) => {
+    setBookmarkedPosts(prev => ({
+      ...prev,
+      [postId]: !prev[postId],
+    }));
   };
 
   if (isLoading) {
@@ -159,7 +166,21 @@ function HomeCenterPost() {
                   <HiOutlineCurrencyDollar className="w-6 h-6" /><span>Send Tips</span>
                 </div>
               </div>
-              <IoBookmarkOutline className="w-6 h-6" />
+              {
+                bookmarkedPosts[post._id] ? (
+                  <IoBookmark
+                    className="w-6 h-6 cursor-pointer"
+                    title="Bookmarked"
+                    onClick={() => toggleBookmark(post._id)}
+                  />
+                ) : (
+                  <IoBookmarkOutline
+                    className="w-6 h-6 cursor-pointer"
+                    title="Bookmark"
+                    onClick={() => toggleBookmark(post._id)}
+                  />
+                )
+              }
             </div>
           </div>
         );

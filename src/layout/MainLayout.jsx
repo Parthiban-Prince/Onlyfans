@@ -6,7 +6,7 @@ export default function MainLayout() {
 
 
   return (
-    <div className="flex  justify-center h-dvh w-full">
+    <div className="md:flex  md:justify-center h-dvh w-full">
       <SideNavigation />
       <main>
         <Outlet />

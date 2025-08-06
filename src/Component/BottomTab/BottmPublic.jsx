@@ -13,7 +13,7 @@ export default function BottomPublic({ loading = false }) {
   const { pathname } = useLocation();
 
   const navItems = [
-    { path: '/dashboard', icon: IoHomeOutline, label: 'Home' },
+    { path: '/my/:username', icon: IoHomeOutline, label: 'Home' },
     { path: '/profile', icon: IoPersonOutline, label: 'Profile' },
   ];
 

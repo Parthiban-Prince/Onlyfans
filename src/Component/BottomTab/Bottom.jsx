@@ -47,7 +47,7 @@ export default function BottomTab() {
   return (
     <>
       {/* Bottom Nav */}
-      <nav className="fixed bottom-0 inset-x-0 bg-white border-t border-gray-200 shadow-md sm:max-w-md sm:mx-auto z-50">
+      <nav className="fixed bottom-0 inset-x-0 bg-white border-t border-gray-200 shadow-md sm:max-w-md s:hidden sm:mx-auto z-50">
         <div className="flex justify-around items-center px-2 py-3">
           <NavLink to={`/my/${username}`} aria-label="Home">
             <IoHomeOutline className={`w-6 h-6 ${isActive(`/my/${username}`) && !isActive('notification') ? 'opacity-100' : 'opacity-60'}`} />
@@ -105,7 +105,7 @@ export default function BottomTab() {
           <div className="text-sm border-b py-5 flex flex-col gap-3">
             <NavLink to={`/my/${username}/profile`} className="flex items-center gap-5 font-bold"><IoPersonOutline className="w-6 h-6" /> My Profile</NavLink>
             <NavLink to={`/my/${username}/collection/user-lists/subscribers/active`} className="flex items-center gap-5 font-bold"><IoBookmarkOutline className="w-6 h-6" /> Collections</NavLink>
-            <NavLink to={`/my/${username}/settings`} className="flex items-center gap-5 font-bold"><IoSettingsOutline className="w-6 h-6" /> Settings</NavLink>
+            <NavLink to={`/my/${username}/mobile/settings`} className="flex items-center gap-5 font-bold"><IoSettingsOutline className="w-6 h-6" /> Settings</NavLink>
           </div>
 
           <div className="text-sm text-gray-700 border-b py-5 flex flex-col gap-3">

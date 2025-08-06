@@ -99,7 +99,7 @@ export default function SideNavigation() {
                     <IoCardOutline className="w-6 h-6" />
                     <span className="hidden s:inline">Your Card (to subscribe)</span>
                   </Link>
-                  <Link className="flex items-center gap-4 p-2 hover:bg-blue-50 rounded-lg">
+                  <Link className="flex items-center gap-4 p-2 hover:bg-blue-50 rounded-lg" onClick={()=>alert("Still Development")}>
                     <IoPersonAddOutline className="w-6 h-6" />
                     <span className="hidden s:inline">Become a Creator (to earn)</span>
                   </Link>

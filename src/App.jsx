@@ -55,13 +55,13 @@ const RedirectIfAuthenticated = ({ children }) => {
 
 // ----- MAIN APP -----
 function App() {
-  useEffect(() => {
-    const socket = io("http://localhost:3000");
-    socket.on('connect', () => {
-      console.log(`Connected to socket server with id: ${socket.id}`);
-    });
-    return () => socket.disconnect();
-  }, []);
+  //useEffect(() => {
+    //const socket = io("http://localhost:3000");
+    //socket.on('connect', () => {
+   //   console.log(`Connected to socket server with id: ${socket.id}`);
+    //});
+    //return () => socket.disconnect();
+  //}, []);
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -95,6 +95,7 @@ function App() {
           <Route path="settings/display" element={<ProtectedRoute><DisplaysettingsPage /></ProtectedRoute>} />
 
           {/* Sub-settings */}
+          <Route path="mobile/settings" element={<ProtectedRoute><Settingscenter /></ProtectedRoute>} />
           <Route path="settings/profile/profileSettings" element={<ProtectedRoute><Profilesettings /></ProtectedRoute>} />
           <Route path="settings/account/accountSettings" element={<ProtectedRoute><Accountsettings /></ProtectedRoute>} />
           <Route path="settings/privacy/privacySettings" element={<ProtectedRoute><Privacysettings /></ProtectedRoute>} />

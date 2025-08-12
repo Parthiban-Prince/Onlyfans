@@ -2,11 +2,14 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-
-import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32.png';
 import { api } from '../../api/api';
+import { IoArrowBack } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
 
 export default function Accountsettings() {
+
+  const navigate = useNavigate() 
+
   const token = localStorage.getItem('token');
 
   const { data: user, isLoading } = useQuery({
@@ -28,7 +31,8 @@ export default function Accountsettings() {
       {/* Header */}
       <div className="sticky top-0 bg-white z-10 border-b border-gray-200 px-4 py-3">
         <h1 className="text-base font-bold text-gray-900 flex gap-5 items-center">
-          <span className="md:hidden"><img src={Menu} alt="menu" /></span> ACCOUNT
+         
+          <span className="md:hidden"> <IoArrowBack className='w-6 h-6 md:hidden' onClick={()=>navigate('/my/:username')} /></span> ACCOUNT
         </h1>
       </div>
 

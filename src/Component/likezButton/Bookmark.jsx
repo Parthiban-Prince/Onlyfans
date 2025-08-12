@@ -10,7 +10,7 @@ function BookmarkButton({ postId }) {
   useEffect(() => {
     requestIdleCallback(async () => {
       try {
-        const res = await fetch(`${api}/api/Bookmarks/${postId}/isBookmarked`, {
+        const res = await fetch(`${api}/api/Bookmarks/userBookmarks`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -31,7 +31,7 @@ function BookmarkButton({ postId }) {
     setBookmarked(updated);
 
     try {
-      const res = await fetch(`${api}/api/Bookmarks/toggleBookmark`, {
+      const res = await fetch(`${api}/api/Bookmarks/addBookmark`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,

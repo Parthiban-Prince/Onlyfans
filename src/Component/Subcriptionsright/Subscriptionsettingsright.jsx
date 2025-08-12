@@ -1,13 +1,17 @@
 import React from 'react';
-import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32.png'
+import { useNavigate } from 'react-router-dom';
+import { IoArrowBack } from 'react-icons/io5';
 
 export default function Subscriptionsettings() {
+
+  const navigate = useNavigate()
+
   return (
     <section className="flex relative border border-gray-400  h-dvh bg-white">
       <div className="w-full max-w-[632px] mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center px-5 border-b border-gray-300 h-[56px] sticky top-0 z-10 bg-white">
-          <h1 className="text-xl font-bold uppercase flex gap-5 items-center"><span className='md:hidden'><img src={Menu}/></span> SUBSCRIPTION AND PROMOTIONS</h1>
+          <h1 className="text-xl font-bold uppercase flex gap-5 items-center"><span className='md:hidden'><IoArrowBack className='w-6 h-6 md:hidden' onClick={()=>navigate('/my/:username')} /></span> SUBSCRIPTION AND PROMOTIONS</h1>
         </div>
 
         {/* Content */}

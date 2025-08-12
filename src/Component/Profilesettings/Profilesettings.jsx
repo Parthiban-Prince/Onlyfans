@@ -3,11 +3,14 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32.png';
+import { IoArrowBack } from 'react-icons/io5';
 import { api } from '../../api/api';
+import { useNavigate } from 'react-router-dom';
 
 export default function Profilesettings() {
+
+  const navigate = useNavigate()
+
   const [user, setUser] = useState(null);
   const [originalUser, setOriginalUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -117,7 +120,7 @@ export default function Profilesettings() {
         {/* Header */}
         <div className="flex justify-between items-center p-3 border-b border-gray-300 h-[56px] sticky top-0 z-10 bg-white rounded-t-md">
           <h1 className="text-xl font-bold flex gap-5 items-center">
-            <span className='md:hidden'><img src={Menu} alt="menu" /></span> EDIT PROFILE
+            <span className='md:hidden'><IoArrowBack className='w-6 h-6 md:hidden' onClick={()=>navigate('/my/:username')} /></span> EDIT PROFILE
           </h1>
           <button
             disabled={isUploading}

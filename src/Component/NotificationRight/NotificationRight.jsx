@@ -1,14 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Menu from '../../assets/Icons_Images/icons8-menu-vertical-32.png'
+import { Link, useNavigate } from 'react-router-dom';
+import { IoArrowBack } from 'react-icons/io5';
 
 export default function Notificationsettings() {
+
+  const navigate = useNavigate()
+
   return (
     <section className="flex relative border border-gray-400 h-dvh">
       <div className="w-[632px]">
         {/* Header */}
         <div className="flex justify-between items-center px-4 py-3 border-b border-gray-300 h-[56px] sticky w-full z-10 bg-white top-0">
-          <h1 className="text-lg font-bold tracking-wide flex items-center gap-5"><span className='md:hidden'><img src={Menu}/></span> NOTIFICATIONS</h1>
+          <h1 className="text-lg font-bold tracking-wide flex items-center gap-5"><span className='md:hidden'><IoArrowBack className='w-6 h-6 md:hidden' onClick={()=>navigate('/my/:username')} /></span> NOTIFICATIONS</h1>
         </div>
 
         {/* Notification Settings List */}

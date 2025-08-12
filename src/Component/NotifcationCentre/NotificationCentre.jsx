@@ -12,11 +12,6 @@ function NotificationCentre() {
   const isMobile = useDeviceType();
   const username = "yourUsername"; // Replace with dynamic value
 
-  const navigate = useNavigate()
-
-  function handleclick(){
-    navigate('my/:username/settings/notifications/notificationsSettings')
-  }
 
 
   return (
@@ -32,7 +27,7 @@ function NotificationCentre() {
           </div>
           <div className="flex items-center gap-3">
             <IoEllipsisVerticalOutline className="w-5 h-5 sm:w-6 sm:h-6" />
-            <Link  to='notificationsSettings'>
+            <Link  to={isMobile ? '/my/:username/mobile/settings' : '/my/:username/settings'}>
               <IoSettingsOutline className="w-5 h-5 sm:w-6 sm:h-6" />
             </Link>
           </div>

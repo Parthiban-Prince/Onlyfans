@@ -124,7 +124,7 @@ export default function BottomTab() {
           </div>
 
           <div className="text-sm text-gray-700 border-b py-5 flex flex-col gap-3">
-            <NavLink to="/help" className="flex items-center gap-5 font-bold"><IoHelpCircleOutline className="w-6 h-6" /> Help & Support</NavLink>
+            <NavLink onClick={()=>alert("This features Still Development")} className="flex items-center gap-5 font-bold"><IoHelpCircleOutline className="w-6 h-6" /> Help & Support</NavLink>
             <button className='flex items-center gap-5 font-bold'><IoMoonOutline className="w-6 h-6" /> Dark Mode</button>
             <button className='flex items-center gap-5 font-bold'><IoLanguageOutline className="w-6 h-6" /> English</button>
           </div>

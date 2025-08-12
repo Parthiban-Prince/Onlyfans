@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { HiOutlinePencil } from 'react-icons/hi2';
 import {
   IoArrowBackOutline,

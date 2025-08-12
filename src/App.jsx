@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -38,7 +38,6 @@ import Displaysettings from "./Component/DisplaySettingsRight/DisplaySettingsRig
 import PublicProfilePage from './Pages/PublicProfile/PublicProfilePage';
 import Notfound from './Component/NotFound/Notfound';
 
-import io from 'socket.io-client';
 
 
 // ----- AUTH COMPONENTS -----

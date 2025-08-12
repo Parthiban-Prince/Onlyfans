@@ -120,7 +120,7 @@ export default function BottomTab() {
 
           <div className="text-sm text-gray-700 border-b py-5 flex flex-col gap-3">
             <NavLink to={`/my/${username}/payments/add_card`} className="flex items-center gap-5 font-bold"><IoCardOutline className="w-6 h-6" />Your Card (to subscribe) </NavLink>
-            <NavLink to={`/my/${username}/creator/apply`} className="flex items-center gap-5 font-bold"><IoPersonAddOutline className="w-6 h-6" /> Become a Creator (to earn)</NavLink>
+            <NavLink onClick={()=>alert('This features is still development')} className="flex items-center gap-5 font-bold"><IoPersonAddOutline className="w-6 h-6" /> Become a Creator (to earn)</NavLink>
           </div>
 
           <div className="text-sm text-gray-700 border-b py-5 flex flex-col gap-3">

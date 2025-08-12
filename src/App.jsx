@@ -49,7 +49,7 @@ const ProtectedRoute = ({ children }) => {
 
 const RedirectIfAuthenticated = ({ children }) => {
   const token = localStorage.getItem("token");
-  return token ? <Navigate to="/my/yourusername" replace /> : children;
+  return token ? <Navigate to="/my/:username" replace /> : children;
 };
 
 

@@ -78,7 +78,9 @@ function App() {
         {/* Protected Routes */}
         <Route path="my/:username" element={<MainLayout />} errorElement={<Notfound />}>
           <Route index element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
-          <Route path="notification" element={<ProtectedRoute><NotificationPage /></ProtectedRoute>} />
+          <Route path="notification" element={<ProtectedRoute><NotificationPage /></ProtectedRoute>}>
+            <Route path="notificationsettings" element={<ProtectedRoute><NotificationsettingPage/></ProtectedRoute>}/>
+          </Route>
           <Route path="posts/create" element={<ProtectedRoute><PostPage /></ProtectedRoute>} />
           <Route path="payments/add_card" element={<ProtectedRoute><AddcardPage /></ProtectedRoute>} />
           <Route path="chats" element={<ProtectedRoute><MessagePage /></ProtectedRoute>} />

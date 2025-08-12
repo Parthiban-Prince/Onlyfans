@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, useLocation, useParams } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate, useParams } from 'react-router-dom';
 import {
   IoAddOutline,
   IoBookmarkOutline,
@@ -21,11 +21,21 @@ import { useQuery } from '@tanstack/react-query';
 import { api } from '../../api/api';
 
 export default function BottomTab() {
+
+  const navigate = useNavigate()
+
   const location = useLocation();
   const { username } = useParams(); // used in all route paths
   const [showDrawer, setShowDrawer] = React.useState(false);
 
   const toggleDrawer = () => setShowDrawer(!showDrawer);
+
+
+   const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/", { replace: true });
+  };
+
 
   const { data: user, isLoading } = useQuery({
     queryKey: ['profile'],
@@ -119,7 +129,7 @@ export default function BottomTab() {
             <button className='flex items-center gap-5 font-bold'><IoLanguageOutline className="w-6 h-6" /> English</button>
           </div>
 
-          <button className="flex font-bold items-center gap-5"><IoExitOutline className="w-6 h-6 rotate-180" /> Logout</button>
+          <button className="flex font-bold items-center gap-5" onClick={handleLogout}><IoExitOutline className="w-6 h-6 rotate-180" /> Logout</button>
         </div>
       </div>
 

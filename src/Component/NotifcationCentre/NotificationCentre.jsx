@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { HiOutlinePencil } from 'react-icons/hi2';
 import {
   IoArrowBackOutline,
@@ -11,6 +11,13 @@ import useDeviceType from '../../hooks/useDeviceType';
 function NotificationCentre() {
   const isMobile = useDeviceType();
   const username = "yourUsername"; // Replace with dynamic value
+
+  const navigate = useNavigate()
+
+  function handleclick(){
+    navigate('my/:username/settings/notifications/notificationsSettings')
+  }
+
 
   return (
     <section className="flex relative border-l border-r border-gray-300 w-full max-w-full h-dvh bg-white">
@@ -25,7 +32,7 @@ function NotificationCentre() {
           </div>
           <div className="flex items-center gap-3">
             <IoEllipsisVerticalOutline className="w-5 h-5 sm:w-6 sm:h-6" />
-            <Link to={isMobile ? "/settings" : "/my/settings"}>
+            <Link  to='notificationsSettings'>
               <IoSettingsOutline className="w-5 h-5 sm:w-6 sm:h-6" />
             </Link>
           </div>

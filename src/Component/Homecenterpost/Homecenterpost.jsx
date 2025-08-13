@@ -177,7 +177,7 @@ function HomeCenterPost() {
                   <IoBookmarkOutline
                     className="w-6 h-6 cursor-pointer"
                     title="Bookmark"
-                    onClick={() => toggleBookmark(post._id)}
+                    onClick={() => toggleBookmark(post)}
                   />
                 )
               }

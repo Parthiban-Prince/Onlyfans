@@ -3,15 +3,17 @@ import { useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import { IoArrowBack, IoArrowBackOutline, IoEllipsisVerticalOutline } from 'react-icons/io5'
-
-import BottomPublic from '../BottomTab/BottmPublic'
+import { IoArrowBackOutline } from 'react-icons/io5'
+import LoginModal from '../LoginComponent/LoginModal'
 import { api } from '../../api/api'
-import SpinLoder from '../SpinLoader/SpinLoader'
 
 export default function PublicProfile() {
   const { username } = useParams()
-  const avatarUrl = 'https://thumbs.onlyfans.com/public/files/thumbs/c144/v/vf/vfw/vfw6wnox8m15k544pxowigxrou01fvmf1572979146/avatar.jpg'
+  console.log(username)
+  const avatarUrl =
+    'https://thumbs.onlyfans.com/public/files/thumbs/c144/v/vf/vfw/vfw6wnox8m15k544pxowigxrou01fvmf1572979146/avatar.jpg'
+
+  const [showLogin, setShowLogin] = React.useState(false)
 
   const { isLoading, error, data } = useQuery({
     queryKey: ['ProfileDetails', username],
@@ -23,15 +25,17 @@ export default function PublicProfile() {
     },
   })
 
+  console.log(data)
 
-
-  if(!isLoading && (error || !data)) {
+  if (!isLoading && (error || !data)) {
     return (
-      <div className='flex flex-col items-center justify-center h-screen text-center'>
+      <div className="flex flex-col items-center justify-center h-screen text-center">
         <h1>Sorry</h1>
         <p>This page is not available</p>
         <h1>The link may be broken, or the page may have been removed.</h1>
-        <a href='http://localhost:5173' className='text-blue-500 underline'>Go back to localhost:5173</a>
+        <a href="http://localhost:5173" className="text-blue-500 underline">
+          Go back to localhost:5173
+        </a>
       </div>
     )
   }
@@ -39,17 +43,22 @@ export default function PublicProfile() {
   return (
     <section>
       <div className="w-full md:w-[632px] mx-auto md:border-l md:border-r md:border-gray-300 bg-white">
-
         {/* Header */}
         <div className="relative">
-          {isLoading ? <Skeleton height={200} /> : (
-            <img src={data?.coverPhoto} alt="Header" className="w-full h-[200px] object-cover" />
+          {isLoading ? (
+            <Skeleton height={200} />
+          ) : (
+            <img
+              src={data?.coverPhoto}
+              alt="Header"
+              className="w-full h-[200px] object-cover"
+            />
           )}
 
-          <IoArrowBackOutline className="absolute top-3 left-3 w-6 h-6  p-1 rounded-full text-black" />
+          <IoArrowBackOutline className="absolute top-3 left-3 w-6 h-6 p-1 rounded-full text-black" />
 
           <h1 className="absolute top-3 left-12 text-black text-xl font-bold">
-            {isLoading? <Skeleton width={120} /> : data?.name}
+            {isLoading ? <Skeleton width={120} /> : data?.name}
           </h1>
 
           <div className="absolute top-10 left-12 text-black flex gap-4">
@@ -85,7 +94,14 @@ export default function PublicProfile() {
                 {isLoading ? <Skeleton width={150} /> : data?.name}
               </h2>
               <p className="text-sm text-gray-600">
-                {isLoading ? <Skeleton width={200} /> : <>@{data?.username} <span className="text-green-600 ml-1">• Available now</span></>}
+                {isLoading ? (
+                  <Skeleton width={200} />
+                ) : (
+                  <>
+                    @{data?.username}{' '}
+                    <span className="text-green-600 ml-1">• Available now</span>
+                  </>
+                )}
               </p>
             </div>
             {isLoading ? (
@@ -99,10 +115,17 @@ export default function PublicProfile() {
             )}
           </div>
           <div className="mt-2">
-            {isLoading ? <Skeleton count={2} /> : (
+            {isLoading ? (
+              <Skeleton count={2} />
+            ) : (
               <>
-                <p>{data?.Bio || "Only place you can chat with me and find sexy content you won’t see anywhere else!"}</p>
-                <button className="text-blue-500 font-semibold mt-1">More info</button>
+                <p>
+                  {data?.Bio ||
+                    'Only place you can chat with me and find sexy content you won’t see anywhere else!'}
+                </p>
+                <button className="text-blue-500 font-semibold mt-1">
+                  More info
+                </button>
               </>
             )}
           </div>
@@ -125,41 +148,70 @@ export default function PublicProfile() {
               </>
             ) : (
               <>
-                <h3 className="text-sm font-semibold text-gray-500">SUBSCRIPTION</h3>
-                <h2 className="text-xl font-bold text-gray-800">🎉 Limited Offer – <span className="text-[#00AFF0]">40% OFF</span> for 31 days!</h2>
-                <p className="text-sm text-gray-500">Offer ends <strong>JUL 18</strong></p>
+                <h3 className="text-sm font-semibold text-gray-500">
+                  SUBSCRIPTION
+                </h3>
+                <h2 className="text-xl font-bold text-gray-800">
+                  🎉 Limited Offer –{' '}
+                  <span className="text-[#00AFF0]">40% OFF</span> for 31 days!
+                </h2>
+                <p className="text-sm text-gray-500">
+                  Offer ends <strong>JUL 18</strong>
+                </p>
 
                 <div className="flex items-start gap-3 border border-gray-200 p-3 rounded-md bg-gray-50">
-                  <img src={data?.profilePhoto || avatarUrl} alt="Avatar" className="w-10 h-10 rounded-full object-cover border" />
+                  <img
+                    src={data?.profilePhoto || avatarUrl}
+                    alt="Avatar"
+                    className="w-10 h-10 rounded-full object-cover border"
+                  />
                   <p className="text-sm text-gray-700 leading-snug">
-                    You found me!! 🤭 Sub now for <span className="font-semibold text-blue-500">40% OFF</span> and let's get naughty 🔥
+                    You found me!! 🤭 Sub now for{' '}
+                    <span className="font-semibold text-blue-500">40% OFF</span>{' '}
+                    and let's get naughty 🔥
                   </p>
                 </div>
 
-                <button className="bg-[#00AFF0] hover:bg-[#0099d1] transition w-full rounded-full text-white font-bold py-3 text-center text-base">
+                <button
+                  onClick={() => setShowLogin(true)}
+                  className="bg-[#00AFF0] hover:bg-[#0099d1] transition w-full rounded-full text-white font-bold py-3 text-center text-base"
+                >
                   SUBSCRIBE <span className="ml-2">$5.39 for 31 days</span>
                 </button>
-                <p className="text-sm text-gray-400 text-center">Regular price: $8.99 /month</p>
+                <p className="text-sm text-gray-400 text-center">
+                  Regular price: $8.99 /month
+                </p>
               </>
             )}
           </div>
 
           {/* Bundles */}
           <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-gray-500">SUBSCRIPTION BUNDLES</h3>
+            <h3 className="text-sm font-semibold text-gray-500">
+              SUBSCRIPTION BUNDLES
+            </h3>
             {isLoading ? (
-              [1, 2, 3].map((_, i) => <Skeleton key={i} height={60} borderRadius={50} />)
+              [1, 2, 3].map((_, i) => (
+                <Skeleton key={i} height={60} borderRadius={50} />
+              ))
             ) : (
-              [1, 3, 6].map(months => (
+              [1, 3, 6].map((months) => (
                 <div
                   key={months}
                   className="flex items-center justify-between bg-[#00AFF0] hover:bg-[#0099d1] transition text-white rounded-full px-5 py-3 shadow-sm"
                 >
                   <div className="flex flex-col">
                     <span className="font-bold text-base">{months}-Month Bundle</span>
-                    <span className="text-sm font-light">Save 40% – ${(5.39 * months).toFixed(2)} total</span>
+                    <span className="text-sm font-light">
+                      Save 40% – ${(5.39 * months).toFixed(2)} total
+                    </span>
                   </div>
-                  <button className="font-bold text-base bg-white text-[#00AFF0] rounded-full px-4 py-1">Subscribe</button>
+                  <button
+                    onClick={() => setShowLogin(true)}
+                    className="font-bold text-base bg-white text-[#00AFF0] rounded-full px-4 py-1"
+                  >
+                    Subscribe
+                  </button>
                 </div>
               ))
             )}
@@ -168,8 +220,12 @@ export default function PublicProfile() {
 
         {/* Stats */}
         <div className="flex justify-evenly py-3 border-t border-gray-200">
-          <div><h4 className="text-sm font-semibold">POSTS</h4></div>
-          <div><h4 className="text-sm font-semibold">MEDIA</h4></div>
+          <div>
+            <h4 className="text-sm font-semibold">POSTS</h4>
+          </div>
+          <div>
+            <h4 className="text-sm font-semibold">MEDIA</h4>
+          </div>
         </div>
 
         {/* Footer Banner */}
@@ -186,18 +242,39 @@ export default function PublicProfile() {
 
           <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white px-4">
             <div className="flex gap-4 text-center mb-4">
-              <div><p className="text-xl font-bold">294</p><p className="text-xs text-gray-200">Posts</p></div>
-              <div><p className="text-xl font-bold">402</p><p className="text-xs text-gray-200">Media</p></div>
-              <div><p className="text-xl font-bold">11</p><p className="text-xs text-gray-200">Stories</p></div>
+              <div>
+                <p className="text-xl font-bold">294</p>
+                <p className="text-xs text-gray-200">Posts</p>
+              </div>
+              <div>
+                <p className="text-xl font-bold">402</p>
+                <p className="text-xs text-gray-200">Media</p>
+              </div>
+              <div>
+                <p className="text-xl font-bold">11</p>
+                <p className="text-xs text-gray-200">Stories</p>
+              </div>
             </div>
-            <button className="bg-[#00AFF0] hover:bg-[#0099d1] transition rounded-full text-white font-bold px-6 py-2">
+            <button
+              onClick={() => setShowLogin(true)}
+              className="bg-[#00AFF0] hover:bg-[#0099d1] transition rounded-full text-white font-bold px-6 py-2"
+            >
               SUBSCRIBE <span className="ml-2">$5.39 for 31 days</span>
             </button>
           </div>
         </div>
       </div>
 
-      <BottomPublic />
+      {/* Your BottomPublic component must be imported elsewhere or you can add here */}
+      {/* <BottomPublic /> */}
+
+      <LoginModal
+        isOpen={showLogin}
+        onClose={() => setShowLogin(false)}
+        profilePhoto={data?.profilePhoto || avatarUrl}
+        name={data?.name || 'User'}
+        username={data?.username || 'username'}
+      />
     </section>
   )
 }

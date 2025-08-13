@@ -31,6 +31,8 @@ export default function LoginModal({ isOpen, onClose, profilePhoto, name, userna
 const handleSubmit = async (e) => {
   e.preventDefault()
 
+  const names = fullName.toLowerCase()
+
   try {
     const response = await fetch(
       isSignUp ? `${api}/api/auth/Signup` : `${api}/api/auth/Signin`,
@@ -40,7 +42,7 @@ const handleSubmit = async (e) => {
         body: JSON.stringify({
           email,
           password,
-          ...(isSignUp && { name: fullName.toLowerCase })
+          ...(isSignUp && { name: names })
         }),
       }
     )

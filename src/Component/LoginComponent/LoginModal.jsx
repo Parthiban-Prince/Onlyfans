@@ -40,7 +40,7 @@ const handleSubmit = async (e) => {
         body: JSON.stringify({
           email,
           password,
-          ...(isSignUp && { name: fullName })
+          ...(isSignUp && { name: fullName.toLowerCase })
         }),
       }
     )

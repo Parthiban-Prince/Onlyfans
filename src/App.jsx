@@ -111,7 +111,6 @@ function App() {
         <Route path=":username" element={<PublicProfilePage />} />
 
         {/* Catch-all top-level */}
-        <Route path="*" element={<Notfound />} />
       </Route>
     )
   );

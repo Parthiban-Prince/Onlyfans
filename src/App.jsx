@@ -64,7 +64,7 @@ function App() {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<LoginLayout />} errorElement={<Notfound />}>
+      <Route path="/" element={<LoginLayout />}>
         <Route
           index
           element={
